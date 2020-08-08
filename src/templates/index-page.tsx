@@ -59,35 +59,43 @@ export const IndexPageTemplate = ({
                     lineHeight: '1',
                     justifyContent: 'space-around',
                     alignItems: 'left',
-                    flexDirection: 'column'
+                    flexDirection: 'column',
+                    textAlign: 'center'
                 }}
             >
-                <h1
-                    className="has-text-weight-bold is-size-3-mobile is-size-2-tablet is-size-1-widescreen"
-                    style={{
-                        boxShadow:
-                            'rgb(255, 68, 0) 0.5rem 0px 0px, rgb(255, 68, 0) -0.5rem 0px 0px',
-                        backgroundColor: 'rgb(255, 68, 0)',
-                        color: 'white',
-                        lineHeight: '1',
-                        padding: '0.25em'
-                    }}
-                >
-                    {title}
-                </h1>
-                <h3
-                    className="has-text-weight-bold is-size-5-mobile is-size-5-tablet is-size-4-widescreen"
-                    style={{
-                        boxShadow:
-                            'rgb(255, 68, 0) 0.5rem 0px 0px, rgb(255, 68, 0) -0.5rem 0px 0px',
-                        backgroundColor: 'rgb(255, 68, 0)',
-                        color: 'white',
-                        lineHeight: '1',
-                        padding: '0.25em'
-                    }}
-                >
-                    {subheading}
-                </h3>
+                <div className="title is-size-3-mobile is-size-2-tablet is-size-1-widescreen">
+                    <h1
+                        className="has-text-weight-bold strike-large"
+                        style={{
+                            // boxShadow:
+                            //     'rgb(255, 68, 0) 0.5rem 0px 0px, rgb(255, 68, 0) -0.5rem 0px 0px',
+                            // backgroundColor: 'rgb(255, 68, 0)',
+                            fontSize: '7rem !important',
+                            color: 'white',
+                            lineHeight: '1',
+                            padding: '0.25em'
+                            // textDecoration: 'line-through'
+                        }}
+                    >
+                        {title}
+                    </h1>
+                </div>
+                <div className="subtitle is-size-5-mobile is-size-5-tablet is-size-4-widescreen">
+                    <h3
+                        className="has-text-weight-bold strike-small"
+                        style={{
+                            // boxShadow:
+                            //     'rgb(255, 68, 0) 0.5rem 0px 0px, rgb(255, 68, 0) -0.5rem 0px 0px',
+                            // backgroundColor: 'rgb(255, 68, 0)',
+                            color: 'white',
+                            fontSize: '2rem',
+                            // lineHeight: '1',
+                            padding: '0.25em'
+                        }}
+                    >
+                        {subheading}
+                    </h3>
+                </div>
             </div>
             <div className="chevron-down is-size-5-mobile is-size-5-tablet is-size-4-widescreen">
                 <a onClick={() => scrollTo('#editor-note')} className="icon">
@@ -113,6 +121,47 @@ export const IndexPageTemplate = ({
                          {
                             /* padding-top: 10%; */
                         }
+                    }
+                    .strike-large::before {
+                        content: '';
+                        border-bottom: 1rem dashed rgba(255, 68, 0, 0.8);
+                        width: 100%;
+                        position: absolute;
+                        right: 0;
+                        top: 50%;
+                    }
+                    .strike-large::after {
+                        content: '';
+                        border-bottom: 1.5rem dashed black;
+                        width: 100%;
+                        position: absolute;
+                        right: 0.8%;
+                        top: 48%;
+                    }
+
+                    .strike-large {
+                        position: relative;
+                        display: inline-block;
+                    }
+                    .strike-small {
+                        position: relative;
+                        display: inline-block;
+                    }
+                    .strike-small::before {
+                        content: '';
+                        border-bottom: 0.4rem dashed rgba(255, 68, 0, 0.8);
+                        width: 100%;
+                        position: absolute;
+                        right: 0;
+                        top: 50%;
+                    }
+                    .strike-small::after {
+                        content: '';
+                        border-bottom: 0.3rem dashed black;
+                        width: 100%;
+                        position: absolute;
+                        right: 0.8%;
+                        top: 50%;
                     }
                 `}
             </style>

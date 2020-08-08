@@ -1,9 +1,9 @@
 ---
 templateKey: index-page
-title: THE VARSITY
 image: /img/home-jumbotron.jpg
-heading: THE VARSITY
-subheading:  Declassified UofT’s Survival Guide 
+title: DECLASSIFIED
+heading: DECLASSIFIED
+subheading: The Varsity's UofT Survival Guide 
 mainpitch:
   title: Why Kaldi
   description: >
