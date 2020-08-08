@@ -1,18 +1,18 @@
-import { BlogPostByIdQuery } from "types/graphql-types"
-import { Link, graphql } from "gatsby"
-import { kebabCase } from "lodash"
-import Content, { HTMLContent } from "../components/Content"
-import Helmet from "react-helmet"
-import Layout from "../components/Layout"
-import React from "react"
+import { BlogPostByIdQuery } from 'types/graphql-types';
+import { Link, graphql } from 'gatsby';
+import { kebabCase } from 'lodash';
+import Content, { HTMLContent } from '../components/Content';
+import Helmet from 'react-helmet';
+import Layout from '../components/Layout';
+import React from 'react';
 
 interface BlogPostTemplateProps {
-    content?: string | null
-    contentComponent?: React.FC<any>
-    description?: string | null
-    tags?: (string | null)[] | null
-    title?: string | null
-    helmet?: React.ReactNode | null
+    content?: string | null;
+    contentComponent?: React.FC<any>;
+    description?: string | null;
+    tags?: (string | null)[] | null;
+    title?: string | null;
+    helmet?: React.ReactNode | null;
 }
 
 export const BlogPostTemplate: React.FC<BlogPostTemplateProps> = ({
@@ -23,11 +23,11 @@ export const BlogPostTemplate: React.FC<BlogPostTemplateProps> = ({
     title,
     helmet
 }) => {
-    const PostContent = contentComponent || Content
+    const PostContent = contentComponent || Content;
 
     return (
         <section className="section">
-            {helmet || ""}
+            {helmet || ''}
             <div className="container content">
                 <div className="columns">
                     <div className="column is-10 is-offset-1">
@@ -44,11 +44,7 @@ export const BlogPostTemplate: React.FC<BlogPostTemplateProps> = ({
                                         tag =>
                                             tag && (
                                                 <li key={`tag${tag}`}>
-                                                    <Link
-                                                        to={`/tags/${kebabCase(
-                                                            tag
-                                                        )}/`}
-                                                    >
+                                                    <Link to={`/tags/${kebabCase(tag)}/`}>
                                                         {tag}
                                                     </Link>
                                                 </li>
@@ -61,13 +57,13 @@ export const BlogPostTemplate: React.FC<BlogPostTemplateProps> = ({
                 </div>
             </div>
         </section>
-    )
-}
+    );
+};
 
 const BlogPost: React.FC<{
-    data: BlogPostByIdQuery
+    data: BlogPostByIdQuery;
 }> = ({ data }) => {
-    const { markdownRemark: post } = data
+    const { markdownRemark: post } = data;
 
     return (
         <Layout>
@@ -78,20 +74,17 @@ const BlogPost: React.FC<{
                 helmet={
                     <Helmet titleTemplate="%s | Blog">
                         <title>{`${post?.frontmatter?.title}`}</title>
-                        <meta
-                            name="description"
-                            content={`${post?.frontmatter?.description}`}
-                        />
+                        <meta name="description" content={`${post?.frontmatter?.description}`} />
                     </Helmet>
                 }
                 tags={post?.frontmatter?.tags}
                 title={post?.frontmatter?.title}
             />
         </Layout>
-    )
-}
+    );
+};
 
-export default BlogPost
+export default BlogPost;
 
 export const pageQuery = graphql`
     query BlogPostByID($id: String!) {
@@ -106,4 +99,4 @@ export const pageQuery = graphql`
             }
         }
     }
-`
+`;

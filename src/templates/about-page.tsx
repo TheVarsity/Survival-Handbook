@@ -1,13 +1,13 @@
-import { MarkdownRemark } from "types/graphql-types"
-import { graphql } from "gatsby"
-import Content, { HTMLContent } from "../components/Content"
-import Layout from "../components/Layout"
-import React from "react"
+import { MarkdownRemark } from 'types/graphql-types';
+import { graphql } from 'gatsby';
+import Content, { HTMLContent } from '../components/Content';
+import Layout from '../components/Layout';
+import React from 'react';
 
 interface AboutPageTemplateProps {
-    title?: string | null
-    content?: string | null
-    contentComponent?: React.FC<any>
+    title?: string | null;
+    content?: string | null;
+    contentComponent?: React.FC<any>;
 }
 
 export const AboutPageTemplate: React.FC<AboutPageTemplateProps> = ({
@@ -15,7 +15,7 @@ export const AboutPageTemplate: React.FC<AboutPageTemplateProps> = ({
     content,
     contentComponent
 }) => {
-    const PageContent = contentComponent || Content
+    const PageContent = contentComponent || Content;
 
     return (
         <section className="section section--gradient">
@@ -26,26 +26,23 @@ export const AboutPageTemplate: React.FC<AboutPageTemplateProps> = ({
                             <h2 className="title is-size-3 has-text-weight-bold is-bold-light">
                                 {title}
                             </h2>
-                            <PageContent
-                                className="content"
-                                content={content}
-                            />
+                            <PageContent className="content" content={content} />
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-    )
-}
+    );
+};
 
 interface AboutPageProps {
     data: {
-        markdownRemark: MarkdownRemark
-    }
+        markdownRemark: MarkdownRemark;
+    };
 }
 
 const AboutPage: React.FC<AboutPageProps> = ({ data }) => {
-    const { markdownRemark: post } = data
+    const { markdownRemark: post } = data;
 
     return (
         <Layout>
@@ -55,10 +52,10 @@ const AboutPage: React.FC<AboutPageProps> = ({ data }) => {
                 content={post.html}
             />
         </Layout>
-    )
-}
+    );
+};
 
-export default AboutPage
+export default AboutPage;
 
 export const aboutPageQuery = graphql`
     query AboutPage($id: String!) {
@@ -69,4 +66,4 @@ export const aboutPageQuery = graphql`
             }
         }
     }
-`
+`;

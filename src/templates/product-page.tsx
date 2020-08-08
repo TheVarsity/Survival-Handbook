@@ -1,11 +1,11 @@
-import { ProductPageQuery } from "types/graphql-types"
-import { graphql } from "gatsby"
-import Features from "../components/Features"
-import Layout from "../components/Layout"
-import PreviewCompatibleImage from "../components/PreviewCompatibleImage"
-import Pricing from "../components/Pricing"
-import React from "react"
-import Testimonials from "../components/Testimonials"
+import { ProductPageQuery } from 'types/graphql-types';
+import { graphql } from 'gatsby';
+import Features from '../components/Features';
+import Layout from '../components/Layout';
+import PreviewCompatibleImage from '../components/PreviewCompatibleImage';
+import Pricing from '../components/Pricing';
+import React from 'react';
+import Testimonials from '../components/Testimonials';
 
 export const ProductPageTemplate = ({
     image,
@@ -17,25 +17,23 @@ export const ProductPageTemplate = ({
     testimonials,
     full_image,
     pricing
-}: RecursiveNonNullable<ProductPageQuery>["markdownRemark"]["frontmatter"]) => (
+}: RecursiveNonNullable<ProductPageQuery>['markdownRemark']['frontmatter']) => (
     <div className="content">
         <div
             className="full-width-image-container margin-top-0"
             style={{
                 backgroundImage: `url(${
-                    image.childImageSharp
-                        ? image.childImageSharp.fluid.src
-                        : image
+                    image.childImageSharp ? image.childImageSharp.fluid.src : image
                 })`
             }}
         >
             <h2
                 className="has-text-weight-bold is-size-1"
                 style={{
-                    boxShadow: "0.5rem 0 0 #f40, -0.5rem 0 0 #f40",
-                    backgroundColor: "#f40",
-                    color: "white",
-                    padding: "1rem"
+                    boxShadow: '0.5rem 0 0 #f40, -0.5rem 0 0 #f40',
+                    backgroundColor: '#f40',
+                    color: 'white',
+                    padding: '1rem'
                 }}
             >
                 {title}
@@ -46,9 +44,7 @@ export const ProductPageTemplate = ({
                 <div className="section">
                     <div className="columns">
                         <div className="column is-7 is-offset-1">
-                            <h3 className="has-text-weight-semibold is-size-2">
-                                {heading}
-                            </h3>
+                            <h3 className="has-text-weight-semibold is-size-2">{heading}</h3>
                             <p>{description}</p>
                         </div>
                     </div>
@@ -68,24 +64,18 @@ export const ProductPageTemplate = ({
                                     <div className="tile">
                                         <div className="tile is-parent is-vertical">
                                             <article className="tile is-child">
-                                                <PreviewCompatibleImage
-                                                    imageInfo={main.image1}
-                                                />
+                                                <PreviewCompatibleImage imageInfo={main.image1} />
                                             </article>
                                         </div>
                                         <div className="tile is-parent">
                                             <article className="tile is-child">
-                                                <PreviewCompatibleImage
-                                                    imageInfo={main.image2}
-                                                />
+                                                <PreviewCompatibleImage imageInfo={main.image2} />
                                             </article>
                                         </div>
                                     </div>
                                     <div className="tile is-parent">
                                         <article className="tile is-child">
-                                            <PreviewCompatibleImage
-                                                imageInfo={main.image3}
-                                            />
+                                            <PreviewCompatibleImage imageInfo={main.image3} />
                                         </article>
                                     </div>
                                 </div>
@@ -96,8 +86,7 @@ export const ProductPageTemplate = ({
                                 style={{
                                     backgroundImage: `url(${
                                         full_image.childImageSharp
-                                            ? full_image.childImageSharp.fluid
-                                                  .src
+                                            ? full_image.childImageSharp.fluid.src
                                             : full_image
                                     })`
                                 }}
@@ -113,14 +102,10 @@ export const ProductPageTemplate = ({
             </div>
         </section>
     </div>
-)
+);
 
-const ProductPage = ({
-    data
-}: {
-    data: RecursiveNonNullable<ProductPageQuery>
-}) => {
-    const { frontmatter } = data.markdownRemark
+const ProductPage = ({ data }: { data: RecursiveNonNullable<ProductPageQuery> }) => {
+    const { frontmatter } = data.markdownRemark;
 
     return (
         <Layout>
@@ -136,10 +121,10 @@ const ProductPage = ({
                 pricing={frontmatter.pricing}
             />
         </Layout>
-    )
-}
+    );
+};
 
-export default ProductPage
+export default ProductPage;
 
 export const productPageQuery = graphql`
     query ProductPage($id: String!) {
@@ -227,4 +212,4 @@ export const productPageQuery = graphql`
             }
         }
     }
-`
+`;
