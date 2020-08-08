@@ -7,6 +7,26 @@ import BlogRoll from '../components/BlogRoll';
 import Features from '../components/Features';
 import Layout from '../components/Layout';
 
+import scrollTo from 'gatsby-plugin-smoothscroll';
+
+const Chevron = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 16 16">
+        <path
+            fill="white"
+            d="M4.14645,5.64645 C4.34171,5.45118 4.65829,5.45118 4.85355,5.64645 L7.9999975,8.79289 L11.1464,5.64645 C11.3417,5.45118 11.6583,5.45118 11.8536,5.64645 C12.0488,5.84171 12.0488,6.15829 11.8536,6.35355 L8.35355,9.85355 C8.15829,10.0488 7.84171,10.0488 7.64645,9.85355 L4.14645,6.35355 C3.95118,6.15829 3.95118,5.84171 4.14645,5.64645 Z"
+        />
+        {/*  @ts-ignore Styled JSX */}
+        <style jsx>
+            {`
+                svg {
+                    height: 100%;
+                    width: 100%;
+                }
+            `}
+        </style>
+    </svg>
+);
+
 type IndexPageTemplateProps = RecursiveNonNullable<
     IndexPageTemplateQuery
 >['markdownRemark']['frontmatter'];
@@ -22,7 +42,7 @@ export const IndexPageTemplate = ({
 }: IndexPageTemplateProps) => (
     <div>
         <div
-            className="full-width-image margin-top-0"
+            className="parallax-container full-width-image margin-top-0"
             style={{
                 backgroundImage: `url(${
                     image.childImageSharp ? image.childImageSharp.fluid.src : image
@@ -33,6 +53,7 @@ export const IndexPageTemplate = ({
         >
             <div
                 style={{
+                    marginTop: 'auto',
                     display: 'flex',
                     height: '150px',
                     lineHeight: '1',
@@ -68,8 +89,36 @@ export const IndexPageTemplate = ({
                     {subheading}
                 </h3>
             </div>
+            <div className="chevron-down is-size-5-mobile is-size-5-tablet is-size-4-widescreen">
+                <a onClick={() => scrollTo('#editor-note')} className="icon">
+                    <Chevron />
+                </a>
+            </div>
+            {/* @ts-ignore Styled JSX */}
+            <style jsx>
+                {`
+                    .icon {
+                        width: 7rem !important;
+                        height: 7rem !important;
+                    }
+                    .parallax-container {
+                        display: flex;
+                        flex-direction: column;
+                        flex-flow: column nowrap;
+                    }
+                    .chevron-down {
+                        display: flex;
+                        justify-content: center;
+                        margin-top: auto;
+                         {
+                            /* padding-top: 10%; */
+                        }
+                    }
+                `}
+            </style>
         </div>
-        <section className="section section--gradient">
+
+        <section className="section section--gradient" id="editor-note">
             <div className="container">
                 <div className="section">
                     <div className="columns">
@@ -134,7 +183,7 @@ IndexPageTemplate.propTypes = {
 const IndexPage = ({ data }: { data: RecursiveNonNullable<IndexPageTemplateQuery> }) => {
     const { markdownRemark: post } = data;
     return (
-        <Layout>
+        <Layout isIndexPage={true}>
             <IndexPageTemplate
                 image={post?.frontmatter?.image}
                 title={post?.frontmatter?.title}
