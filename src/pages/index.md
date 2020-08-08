@@ -5,17 +5,11 @@ title: DECLASSIFIED
 heading: DECLASSIFIED
 subheading: The Varsity's UofT Survival Guide 
 mainpitch:
-  title: Why Kaldi
+  title: Title
   description: >
-    Kaldi is the coffee store for everyone who believes that great coffee
-    shouldn't just taste good, it should do good too. We source all of our beans
-    directly from small scale sustainable farmers and make sure part of the
-    profits are reinvested in their communities.
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus pariatur sapiente facilis alias, illum omnis dolorum non eius. Nemo nostrum consectetur dolorum vero ullam qui ea odit fugiat quas porro.
 description: >-
-  Kaldi is the ultimate spot for coffee lovers who want to learn about their
-  java’s origin and support the farmers that grew it. We take coffee production,
-  roasting and brewing seriously and we’re glad to pass that knowledge to
-  anyone.
+ Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus pariatur sapiente facilis alias, illum omnis dolorum non eius. Nemo nostrum consectetur dolorum vero ullam qui ea odit fugiat quas porro.
 intro:
   blurbs:
     - image: /img/coffee.png
@@ -47,10 +41,7 @@ intro:
         sale. The full price you pay goes to the artist.
   heading: What we offer
   description: >
-    Kaldi is the ultimate spot for coffee lovers who want to learn about their
-    java’s origin and support the farmers that grew it. We take coffee
-    production, roasting and brewing seriously and we’re glad to pass that
-    knowledge to anyone. This is an edit via identity...
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus pariatur sapiente facilis alias, illum omnis dolorum non eius. Nemo nostrum consectetur dolorum vero ullam qui ea odit fugiat quas porro.
 main:
   heading: Great coffee with no compromises
   description: >
