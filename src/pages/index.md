@@ -1,9 +1,9 @@
 ---
 templateKey: index-page
-title: Great coffee with a conscience
+title: THE VARSITY
 image: /img/home-jumbotron.jpg
-heading: Great coffee with a conscience
-subheading: Support sustainable farming while enjoying a cup
+heading: THE VARSITY
+subheading:  Declassified UofT’s Survival Guide 
 mainpitch:
   title: Why Kaldi
   description: >

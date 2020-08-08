@@ -6,7 +6,13 @@ import Navbar from '../components/Navbar';
 import React from 'react';
 import useSiteMetadata from './SiteMetadata';
 
-const TemplateWrapper = ({ children }) => {
+const TemplateWrapper = ({
+    children,
+    isIndexPage
+}: {
+    children: JSX.Element;
+    isIndexPage?: boolean;
+}) => {
     const { title, description } = useSiteMetadata();
     return (
         <div>
@@ -45,7 +51,7 @@ const TemplateWrapper = ({ children }) => {
                 <meta property="og:url" content="/" />
                 <meta property="og:image" content={`${withPrefix('/')}img/og-image.jpg`} />
             </Helmet>
-            <Navbar />
+            {isIndexPage ? null : <Navbar />}
             <div>{children}</div>
             <Footer />
         </div>

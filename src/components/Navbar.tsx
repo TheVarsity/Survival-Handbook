@@ -5,7 +5,7 @@ import logo from '../img/logo.svg';
 
 // eslint-disable-next-line react/display-name
 const Navbar = class extends React.Component {
-    constructor(props) {
+    constructor(props: any) {
         super(props);
         this.state = {
             active: false,
