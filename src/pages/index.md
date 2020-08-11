@@ -1,6 +1,7 @@
 ---
 templateKey: index-page
-image: /img/cover.png
+image: /img/background.jpg
+cover: /img/cover.png
 title: DECLASSIFIED
 heading: DECLASSIFIED
 subheading: The Varsity's UofT Survival Guide 

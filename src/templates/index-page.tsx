@@ -39,6 +39,7 @@ type IndexPageTemplateProps = RecursiveNonNullable<
 
 export const IndexPageTemplate = ({
     image,
+    cover,
     title,
     heading,
     subheading,
@@ -58,7 +59,7 @@ export const IndexPageTemplate = ({
                 //     backgroundAttachment: `fixed`
                 // }}
             >
-                <VideoBg poster={image.childImageSharp ? image.childImageSharp.fluid.src : image}>
+                <VideoBg poster={cover.childImageSharp ? cover.childImageSharp.fluid.src : cover}>
                     <VideoBg.Source src={webm} type="video/webm" />
                     <VideoBg.Source src={mp4} type="video/mp4" />
                 </VideoBg>
@@ -178,7 +179,17 @@ export const IndexPageTemplate = ({
                 </style>
             </div>
 
-            <section className="section section--gradient main" id="editor-note">
+            <section
+                className="section section--gradient main"
+                id="editor-note"
+                style={{
+                    backgroundImage: `url(${
+                        image.childImageSharp ? image.childImageSharp.fluid.src : image
+                    })`,
+                    backgroundPosition: `top left`,
+                    backgroundAttachment: `fixed`
+                }}
+            >
                 <div className="container">
                     <div className="section">
                         <div className="columns">
@@ -255,6 +266,7 @@ const IndexPage = ({ data }: { data: RecursiveNonNullable<IndexPageTemplateQuery
         <Layout isIndexPage={true}>
             <IndexPageTemplate
                 image={post?.frontmatter?.image}
+                cover={post?.frontmatter?.cover}
                 title={post?.frontmatter?.title}
                 heading={post?.frontmatter?.heading}
                 subheading={post?.frontmatter?.subheading}
@@ -274,6 +286,13 @@ export const pageQuery = graphql`
             frontmatter {
                 title
                 image {
+                    childImageSharp {
+                        fluid(maxWidth: 2048, quality: 100) {
+                            ...GatsbyImageSharpFluid
+                        }
+                    }
+                }
+                cover {
                     childImageSharp {
                         fluid(maxWidth: 2048, quality: 100) {
                             ...GatsbyImageSharpFluid
