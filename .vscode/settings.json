@@ -28,5 +28,6 @@
     },
     "cSpell.words": [
         "autofix"
-    ]
+    ],
+    "god.tsconfig": "./tsconfig.json"
 }

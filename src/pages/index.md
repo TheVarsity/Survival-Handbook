@@ -1,6 +1,6 @@
 ---
 templateKey: index-page
-image: /img/home-jumbotron.jpg
+image: /img/cover.png
 title: DECLASSIFIED
 heading: DECLASSIFIED
 subheading: The Varsity's UofT Survival Guide 
