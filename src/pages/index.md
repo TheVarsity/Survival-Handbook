@@ -42,6 +42,7 @@ articles:
         coffee making techniques. All of the artwork on display there is for
         sale. The full price you pay goes to the artist.
     - image: /img/articles/article_3.png
+    - image: /img/doodles/article_4.png
     - image: /img/doodles/article_2.png
     - image: /img/doodles/article_3.png
     - image: /img/doodles/article_1.png

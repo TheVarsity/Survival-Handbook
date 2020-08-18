@@ -6,7 +6,7 @@ import { IndexPageTemplateQuery } from 'types/graphql-types';
 import BlogRoll from '../components/BlogRoll';
 import Layout from '../components/Layout';
 import Navbar from '../components/Navbar';
-
+import PreviewCompatibleImage from '../components/PreviewCompatibleImage';
 import TextBubble from '../components/TextBubble';
 
 //@ts-ignore
@@ -41,11 +41,10 @@ type IndexPageTemplateProps = RecursiveNonNullable<
 export const IndexPageTemplate = ({
     image,
     cover,
-    title,
-    heading,
-    subheading,
     editorNote,
-    advice
+    advice,
+    articles,
+    doodles
 }: IndexPageTemplateProps) => (
     <>
         <div>
@@ -175,7 +174,8 @@ export const IndexPageTemplate = ({
                         image.childImageSharp ? image.childImageSharp.fluid.src : image
                     })`,
                     backgroundPosition: `top left`,
-                    backgroundAttachment: `fixed`
+                    backgroundAttachment: `fixed`,
+                    backgroundSize: `cover`
                 }}
             >
                 <div className="container">
@@ -183,6 +183,19 @@ export const IndexPageTemplate = ({
                         <div className="columns">
                             <div className="column is-10 is-offset-1">
                                 <div className="content">
+                                    <div
+                                        className="fixedchevron columns"
+                                        onClick={() => window.scrollTo(0, 0)}
+                                        style={{
+                                            position: 'fixed',
+                                            bottom: '0px',
+                                            right: '10px',
+                                            cursor: 'pointer',
+                                            transform: 'rotate(180deg)'
+                                        }}
+                                    >
+                                        <Chevron />
+                                    </div>
                                     <div className="editor-note">
                                         <div className="tile">
                                             <h1 className="title">{editorNote.title}</h1>
@@ -190,18 +203,163 @@ export const IndexPageTemplate = ({
                                         <div className="tile">
                                             <h3 className="subtitle">{editorNote.description}</h3>
                                         </div>
+                                        {/* @ts-ignore Styled JSX*/}
+                                        <style jsx>
+                                            {`
+                                                .editor-note .tile {
+                                                    justify-content: center;
+                                                }
+                                                .editor-note h1 {
+                                                    font-weight: 700;
+                                                }
+                                            `}
+                                        </style>
                                     </div>
                                     <TextBubble left={advice.left} right={advice.right} />
                                     <TextBubble left={advice.left} right={advice.right} />
-                                    <div
-                                        className="fixedchevron columns"
-                                        style={{
-                                            position: 'absolute',
-                                            bottom: '0px',
-                                            right: '0px'
-                                        }}
-                                    >
-                                        <Chevron />
+
+                                    <div className="article-wrapper">
+                                        <div className="columns">
+                                            <div className="column is-5 is-offset-3">
+                                                <div
+                                                    style={{
+                                                        width: '100%',
+                                                        display: 'inline-block'
+                                                    }}
+                                                >
+                                                    <PreviewCompatibleImage
+                                                        imageInfo={articles.blurbs[0]}
+                                                    />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="column is-4 is-offset-7">
+                                            <div
+                                                style={{
+                                                    width: '100%',
+                                                    display: 'inline-block'
+                                                }}
+                                            >
+                                                <PreviewCompatibleImage
+                                                    imageInfo={articles.blurbs[1]}
+                                                />
+                                            </div>
+                                        </div>
+                                        <div className="column is-4 is-offset-2">
+                                            <div
+                                                style={{
+                                                    width: '100%',
+                                                    display: 'inline-block'
+                                                }}
+                                            >
+                                                <PreviewCompatibleImage
+                                                    imageInfo={articles.blurbs[2]}
+                                                />
+                                            </div>
+                                        </div>
+                                        <div className="column is-5 is-offset-6">
+                                            <div
+                                                style={{
+                                                    width: '100%',
+                                                    display: 'inline-block'
+                                                }}
+                                            >
+                                                <PreviewCompatibleImage
+                                                    imageInfo={articles.blurbs[3]}
+                                                />
+                                            </div>
+                                        </div>
+                                        <div className="column is-4 is-offset-1">
+                                            <div
+                                                style={{
+                                                    width: '100%',
+                                                    display: 'inline-block'
+                                                }}
+                                            >
+                                                <PreviewCompatibleImage
+                                                    imageInfo={articles.blurbs[4]}
+                                                />
+                                            </div>
+                                        </div>
+                                        <div className="column is-6 is-offset-5">
+                                            <div
+                                                style={{
+                                                    width: '100%',
+                                                    display: 'inline-block'
+                                                }}
+                                            >
+                                                <PreviewCompatibleImage
+                                                    imageInfo={articles.blurbs[5]}
+                                                />
+                                            </div>
+                                        </div>
+                                        <div className="column is-5 is-offset-3">
+                                            <div
+                                                style={{
+                                                    width: '100%',
+                                                    display: 'inline-block'
+                                                }}
+                                            >
+                                                <PreviewCompatibleImage
+                                                    imageInfo={articles.blurbs[6]}
+                                                />
+                                            </div>
+                                        </div>
+                                        <div className="column is-4">
+                                            <div
+                                                style={{
+                                                    width: '100%',
+                                                    display: 'inline-block'
+                                                }}
+                                            >
+                                                <PreviewCompatibleImage
+                                                    imageInfo={articles.blurbs[7]}
+                                                />
+                                            </div>
+                                        </div>
+                                        <div className="column is-5 is-offset-8">
+                                            <div
+                                                style={{
+                                                    width: '100%',
+                                                    display: 'inline-block'
+                                                }}
+                                            >
+                                                <PreviewCompatibleImage
+                                                    imageInfo={articles.blurbs[8]}
+                                                />
+                                            </div>
+                                        </div>
+                                        <div className="column is-5 is-offset-2">
+                                            <div
+                                                style={{
+                                                    width: '100%',
+                                                    display: 'inline-block'
+                                                }}
+                                            >
+                                                <PreviewCompatibleImage
+                                                    imageInfo={articles.blurbs[9]}
+                                                />
+                                            </div>
+                                        </div>
+                                        <div className="column is-5 is-offset-6">
+                                            <div
+                                                style={{
+                                                    width: '100%',
+                                                    display: 'inline-block'
+                                                }}
+                                            >
+                                                <PreviewCompatibleImage
+                                                    imageInfo={articles.blurbs[8]}
+                                                />
+                                            </div>
+                                        </div>
+
+                                        {/* @ts-ignore Styled JSX*/}
+                                        <style jsx>{`
+                                            .article-wrapper {
+                                                z-index: 1;
+                                            }
+                                        `}</style>
                                     </div>
 
                                     <div className="column is-12">
@@ -220,20 +378,6 @@ export const IndexPageTemplate = ({
                         </div>
                     </div>
                 </div>
-                {/* @ts-ignore Styled JSX*/}
-                <style jsx>
-                    {`
-                        .main {
-                            background-color: white;
-                        }
-                        .editor-note .tile {
-                            justify-content: center;
-                        }
-                        .editor-note h1 {
-                            font-weight: 700;
-                        }
-                    `}
-                </style>
             </section>
         </div>
     </>
@@ -263,6 +407,7 @@ const IndexPage = ({ data }: { data: RecursiveNonNullable<IndexPageTemplateQuery
                 editorNote={post?.frontmatter?.editorNote}
                 advice={post?.frontmatter?.advice}
                 articles={post?.frontmatter?.articles}
+                doodles={post?.frontmatter?.doodles}
             />
         </Layout>
     );
@@ -305,7 +450,7 @@ export const pageQuery = graphql`
                     }
                     right {
                         childImageSharp {
-                            fluid(maxWidth: 375, quality: 64) {
+                            fluid(maxWidth: 375, quality: 100) {
                                 ...GatsbyImageSharpFluid
                             }
                         }
@@ -316,7 +461,7 @@ export const pageQuery = graphql`
                     blurbs {
                         image {
                             childImageSharp {
-                                fluid(maxWidth: 240, quality: 64) {
+                                fluid(maxWidth: 375, quality: 100) {
                                     ...GatsbyImageSharpFluid
                                 }
                             }

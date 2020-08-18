@@ -24,34 +24,22 @@ const TextBubble = ({ left, right }: TextBubbleProps) => {
     return (
         <>
             <div className="columns">
-                <div className="column is-12">
-                    <div className="advice-right-wrapper">
-                        <div
-                            style={{
-                                width: '26.64vw',
-                                display: 'inline-block'
-                            }}
-                        >
-                            <PreviewCompatibleImage imageInfo={rightImageInfo} />
-                        </div>
-                        {/* @ts-ignore Styled JSX*/}
-                        <style jsx>
-                            {`
-                                .advice-right-wrapper {
-                                    display: flex;
-                                    justify-content: flex-end;
-                                    width: 70vw;
-                                }
-                            `}
-                        </style>
+                <div className="column is-4 is-offset-7 has-text-centered">
+                    <div
+                        style={{
+                            width: '100%',
+                            display: 'inline-block'
+                        }}
+                    >
+                        <PreviewCompatibleImage imageInfo={rightImageInfo} />
                     </div>
                 </div>
             </div>
             <div className="columns">
-                <div className="column is-6 is-offset-1 has-text-centered">
+                <div className="column is-4 is-offset-1 has-text-centered">
                     <div
                         style={{
-                            width: '26.64vw',
+                            width: '100%',
                             display: 'inline-block'
                         }}
                     >
