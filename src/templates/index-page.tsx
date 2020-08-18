@@ -6,7 +6,9 @@ import { IndexPageTemplateQuery } from 'types/graphql-types';
 import BlogRoll from '../components/BlogRoll';
 import Layout from '../components/Layout';
 import Navbar from '../components/Navbar';
-import PreviewCompatibleImage from '../components/PreviewCompatibleImage';
+
+import TextBubble from '../components/TextBubble';
+
 //@ts-ignore
 import mp4 from '../img/handbook-cover-2020.mp4';
 //@ts-ignore
@@ -191,34 +193,19 @@ export const IndexPageTemplate = ({
                                             <h3 className="subtitle">{editorNote.description}</h3>
                                         </div>
                                     </div>
-                                    <div className="columns">
-                                        <div className="column is-12">
-                                            <div className="advice-right-wrapper">
-                                                <div
-                                                    style={{
-                                                        width: '26.64vw',
-                                                        display: 'inline-block'
-                                                    }}
-                                                >
-                                                    <PreviewCompatibleImage
-                                                        imageInfo={advice.right}
-                                                    />
-                                                </div>
-                                            </div>
-                                        </div>
+                                    <TextBubble left={advice.left} right={advice.right} />
+                                    <TextBubble left={advice.left} right={advice.right} />
+                                    <div
+                                        className="fixedchevron columns"
+                                        style={{
+                                            position: 'absolute',
+                                            bottom: '0px',
+                                            right: '0px'
+                                        }}
+                                    >
+                                        <Chevron />
                                     </div>
-                                    <div className="columns">
-                                        <div className="column is-6 is-offset-1 has-text-centered">
-                                            <div
-                                                style={{
-                                                    width: '26.64vw',
-                                                    display: 'inline-block'
-                                                }}
-                                            >
-                                                <PreviewCompatibleImage imageInfo={advice.left} />
-                                            </div>
-                                        </div>
-                                    </div>
+
                                     <div className="column is-12">
                                         <h3 className="has-text-weight-semibold is-size-2">
                                             Latest stories
@@ -246,11 +233,6 @@ export const IndexPageTemplate = ({
                         }
                         .editor-note h1 {
                             font-weight: 700;
-                        }
-                        .advice-right-wrapper {
-                            display: flex;
-                            justify-content: flex-end;
-                            width: 70vw;
                         }
                     `}
                 </style>
