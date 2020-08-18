@@ -32,7 +32,6 @@ module.exports = {
                   "message": "Use React.FC instead",
                   "fixWith": "React.FC"
                 },
-                "Array": null,
                 "Object": "Use {} instead",
                 "String": {
                   "message": "Use string instead",

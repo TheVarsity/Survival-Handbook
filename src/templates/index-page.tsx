@@ -45,8 +45,6 @@ export const IndexPageTemplate = ({
     heading,
     subheading,
     editorNote,
-    description,
-    intro,
     advice
 }: IndexPageTemplateProps) => (
     <>
@@ -248,11 +246,8 @@ IndexPageTemplate.propTypes = {
     heading: PropTypes.string,
     subheading: PropTypes.string,
     editorNote: PropTypes.object,
-    description: PropTypes.string,
     advice: PropTypes.object,
-    intro: PropTypes.shape({
-        blurbs: PropTypes.array
-    })
+    articles: PropTypes.object
 };
 
 const IndexPage = ({ data }: { data: RecursiveNonNullable<IndexPageTemplateQuery> }) => {
@@ -266,9 +261,8 @@ const IndexPage = ({ data }: { data: RecursiveNonNullable<IndexPageTemplateQuery
                 heading={post?.frontmatter?.heading}
                 subheading={post?.frontmatter?.subheading}
                 editorNote={post?.frontmatter?.editorNote}
-                description={post?.frontmatter?.description}
-                intro={post?.frontmatter?.intro}
                 advice={post?.frontmatter?.advice}
+                articles={post?.frontmatter?.articles}
             />
         </Layout>
     );
@@ -317,8 +311,8 @@ export const pageQuery = graphql`
                         }
                     }
                 }
-                description
-                intro {
+
+                articles {
                     blurbs {
                         image {
                             childImageSharp {

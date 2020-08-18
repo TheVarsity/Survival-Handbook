@@ -3171,7 +3171,7 @@ export type IndexPageTemplateQuery = {
                     left: { childImageSharp: Maybe<{ fluid: Maybe<> }> };
                     right: { childImageSharp: Maybe<{ fluid: Maybe<> }> };
                 }>;
-                intro: Maybe<
+                articles: Maybe<
                     Pick<MarkdownRemarkFrontmatterIntro, 'heading' | 'description'> & {
                         blurbs: Maybe<
                             Array<
@@ -3185,6 +3185,17 @@ export type IndexPageTemplateQuery = {
                             >
                         >;
                     }
+                >;
+                doodles: Maybe<
+                    Array<
+                        Maybe<
+                            Pick<MarkdownRemarkFrontmatterIntroBlurbs, 'text'> & {
+                                image: Maybe<{
+                                    childImageSharp: Maybe<{ fluid: Maybe<> }>;
+                                }>;
+                            }
+                        >
+                    >
                 >;
             }
         >;
