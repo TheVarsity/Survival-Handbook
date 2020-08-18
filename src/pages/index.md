@@ -5,10 +5,13 @@ cover: /img/cover.png
 title: DECLASSIFIED
 heading: DECLASSIFIED
 subheading: The Varsity's UofT Survival Guide 
-mainpitch:
-  title: Title
+editorNote:
+  title: Editor's Note
   description: >
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus pariatur sapiente facilis alias, illum omnis dolorum non eius. Nemo nostrum consectetur dolorum vero ullam qui ea odit fugiat quas porro.
+    Editors note text 
+advice :
+  left : "/img/adviceLeft.png"
+  right : "/img/adviceRight.png"
 description: >-
  Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus pariatur sapiente facilis alias, illum omnis dolorum non eius. Nemo nostrum consectetur dolorum vero ullam qui ea odit fugiat quas porro.
 intro:

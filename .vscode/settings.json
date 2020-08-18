@@ -29,5 +29,7 @@
     "cSpell.words": [
         "autofix"
     ],
-    "god.tsconfig": "./tsconfig.json"
+    "god.tsconfig": "./tsconfig.json",
+    "extensions.ignoreRecommendations": true,
+    "debug.allowBreakpointsEverywhere": true
 }

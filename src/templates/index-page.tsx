@@ -2,12 +2,11 @@ import { Link, graphql } from 'gatsby';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import VideoBg from 'reactjs-videobg';
-
 import { IndexPageTemplateQuery } from 'types/graphql-types';
 import BlogRoll from '../components/BlogRoll';
-import Features from '../components/Features';
 import Layout from '../components/Layout';
+import Navbar from '../components/Navbar';
+import PreviewCompatibleImage from '../components/PreviewCompatibleImage';
 //@ts-ignore
 import mp4 from '../img/handbook-cover-2020.mp4';
 //@ts-ignore
@@ -43,9 +42,10 @@ export const IndexPageTemplate = ({
     title,
     heading,
     subheading,
-    mainpitch,
+    editorNote,
     description,
-    intro
+    intro,
+    advice
 }: IndexPageTemplateProps) => (
     <>
         <div>
@@ -59,64 +59,52 @@ export const IndexPageTemplate = ({
                 //     backgroundAttachment: `fixed`
                 // }}
             >
-                <VideoBg poster={cover.childImageSharp ? cover.childImageSharp.fluid.src : cover}>
-                    <VideoBg.Source src={webm} type="video/webm" />
-                    <VideoBg.Source src={mp4} type="video/mp4" />
-                </VideoBg>
-                <div
-                    style={{
-                        marginTop: 'auto',
-                        display: 'flex',
-                        height: '150px',
-                        lineHeight: '1',
-                        justifyContent: 'space-around',
-                        alignItems: 'left',
-                        flexDirection: 'column',
-                        textAlign: 'center'
-                    }}
-                >
-                    {/* <div className="title is-size-3-mobile is-size-2-tablet is-size-1-widescreen">
-                    <h1
-                        className="has-text-weight-bold strike-large"
-                        style={{
-                            // boxShadow:
-                            //     'rgb(255, 68, 0) 0.5rem 0px 0px, rgb(255, 68, 0) -0.5rem 0px 0px',
-                            // backgroundColor: 'rgb(255, 68, 0)',
-                            fontSize: '7rem',
-                            color: 'white',
-                            lineHeight: '1',
-                            padding: '0.25em'
-                            // textDecoration: 'line-through'
-                        }}
+                <div className="video-wrapper">
+                    <div className="overlay" />
+
+                    <video
+                        autoPlay
+                        muted
+                        loop
+                        poster={`${
+                            cover.childImageSharp ? cover.childImageSharp.fluid.src : cover
+                        }`}
+                        className="video-cover"
                     >
-                        {title}
-                    </h1>
-                </div> */}
-                    {/* <div className="subtitle is-size-5-mobile is-size-5-tablet is-size-4-widescreen">
-                    <h3
-                        className="has-text-weight-bold strike-small"
-                        style={{
-                            // boxShadow:
-                            //     'rgb(255, 68, 0) 0.5rem 0px 0px, rgb(255, 68, 0) -0.5rem 0px 0px',
-                            // backgroundColor: 'rgb(255, 68, 0)',
-                            color: 'white',
-                            fontSize: '2rem',
-                            // lineHeight: '1',
-                            padding: '0.25em'
-                        }}
-                    >
-                        {subheading}
-                    </h3>
-                </div> */}
-                </div>
-                <div className="chevron-down is-size-5-mobile is-size-5-tablet is-size-4-widescreen">
-                    <a onClick={() => scrollTo('#editor-note')} className="icon">
-                        <Chevron />
-                    </a>
+                        <source src={webm} type="video/webm" />
+                        <source src={mp4} type="video/mp4" />
+                    </video>
+                    <div className="video-overlay chevron-down is-size-5-mobile is-size-5-tablet is-size-4-widescreen">
+                        <a onClick={() => scrollTo('#editor-note')} className="icon">
+                            <Chevron />
+                        </a>
+                    </div>
                 </div>
                 {/* @ts-ignore Styled JSX */}
                 <style jsx>
                     {`
+                        .video-wrapper {
+                            position: relative;
+                            background-color: black;
+                            height: 100%;
+                            width: 100%;
+                            overflow: hidden;
+                        }
+                        .video-overlay {
+                            z-index: 1;
+                            position: relative;
+                            padding-top: 85vh;
+                        }
+
+                        .video-cover {
+                            object-fit: cover;
+                            position: absolute;
+                            width: 100%;
+                            left: 0;
+                            top: 0;
+                            height: 100%;
+                            z-index: 0;
+                        }
                         .icon {
                             width: 7rem !important;
                             height: 7rem !important;
@@ -178,7 +166,7 @@ export const IndexPageTemplate = ({
                     `}
                 </style>
             </div>
-
+            <Navbar />
             <section
                 className="section section--gradient main"
                 id="editor-note"
@@ -195,28 +183,40 @@ export const IndexPageTemplate = ({
                         <div className="columns">
                             <div className="column is-10 is-offset-1">
                                 <div className="content">
-                                    <div className="content">
+                                    <div className="editor-note">
                                         <div className="tile">
-                                            <h1 className="title">{mainpitch.title}</h1>
+                                            <h1 className="title">{editorNote.title}</h1>
                                         </div>
                                         <div className="tile">
-                                            <h3 className="subtitle">{mainpitch.description}</h3>
+                                            <h3 className="subtitle">{editorNote.description}</h3>
                                         </div>
                                     </div>
                                     <div className="columns">
                                         <div className="column is-12">
-                                            <h3 className="has-text-weight-semibold is-size-2">
-                                                {heading}
-                                            </h3>
-                                            <p>{description}</p>
+                                            <div className="advice-right-wrapper">
+                                                <div
+                                                    style={{
+                                                        width: '26.64vw',
+                                                        display: 'inline-block'
+                                                    }}
+                                                >
+                                                    <PreviewCompatibleImage
+                                                        imageInfo={advice.right}
+                                                    />
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                    <Features gridItems={intro.blurbs} />
                                     <div className="columns">
-                                        <div className="column is-12 has-text-centered">
-                                            <Link className="btn" to="/products">
-                                                See all products
-                                            </Link>
+                                        <div className="column is-6 is-offset-1 has-text-centered">
+                                            <div
+                                                style={{
+                                                    width: '26.64vw',
+                                                    display: 'inline-block'
+                                                }}
+                                            >
+                                                <PreviewCompatibleImage imageInfo={advice.left} />
+                                            </div>
                                         </div>
                                     </div>
                                     <div className="column is-12">
@@ -241,6 +241,17 @@ export const IndexPageTemplate = ({
                         .main {
                             background-color: white;
                         }
+                        .editor-note .tile {
+                            justify-content: center;
+                        }
+                        .editor-note h1 {
+                            font-weight: 700;
+                        }
+                        .advice-right-wrapper {
+                            display: flex;
+                            justify-content: flex-end;
+                            width: 70vw;
+                        }
                     `}
                 </style>
             </section>
@@ -250,11 +261,13 @@ export const IndexPageTemplate = ({
 
 IndexPageTemplate.propTypes = {
     image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+    cover: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
     title: PropTypes.string,
     heading: PropTypes.string,
     subheading: PropTypes.string,
-    mainpitch: PropTypes.object,
+    editorNote: PropTypes.object,
     description: PropTypes.string,
+    advice: PropTypes.object,
     intro: PropTypes.shape({
         blurbs: PropTypes.array
     })
@@ -270,9 +283,10 @@ const IndexPage = ({ data }: { data: RecursiveNonNullable<IndexPageTemplateQuery
                 title={post?.frontmatter?.title}
                 heading={post?.frontmatter?.heading}
                 subheading={post?.frontmatter?.subheading}
-                mainpitch={post?.frontmatter?.mainpitch}
+                editorNote={post?.frontmatter?.editorNote}
                 description={post?.frontmatter?.description}
                 intro={post?.frontmatter?.intro}
+                advice={post?.frontmatter?.advice}
             />
         </Layout>
     );
@@ -301,9 +315,25 @@ export const pageQuery = graphql`
                 }
                 heading
                 subheading
-                mainpitch {
+                editorNote {
                     title
                     description
+                }
+                advice {
+                    left {
+                        childImageSharp {
+                            fluid(maxWidth: 375, quality: 100) {
+                                ...GatsbyImageSharpFluid
+                            }
+                        }
+                    }
+                    right {
+                        childImageSharp {
+                            fluid(maxWidth: 375, quality: 64) {
+                                ...GatsbyImageSharpFluid
+                            }
+                        }
+                    }
                 }
                 description
                 intro {

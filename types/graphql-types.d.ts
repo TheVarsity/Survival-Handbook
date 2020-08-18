@@ -3164,7 +3164,13 @@ export type IndexPageTemplateQuery = {
             Pick<MarkdownRemarkFrontmatter, 'title' | 'heading' | 'subheading' | 'description'> & {
                 image: Maybe<{ childImageSharp: Maybe<{ fluid: Maybe<> }> }>;
                 cover: Maybe<{ childImageSharp: Maybe<{ fluid: Maybe<> }> }>;
-                mainpitch: Maybe<Pick<MarkdownRemarkFrontmatterMainpitch, 'title' | 'description'>>;
+                editorNote: Maybe<
+                    Pick<MarkdownRemarkFrontmatterMainpitch, 'title' | 'description'>
+                >;
+                advice: Maybe<{
+                    left: { childImageSharp: Maybe<{ fluid: Maybe<> }> };
+                    right: { childImageSharp: Maybe<{ fluid: Maybe<> }> };
+                }>;
                 intro: Maybe<
                     Pick<MarkdownRemarkFrontmatterIntro, 'heading' | 'description'> & {
                         blurbs: Maybe<
