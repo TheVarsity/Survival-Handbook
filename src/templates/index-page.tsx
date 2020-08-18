@@ -50,6 +50,7 @@ export const IndexPageTemplate = ({
         <div>
             <div
                 className="parallax-container full-width-image margin-top-0"
+                id="home"
                 // style={{
                 //     backgroundImage: `url(${
                 //         image.childImageSharp ? image.childImageSharp.fluid.src : image
@@ -185,7 +186,7 @@ export const IndexPageTemplate = ({
                                 <div className="content">
                                     <div
                                         className="fixedchevron columns"
-                                        onClick={() => window.scrollTo(0, 0)}
+                                        onClick={() => scrollTo('#home')}
                                         style={{
                                             position: 'fixed',
                                             bottom: '0px',
@@ -217,9 +218,204 @@ export const IndexPageTemplate = ({
                                     </div>
                                     <TextBubble left={advice.left} right={advice.right} />
                                     <TextBubble left={advice.left} right={advice.right} />
-
-                                    <div className="article-wrapper">
-                                        <div className="columns">
+                                    <div className="body-wrapper">
+                                        <div className="doodle-wrapper">
+                                            <div
+                                                className="column is-5 is-offset-1"
+                                                style={{ paddingTop: '35vh' }}
+                                            >
+                                                <div
+                                                    style={{
+                                                        width: '100%',
+                                                        display: 'inline-block'
+                                                    }}
+                                                >
+                                                    <PreviewCompatibleImage
+                                                        imageInfo={doodles[0]}
+                                                    />
+                                                </div>
+                                            </div>
+                                            <div
+                                                className="column is-5 is-offset-7"
+                                                style={{ paddingTop: '10vh' }}
+                                            >
+                                                <div
+                                                    style={{
+                                                        width: '100%',
+                                                        display: 'inline-block'
+                                                    }}
+                                                >
+                                                    <PreviewCompatibleImage
+                                                        imageInfo={doodles[1]}
+                                                    />
+                                                </div>
+                                            </div>
+                                            <div
+                                                className="column is-5 is-7offset-1"
+                                                style={{ marginTop: '-5vh' }}
+                                            >
+                                                <div
+                                                    style={{
+                                                        width: '100%',
+                                                        display: 'inline-block'
+                                                    }}
+                                                >
+                                                    <PreviewCompatibleImage
+                                                        imageInfo={doodles[2]}
+                                                    />
+                                                </div>
+                                            </div>
+                                            <div
+                                                className="column is-5 is-offset-7"
+                                                // style={{ paddingTop: '10vh' }}
+                                            >
+                                                <div
+                                                    style={{
+                                                        width: '100%',
+                                                        display: 'inline-block'
+                                                    }}
+                                                >
+                                                    <PreviewCompatibleImage
+                                                        imageInfo={doodles[3]}
+                                                    />
+                                                </div>
+                                            </div>
+                                            <div
+                                                className="column is-5 is-offset-1"
+                                                // style={{ paddingTop: '10vh' }}
+                                            >
+                                                <div
+                                                    style={{
+                                                        width: '100%',
+                                                        display: 'inline-block'
+                                                    }}
+                                                >
+                                                    <PreviewCompatibleImage
+                                                        imageInfo={doodles[4]}
+                                                    />
+                                                </div>
+                                            </div>
+                                            <div
+                                                className="column is-5 is-offset-8"
+                                                // style={{ paddingTop: '10vh' }}
+                                            >
+                                                <div
+                                                    style={{
+                                                        width: '100%',
+                                                        display: 'inline-block'
+                                                    }}
+                                                >
+                                                    <PreviewCompatibleImage
+                                                        imageInfo={doodles[5]}
+                                                    />
+                                                </div>
+                                            </div>
+                                            <div
+                                                className="column is-5 is-offset-3"
+                                                style={{ paddingTop: '10vh' }}
+                                            >
+                                                <div
+                                                    style={{
+                                                        width: '100%',
+                                                        display: 'inline-block'
+                                                    }}
+                                                >
+                                                    <PreviewCompatibleImage
+                                                        imageInfo={doodles[6]}
+                                                    />
+                                                </div>
+                                            </div>
+                                            <div
+                                                className="column is-5 is-offset-7"
+                                                style={{ paddingTop: '30vh' }}
+                                            >
+                                                <div
+                                                    style={{
+                                                        width: '100%',
+                                                        display: 'inline-block'
+                                                    }}
+                                                >
+                                                    <PreviewCompatibleImage
+                                                        imageInfo={doodles[7]}
+                                                    />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="article-wrapper">
+                                            <div className="columns">
+                                                <div className="column is-5 is-offset-3">
+                                                    <div
+                                                        style={{
+                                                            width: '100%',
+                                                            display: 'inline-block'
+                                                        }}
+                                                    >
+                                                        <PreviewCompatibleImage
+                                                            imageInfo={articles.blurbs[0]}
+                                                        />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div className="column is-4 is-offset-7">
+                                                <div
+                                                    style={{
+                                                        width: '100%',
+                                                        display: 'inline-block'
+                                                    }}
+                                                >
+                                                    <PreviewCompatibleImage
+                                                        imageInfo={articles.blurbs[1]}
+                                                    />
+                                                </div>
+                                            </div>
+                                            <div className="column is-4 is-offset-2">
+                                                <div
+                                                    style={{
+                                                        width: '100%',
+                                                        display: 'inline-block'
+                                                    }}
+                                                >
+                                                    <PreviewCompatibleImage
+                                                        imageInfo={articles.blurbs[2]}
+                                                    />
+                                                </div>
+                                            </div>
+                                            <div className="column is-5 is-offset-6">
+                                                <div
+                                                    style={{
+                                                        width: '100%',
+                                                        display: 'inline-block'
+                                                    }}
+                                                >
+                                                    <PreviewCompatibleImage
+                                                        imageInfo={articles.blurbs[3]}
+                                                    />
+                                                </div>
+                                            </div>
+                                            <div className="column is-4 is-offset-1">
+                                                <div
+                                                    style={{
+                                                        width: '100%',
+                                                        display: 'inline-block'
+                                                    }}
+                                                >
+                                                    <PreviewCompatibleImage
+                                                        imageInfo={articles.blurbs[4]}
+                                                    />
+                                                </div>
+                                            </div>
+                                            <div className="column is-6 is-offset-5">
+                                                <div
+                                                    style={{
+                                                        width: '100%',
+                                                        display: 'inline-block'
+                                                    }}
+                                                >
+                                                    <PreviewCompatibleImage
+                                                        imageInfo={articles.blurbs[5]}
+                                                    />
+                                                </div>
+                                            </div>
                                             <div className="column is-5 is-offset-3">
                                                 <div
                                                     style={{
@@ -228,129 +424,57 @@ export const IndexPageTemplate = ({
                                                     }}
                                                 >
                                                     <PreviewCompatibleImage
-                                                        imageInfo={articles.blurbs[0]}
+                                                        imageInfo={articles.blurbs[6]}
                                                     />
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div className="column is-4 is-offset-7">
-                                            <div
-                                                style={{
-                                                    width: '100%',
-                                                    display: 'inline-block'
-                                                }}
-                                            >
-                                                <PreviewCompatibleImage
-                                                    imageInfo={articles.blurbs[1]}
-                                                />
+                                            <div className="column is-4">
+                                                <div
+                                                    style={{
+                                                        width: '100%',
+                                                        display: 'inline-block'
+                                                    }}
+                                                >
+                                                    <PreviewCompatibleImage
+                                                        imageInfo={articles.blurbs[7]}
+                                                    />
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div className="column is-4 is-offset-2">
-                                            <div
-                                                style={{
-                                                    width: '100%',
-                                                    display: 'inline-block'
-                                                }}
-                                            >
-                                                <PreviewCompatibleImage
-                                                    imageInfo={articles.blurbs[2]}
-                                                />
+                                            <div className="column is-5 is-offset-8">
+                                                <div
+                                                    style={{
+                                                        width: '100%',
+                                                        display: 'inline-block'
+                                                    }}
+                                                >
+                                                    <PreviewCompatibleImage
+                                                        imageInfo={articles.blurbs[8]}
+                                                    />
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div className="column is-5 is-offset-6">
-                                            <div
-                                                style={{
-                                                    width: '100%',
-                                                    display: 'inline-block'
-                                                }}
-                                            >
-                                                <PreviewCompatibleImage
-                                                    imageInfo={articles.blurbs[3]}
-                                                />
+                                            <div className="column is-5 is-offset-2">
+                                                <div
+                                                    style={{
+                                                        width: '100%',
+                                                        display: 'inline-block'
+                                                    }}
+                                                >
+                                                    <PreviewCompatibleImage
+                                                        imageInfo={articles.blurbs[9]}
+                                                    />
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div className="column is-4 is-offset-1">
-                                            <div
-                                                style={{
-                                                    width: '100%',
-                                                    display: 'inline-block'
-                                                }}
-                                            >
-                                                <PreviewCompatibleImage
-                                                    imageInfo={articles.blurbs[4]}
-                                                />
-                                            </div>
-                                        </div>
-                                        <div className="column is-6 is-offset-5">
-                                            <div
-                                                style={{
-                                                    width: '100%',
-                                                    display: 'inline-block'
-                                                }}
-                                            >
-                                                <PreviewCompatibleImage
-                                                    imageInfo={articles.blurbs[5]}
-                                                />
-                                            </div>
-                                        </div>
-                                        <div className="column is-5 is-offset-3">
-                                            <div
-                                                style={{
-                                                    width: '100%',
-                                                    display: 'inline-block'
-                                                }}
-                                            >
-                                                <PreviewCompatibleImage
-                                                    imageInfo={articles.blurbs[6]}
-                                                />
-                                            </div>
-                                        </div>
-                                        <div className="column is-4">
-                                            <div
-                                                style={{
-                                                    width: '100%',
-                                                    display: 'inline-block'
-                                                }}
-                                            >
-                                                <PreviewCompatibleImage
-                                                    imageInfo={articles.blurbs[7]}
-                                                />
-                                            </div>
-                                        </div>
-                                        <div className="column is-5 is-offset-8">
-                                            <div
-                                                style={{
-                                                    width: '100%',
-                                                    display: 'inline-block'
-                                                }}
-                                            >
-                                                <PreviewCompatibleImage
-                                                    imageInfo={articles.blurbs[8]}
-                                                />
-                                            </div>
-                                        </div>
-                                        <div className="column is-5 is-offset-2">
-                                            <div
-                                                style={{
-                                                    width: '100%',
-                                                    display: 'inline-block'
-                                                }}
-                                            >
-                                                <PreviewCompatibleImage
-                                                    imageInfo={articles.blurbs[9]}
-                                                />
-                                            </div>
-                                        </div>
-                                        <div className="column is-5 is-offset-6">
-                                            <div
-                                                style={{
-                                                    width: '100%',
-                                                    display: 'inline-block'
-                                                }}
-                                            >
-                                                <PreviewCompatibleImage
-                                                    imageInfo={articles.blurbs[8]}
-                                                />
+                                            <div className="column is-5 is-offset-6">
+                                                <div
+                                                    style={{
+                                                        width: '100%',
+                                                        display: 'inline-block'
+                                                    }}
+                                                >
+                                                    <PreviewCompatibleImage
+                                                        imageInfo={articles.blurbs[8]}
+                                                    />
+                                                </div>
                                             </div>
                                         </div>
 
@@ -359,19 +483,18 @@ export const IndexPageTemplate = ({
                                             .article-wrapper {
                                                 z-index: 1;
                                             }
+                                            .doodle-wrapper {
+                                                z-index: 0;
+                                            }
+                                            .body-wrapper {
+                                                display: grid;
+                                                grid-template: 1fr / 1fr;
+                                            }
+                                            .body-wrapper > * {
+                                                grid-column: 1 / 1;
+                                                grid-row: 1 / 1;
+                                            }
                                         `}</style>
-                                    </div>
-
-                                    <div className="column is-12">
-                                        <h3 className="has-text-weight-semibold is-size-2">
-                                            Latest stories
-                                        </h3>
-                                        <BlogRoll />
-                                        <div className="column is-12 has-text-centered">
-                                            <Link className="btn" to="/blog">
-                                                Read more
-                                            </Link>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -466,10 +589,18 @@ export const pageQuery = graphql`
                                 }
                             }
                         }
-                        text
                     }
                     heading
                     description
+                }
+                doodles {
+                    image {
+                        childImageSharp {
+                            fluid(maxWidth: 375, quality: 100) {
+                                ...GatsbyImageSharpFluid
+                            }
+                        }
+                    }
                 }
             }
         }

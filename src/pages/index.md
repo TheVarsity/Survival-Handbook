@@ -51,9 +51,9 @@ articles:
   heading: What we offer
   description: >
     Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus pariatur sapiente facilis alias, illum omnis dolorum non eius. Nemo nostrum consectetur dolorum vero ullam qui ea odit fugiat quas porro.
-doodle:
+doodles:
   - image: /img/doodles/uoft_mask.png
-  - image: /img/doodles/true_blue_con_hal.png
+  - image: /img/doodles/true_blue_con_hall.png
   - image: /img/doodles/brown_food_truck.png
   - image: /img/doodles/uc.png
   - image: /img/doodles/quidditch_player.png
