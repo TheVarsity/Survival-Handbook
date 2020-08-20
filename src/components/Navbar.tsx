@@ -1,8 +1,10 @@
 import { Link } from 'gatsby';
 
 import React, { useState } from 'react';
-import homeIcon from '../img/homeIcon.svg';
-import searchIcon from '../img/searchIcon.svg';
+
+import { HomeIcon, SearchIcon } from './Icons';
+
+// import searchIcon from '../img/searchIcon.svg';
 
 // eslint-disable-next-line react/display-name
 const Navbar = () => {
@@ -20,7 +22,8 @@ const Navbar = () => {
             <div className="container">
                 <div className="navbar-brand">
                     <Link to="/" className="navbar-item" title="Logo">
-                        <img src={homeIcon} alt="Home Logo" style={{ width: '88px' }} />
+                        {/* <img src={homeIcon} alt="Home Logo" style={{ width: '88px' }} /> */}
+                        <HomeIcon />
                     </Link>
                     {/* Hamburger menu */}
                     <div
@@ -52,15 +55,8 @@ const Navbar = () => {
                             </Link>
                         </div> */}
                     <div className="navbar-end has-text-centered">
-                        <a
-                            className="navbar-item"
-                            href="https://github.com/netlify-templates/gatsby-starter-netlify-cms"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            <span className="icon">
-                                <img src={searchIcon} alt="Search Icon" />
-                            </span>
+                        <a className="navbar-item" href="/">
+                            <SearchIcon />
                         </a>
                     </div>
                 </div>
