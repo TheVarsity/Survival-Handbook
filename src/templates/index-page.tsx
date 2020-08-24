@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/restrict-plus-operands */
 import { Link, graphql } from 'gatsby';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -45,305 +46,252 @@ export const IndexPageTemplate = ({
     advice,
     articles,
     doodles
-}: IndexPageTemplateProps) => (
-    <>
-        <div>
-            <div
-                className="parallax-container full-width-image margin-top-0"
-                id="home"
-                // style={{
-                //     backgroundImage: `url(${
-                //         image.childImageSharp ? image.childImageSharp.fluid.src : image
-                //     })`,
-                //     backgroundPosition: `top left`,
-                //     backgroundAttachment: `fixed`
-                // }}
-            >
-                <div className="video-wrapper">
-                    <div className="overlay" />
+}: IndexPageTemplateProps) => {
+    const adjustLine = (
+        from: { offsetTop: number; offsetHeight: number; offsetLeft: number; offsetWidth: number },
+        to: { offsetTop: number; offsetHeight: number; offsetLeft: number; offsetWidth: number },
+        line: { style: { [x: string]: string; top: string; left: string; height: string } }
+    ) => {
+        // eslint-disable-next-line @typescript-eslint/restrict-plus-operands
+        var fT = from.offsetTop + from.offsetHeight / 2;
+        // eslint-disable-next-line @typescript-eslint/restrict-plus-operands
+        var tT = to.offsetTop + to.offsetHeight / 2;
+        // eslint-disable-next-line @typescript-eslint/restrict-plus-operands
+        var fL = from.offsetLeft + from.offsetWidth / 2;
+        // eslint-disable-next-line @typescript-eslint/restrict-plus-operands
+        var tL = to.offsetLeft + to.offsetWidth / 2;
 
-                    <video
-                        autoPlay
-                        muted
-                        loop
-                        poster={`${
-                            cover.childImageSharp ? cover.childImageSharp.fluid.src : cover
-                        }`}
-                        className="video-cover"
-                    >
-                        <source src={webm} type="video/webm" />
-                        <source src={mp4} type="video/mp4" />
-                    </video>
-                    <div className="video-overlay chevron-down is-size-5-mobile is-size-5-tablet is-size-4-widescreen">
-                        <a onClick={() => scrollTo('#editor-note')} className="icon">
-                            <Chevron />
-                        </a>
+        var CA = Math.abs(tT - fT);
+        var CO = Math.abs(tL - fL);
+        var H = Math.sqrt(CA * CA + CO * CO);
+        var ANG = (180 / Math.PI) * Math.acos(CA / H);
+        var top, left;
+        if (tT > fT) {
+            top = (tT - fT) / 2 + fT;
+        } else {
+            top = (fT - tT) / 2 + tT;
+        }
+        if (tL > fL) {
+            left = (tL - fL) / 2 + fL;
+        } else {
+            left = (fL - tL) / 2 + tL;
+        }
+
+        if (
+            (fT < tT && fL < tL) ||
+            (tT < fT && tL < fL) ||
+            (fT > tT && fL > tL) ||
+            (tT > fT && tL > fL)
+        ) {
+            ANG *= -1;
+        }
+        top -= H / 2;
+
+        line.style['-webkit-transform'] = `rotate(${ANG}deg)`;
+        line.style['-moz-transform'] = `rotate(${ANG}deg)`;
+        line.style['-ms-transform'] = `rotate(${ANG}deg)`;
+        line.style['-o-transform'] = `rotate(${ANG}deg)`;
+        line.style['-transform'] = `rotate(${ANG}deg)`;
+        line.style.top = `${top}px`;
+        line.style.left = `${left}px`;
+        line.style.height = `${H}px`;
+    };
+
+    React.useEffect(() => {
+        setTimeout(() => {
+            let blurbs_num = 10;
+            let i;
+            for (i = 0; i < blurbs_num; i++) {
+                adjustLine(
+                    document.querySelector(`.blurbs__${i}`),
+                    document.querySelector(`.blurbs__${i + 1}`),
+                    document.querySelector(`#svg-${i}`)
+                );
+            }
+        }, 1000);
+    });
+
+    return (
+        <>
+            <div>
+                <div
+                    className="parallax-container full-width-image margin-top-0"
+                    id="home"
+                    // style={{
+                    //     backgroundImage: `url(${
+                    //         image.childImageSharp ? image.childImageSharp.fluid.src : image
+                    //     })`,
+                    //     backgroundPosition: `top left`,
+                    //     backgroundAttachment: `fixed`
+                    // }}
+                >
+                    <div className="video-wrapper">
+                        <div className="overlay" />
+
+                        <video
+                            autoPlay
+                            muted
+                            loop
+                            poster={`${
+                                cover.childImageSharp ? cover.childImageSharp.fluid.src : cover
+                            }`}
+                            className="video-cover"
+                        >
+                            <source src={webm} type="video/webm" />
+                            <source src={mp4} type="video/mp4" />
+                        </video>
+                        <div className="video-overlay chevron-down is-size-5-mobile is-size-5-tablet is-size-4-widescreen">
+                            <a onClick={() => scrollTo('#editor-note')} className="icon">
+                                <Chevron />
+                            </a>
+                        </div>
                     </div>
-                </div>
-                {/* @ts-ignore Styled JSX */}
-                <style jsx>
-                    {`
-                        .video-wrapper {
-                            position: relative;
-                            background-color: black;
-                            height: 100%;
-                            width: 100%;
-                            overflow: hidden;
-                        }
-                        .video-overlay {
-                            z-index: 1;
-                            position: relative;
-                            padding-top: 85vh;
-                        }
-
-                        .video-cover {
-                            object-fit: cover;
-                            position: absolute;
-                            width: 100%;
-                            left: 0;
-                            top: 0;
-                            height: 100%;
-                            z-index: 0;
-                        }
-                        .icon {
-                            width: 7rem !important;
-                            height: 7rem !important;
-                        }
-                        .parallax-container {
-                            display: flex;
-                            flex-direction: column;
-                            flex-flow: column nowrap;
-                        }
-                        .chevron-down {
-                            display: flex;
-                            justify-content: center;
-                            margin-top: auto;
-                             {
-                                /* padding-top: 10%; */
+                    {/* @ts-ignore Styled JSX */}
+                    <style jsx>
+                        {`
+                            .video-wrapper {
+                                position: relative;
+                                background-color: black;
+                                height: 100%;
+                                width: 100%;
+                                overflow: hidden;
                             }
-                        }
-                        .strike-large::before {
-                            content: '';
-                            border-bottom: 1rem dashed rgba(255, 68, 0, 0.8);
-                            width: 100%;
-                            position: absolute;
-                            right: 0;
-                            top: 50%;
-                        }
-                        .strike-large::after {
-                            content: '';
-                            border-bottom: 1.5rem dashed black;
-                            width: 100%;
-                            position: absolute;
-                            right: 0.8%;
-                            top: 48%;
-                        }
+                            .video-overlay {
+                                z-index: 1;
+                                position: relative;
+                                padding-top: 85vh;
+                            }
 
-                        .strike-large {
-                            position: relative;
-                            display: inline-block;
-                        }
-                        .strike-small {
-                            position: relative;
-                            display: inline-block;
-                        }
-                        .strike-small::before {
-                            content: '';
-                            border-bottom: 0.4rem dashed rgba(255, 68, 0, 0.8);
-                            width: 100%;
-                            position: absolute;
-                            right: 0;
-                            top: 50%;
-                        }
-                        .strike-small::after {
-                            content: '';
-                            border-bottom: 0.3rem dashed black;
-                            width: 100%;
-                            position: absolute;
-                            right: 0.8%;
-                            top: 50%;
-                        }
-                    `}
-                </style>
-            </div>
-            <Navbar />
-            <section
-                className="section section--gradient main"
-                id="editor-note"
-                style={{
-                    backgroundImage: `url(${
-                        image.childImageSharp ? image.childImageSharp.fluid.src : image
-                    })`,
-                    backgroundPosition: `top left`,
-                    backgroundAttachment: `fixed`,
-                    backgroundSize: `cover`
-                }}
-            >
-                <div className="container">
-                    <div className="section">
-                        <div className="columns">
-                            <div className="column is-10 is-offset-1">
-                                <div className="content">
-                                    <div
-                                        className="fixedchevron columns"
-                                        onClick={() => scrollTo('#home')}
-                                        style={{
-                                            position: 'fixed',
-                                            bottom: '0px',
-                                            right: '10px',
-                                            cursor: 'pointer',
-                                            transform: 'rotate(180deg)'
-                                        }}
-                                    >
-                                        <Chevron />
-                                    </div>
-                                    <div className="editor-note">
-                                        <div className="tile">
-                                            <h1 className="title">{editorNote.title}</h1>
+                            .video-cover {
+                                object-fit: cover;
+                                position: absolute;
+                                width: 100%;
+                                left: 0;
+                                top: 0;
+                                height: 100%;
+                                z-index: 0;
+                            }
+                            .icon {
+                                width: 7rem !important;
+                                height: 7rem !important;
+                            }
+                            .parallax-container {
+                                display: flex;
+                                flex-direction: column;
+                                flex-flow: column nowrap;
+                            }
+                            .chevron-down {
+                                display: flex;
+                                justify-content: center;
+                                margin-top: auto;
+                                 {
+                                    /* padding-top: 10%; */
+                                }
+                            }
+                            .strike-large::before {
+                                content: '';
+                                border-bottom: 1rem dashed rgba(255, 68, 0, 0.8);
+                                width: 100%;
+                                position: absolute;
+                                right: 0;
+                                top: 50%;
+                            }
+                            .strike-large::after {
+                                content: '';
+                                border-bottom: 1.5rem dashed black;
+                                width: 100%;
+                                position: absolute;
+                                right: 0.8%;
+                                top: 48%;
+                            }
+
+                            .strike-large {
+                                position: relative;
+                                display: inline-block;
+                            }
+                            .strike-small {
+                                position: relative;
+                                display: inline-block;
+                            }
+                            .strike-small::before {
+                                content: '';
+                                border-bottom: 0.4rem dashed rgba(255, 68, 0, 0.8);
+                                width: 100%;
+                                position: absolute;
+                                right: 0;
+                                top: 50%;
+                            }
+                            .strike-small::after {
+                                content: '';
+                                border-bottom: 0.3rem dashed black;
+                                width: 100%;
+                                position: absolute;
+                                right: 0.8%;
+                                top: 50%;
+                            }
+                        `}
+                    </style>
+                </div>
+                <Navbar />
+                <section
+                    className="section section--gradient main"
+                    id="editor-note"
+                    style={{
+                        backgroundImage: `url(${
+                            image.childImageSharp ? image.childImageSharp.fluid.src : image
+                        })`,
+                        backgroundPosition: `top left`,
+                        backgroundAttachment: `fixed`,
+                        backgroundSize: `cover`
+                    }}
+                >
+                    <div className="container">
+                        <div className="section">
+                            <div className="columns">
+                                <div className="column is-10 is-offset-1">
+                                    <div className="content">
+                                        <div
+                                            className="fixedchevron columns"
+                                            onClick={() => scrollTo('#home')}
+                                            style={{
+                                                position: 'fixed',
+                                                bottom: '0px',
+                                                right: '10px',
+                                                cursor: 'pointer',
+                                                transform: 'rotate(180deg)'
+                                            }}
+                                        >
+                                            <Chevron />
                                         </div>
-                                        <div className="tile">
-                                            <h3 className="subtitle">{editorNote.description}</h3>
+                                        <div className="editor-note">
+                                            <div className="tile">
+                                                <h1 className="title">{editorNote.title}</h1>
+                                            </div>
+                                            <div className="tile">
+                                                <h3 className="subtitle">
+                                                    {editorNote.description}
+                                                </h3>
+                                            </div>
+                                            {/* @ts-ignore Styled JSX*/}
+                                            <style jsx>
+                                                {`
+                                                    .editor-note .tile {
+                                                        justify-content: center;
+                                                    }
+                                                    .editor-note h1 {
+                                                        font-weight: 700;
+                                                    }
+                                                `}
+                                            </style>
                                         </div>
-                                        {/* @ts-ignore Styled JSX*/}
-                                        <style jsx>
-                                            {`
-                                                .editor-note .tile {
-                                                    justify-content: center;
-                                                }
-                                                .editor-note h1 {
-                                                    font-weight: 700;
-                                                }
-                                            `}
-                                        </style>
-                                    </div>
-                                    <TextBubble left={advice.left} right={advice.right} />
-                                    <TextBubble left={advice.left} right={advice.right} />
-                                    <div className="body-wrapper">
-                                        <div className="doodle-wrapper">
-                                            <div
-                                                className="column is-5 is-offset-1"
-                                                style={{ paddingTop: '35vh' }}
-                                            >
+                                        <TextBubble left={advice.left} right={advice.right} />
+                                        <TextBubble left={advice.left} right={advice.right} />
+                                        <div className="body-wrapper">
+                                            <div className="doodle-wrapper">
                                                 <div
-                                                    style={{
-                                                        width: '100%',
-                                                        display: 'inline-block'
-                                                    }}
+                                                    className="column is-5 is-offset-1"
+                                                    style={{ paddingTop: '35vh' }}
                                                 >
-                                                    <PreviewCompatibleImage
-                                                        imageInfo={doodles[0]}
-                                                    />
-                                                </div>
-                                            </div>
-                                            <div
-                                                className="column is-5 is-offset-7"
-                                                style={{ paddingTop: '10vh' }}
-                                            >
-                                                <div
-                                                    style={{
-                                                        width: '100%',
-                                                        display: 'inline-block'
-                                                    }}
-                                                >
-                                                    <PreviewCompatibleImage
-                                                        imageInfo={doodles[1]}
-                                                    />
-                                                </div>
-                                            </div>
-                                            <div
-                                                className="column is-5 is-7offset-1"
-                                                style={{ marginTop: '-5vh' }}
-                                            >
-                                                <div
-                                                    style={{
-                                                        width: '100%',
-                                                        display: 'inline-block'
-                                                    }}
-                                                >
-                                                    <PreviewCompatibleImage
-                                                        imageInfo={doodles[2]}
-                                                    />
-                                                </div>
-                                            </div>
-                                            <div
-                                                className="column is-5 is-offset-7"
-                                                // style={{ paddingTop: '10vh' }}
-                                            >
-                                                <div
-                                                    style={{
-                                                        width: '100%',
-                                                        display: 'inline-block'
-                                                    }}
-                                                >
-                                                    <PreviewCompatibleImage
-                                                        imageInfo={doodles[3]}
-                                                    />
-                                                </div>
-                                            </div>
-                                            <div
-                                                className="column is-5 is-offset-1"
-                                                // style={{ paddingTop: '10vh' }}
-                                            >
-                                                <div
-                                                    style={{
-                                                        width: '100%',
-                                                        display: 'inline-block'
-                                                    }}
-                                                >
-                                                    <PreviewCompatibleImage
-                                                        imageInfo={doodles[4]}
-                                                    />
-                                                </div>
-                                            </div>
-                                            <div
-                                                className="column is-5 is-offset-8"
-                                                // style={{ paddingTop: '10vh' }}
-                                            >
-                                                <div
-                                                    style={{
-                                                        width: '100%',
-                                                        display: 'inline-block'
-                                                    }}
-                                                >
-                                                    <PreviewCompatibleImage
-                                                        imageInfo={doodles[5]}
-                                                    />
-                                                </div>
-                                            </div>
-                                            <div
-                                                className="column is-5 is-offset-3"
-                                                style={{ paddingTop: '10vh' }}
-                                            >
-                                                <div
-                                                    style={{
-                                                        width: '100%',
-                                                        display: 'inline-block'
-                                                    }}
-                                                >
-                                                    <PreviewCompatibleImage
-                                                        imageInfo={doodles[6]}
-                                                    />
-                                                </div>
-                                            </div>
-                                            <div
-                                                className="column is-5 is-offset-7"
-                                                style={{ paddingTop: '30vh' }}
-                                            >
-                                                <div
-                                                    style={{
-                                                        width: '100%',
-                                                        display: 'inline-block'
-                                                    }}
-                                                >
-                                                    <PreviewCompatibleImage
-                                                        imageInfo={doodles[7]}
-                                                    />
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="article-wrapper">
-                                            <div className="columns">
-                                                <div className="column is-5 is-offset-3">
                                                     <div
                                                         style={{
                                                             width: '100%',
@@ -351,160 +299,330 @@ export const IndexPageTemplate = ({
                                                         }}
                                                     >
                                                         <PreviewCompatibleImage
-                                                            imageInfo={articles.blurbs[0]}
+                                                            imageInfo={doodles[0]}
+                                                        />
+                                                    </div>
+                                                </div>
+                                                <div
+                                                    className="column is-5 is-offset-7"
+                                                    style={{ paddingTop: '10vh' }}
+                                                >
+                                                    <div
+                                                        style={{
+                                                            width: '100%',
+                                                            display: 'inline-block'
+                                                        }}
+                                                    >
+                                                        <PreviewCompatibleImage
+                                                            imageInfo={doodles[1]}
+                                                        />
+                                                    </div>
+                                                </div>
+                                                <div
+                                                    className="column is-5 is-7offset-1"
+                                                    style={{ marginTop: '-5vh' }}
+                                                >
+                                                    <div
+                                                        style={{
+                                                            width: '100%',
+                                                            display: 'inline-block'
+                                                        }}
+                                                    >
+                                                        <PreviewCompatibleImage
+                                                            imageInfo={doodles[2]}
+                                                        />
+                                                    </div>
+                                                </div>
+                                                <div
+                                                    className="column is-5 is-offset-7"
+                                                    // style={{ paddingTop: '10vh' }}
+                                                >
+                                                    <div
+                                                        style={{
+                                                            width: '100%',
+                                                            display: 'inline-block'
+                                                        }}
+                                                    >
+                                                        <PreviewCompatibleImage
+                                                            imageInfo={doodles[3]}
+                                                        />
+                                                    </div>
+                                                </div>
+                                                <div
+                                                    className="column is-5 is-offset-1"
+                                                    // style={{ paddingTop: '10vh' }}
+                                                >
+                                                    <div
+                                                        style={{
+                                                            width: '100%',
+                                                            display: 'inline-block'
+                                                        }}
+                                                    >
+                                                        <PreviewCompatibleImage
+                                                            imageInfo={doodles[4]}
+                                                        />
+                                                    </div>
+                                                </div>
+                                                <div
+                                                    className="column is-5 is-offset-8"
+                                                    // style={{ paddingTop: '10vh' }}
+                                                >
+                                                    <div
+                                                        style={{
+                                                            width: '100%',
+                                                            display: 'inline-block'
+                                                        }}
+                                                    >
+                                                        <PreviewCompatibleImage
+                                                            imageInfo={doodles[5]}
+                                                        />
+                                                    </div>
+                                                </div>
+                                                <div
+                                                    className="column is-5 is-offset-3"
+                                                    style={{ paddingTop: '10vh' }}
+                                                >
+                                                    <div
+                                                        style={{
+                                                            width: '100%',
+                                                            display: 'inline-block'
+                                                        }}
+                                                    >
+                                                        <PreviewCompatibleImage
+                                                            imageInfo={doodles[6]}
+                                                        />
+                                                    </div>
+                                                </div>
+                                                <div
+                                                    className="column is-5 is-offset-7"
+                                                    style={{ paddingTop: '30vh' }}
+                                                >
+                                                    <div
+                                                        style={{
+                                                            width: '100%',
+                                                            display: 'inline-block'
+                                                        }}
+                                                    >
+                                                        <PreviewCompatibleImage
+                                                            imageInfo={doodles[7]}
                                                         />
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div className="column is-4 is-offset-7">
-                                                <div
-                                                    style={{
-                                                        width: '100%',
-                                                        display: 'inline-block'
-                                                    }}
-                                                >
-                                                    <PreviewCompatibleImage
-                                                        imageInfo={articles.blurbs[1]}
-                                                    />
+                                            <div className="article-wrapper">
+                                                <div className="columns">
+                                                    <div className="column is-5 is-offset-3">
+                                                        <div
+                                                            style={{
+                                                                width: '100%',
+                                                                display: 'inline-block'
+                                                            }}
+                                                            className="blurbs__0"
+                                                        >
+                                                            <PreviewCompatibleImage
+                                                                imageInfo={articles.blurbs[0]}
+                                                            />
+                                                        </div>
+                                                        <div className="svg" id="svg-0" />
+                                                    </div>
+                                                </div>
+                                                <div className="column is-4 is-offset-7">
+                                                    <div
+                                                        style={{
+                                                            width: '100%',
+                                                            display: 'inline-block'
+                                                        }}
+                                                        className="blurbs__1"
+                                                    >
+                                                        <PreviewCompatibleImage
+                                                            imageInfo={articles.blurbs[1]}
+                                                        />
+                                                    </div>
+                                                    <div className="svg" id="svg-1" />
+                                                </div>
+                                                <div className="column is-4 is-offset-2">
+                                                    <div
+                                                        style={{
+                                                            width: '100%',
+                                                            display: 'inline-block'
+                                                        }}
+                                                        className="blurbs__2"
+                                                    >
+                                                        <PreviewCompatibleImage
+                                                            imageInfo={articles.blurbs[2]}
+                                                        />
+                                                    </div>
+                                                    <div className="svg" id="svg-2" />
+                                                </div>
+                                                <div className="column is-5 is-offset-6">
+                                                    <div
+                                                        style={{
+                                                            width: '100%',
+                                                            display: 'inline-block'
+                                                        }}
+                                                        className="blurbs__3"
+                                                    >
+                                                        <PreviewCompatibleImage
+                                                            imageInfo={articles.blurbs[3]}
+                                                        />
+                                                    </div>
+                                                    <div className="svg" id="svg-3" />
+                                                </div>
+                                                <div className="column is-4 is-offset-1">
+                                                    <div
+                                                        style={{
+                                                            width: '100%',
+                                                            display: 'inline-block'
+                                                        }}
+                                                        className="blurbs__4"
+                                                    >
+                                                        <PreviewCompatibleImage
+                                                            imageInfo={articles.blurbs[4]}
+                                                        />
+                                                    </div>
+                                                    <div className="svg" id="svg-4" />
+                                                </div>
+                                                <div className="column is-6 is-offset-5">
+                                                    <div
+                                                        style={{
+                                                            width: '100%',
+                                                            display: 'inline-block'
+                                                        }}
+                                                        className="blurbs__5"
+                                                    >
+                                                        <PreviewCompatibleImage
+                                                            imageInfo={articles.blurbs[5]}
+                                                        />
+                                                    </div>
+                                                    <div className="svg" id="svg-5" />
+                                                </div>
+                                                <div className="column is-5 is-offset-3">
+                                                    <div
+                                                        style={{
+                                                            width: '100%',
+                                                            display: 'inline-block'
+                                                        }}
+                                                        className="blurbs__6"
+                                                    >
+                                                        <PreviewCompatibleImage
+                                                            imageInfo={articles.blurbs[6]}
+                                                        />
+                                                    </div>
+                                                    <div className="svg" id="svg-6" />
+                                                </div>
+                                                <div className="column is-4">
+                                                    <div
+                                                        style={{
+                                                            width: '100%',
+                                                            display: 'inline-block'
+                                                        }}
+                                                        className="blurbs__7"
+                                                    >
+                                                        <PreviewCompatibleImage
+                                                            imageInfo={articles.blurbs[7]}
+                                                        />
+                                                    </div>
+                                                    <div className="svg" id="svg-7" />
+                                                </div>
+                                                <div className="column is-5 is-offset-8">
+                                                    <div
+                                                        style={{
+                                                            width: '100%',
+                                                            display: 'inline-block'
+                                                        }}
+                                                        className="blurbs__8"
+                                                    >
+                                                        <PreviewCompatibleImage
+                                                            imageInfo={articles.blurbs[8]}
+                                                        />
+                                                    </div>
+                                                    <div className="svg" id="svg-8" />
+                                                </div>
+                                                <div className="column is-5 is-offset-2">
+                                                    <div
+                                                        style={{
+                                                            width: '100%',
+                                                            display: 'inline-block'
+                                                        }}
+                                                        className="blurbs__9"
+                                                    >
+                                                        <PreviewCompatibleImage
+                                                            imageInfo={articles.blurbs[9]}
+                                                        />
+                                                    </div>
+                                                    <div className="svg" id="svg-9" />
+                                                </div>
+                                                <div className="column is-5 is-offset-6">
+                                                    <div
+                                                        style={{
+                                                            width: '100%',
+                                                            display: 'inline-block'
+                                                        }}
+                                                        className="blurbs__10"
+                                                    >
+                                                        <PreviewCompatibleImage
+                                                            imageInfo={articles.blurbs[8]}
+                                                        />
+                                                    </div>
+                                                    <div className="svg" id="svg-10" />
                                                 </div>
                                             </div>
-                                            <div className="column is-4 is-offset-2">
-                                                <div
-                                                    style={{
-                                                        width: '100%',
-                                                        display: 'inline-block'
-                                                    }}
-                                                >
-                                                    <PreviewCompatibleImage
-                                                        imageInfo={articles.blurbs[2]}
-                                                    />
-                                                </div>
-                                            </div>
-                                            <div className="column is-5 is-offset-6">
-                                                <div
-                                                    style={{
-                                                        width: '100%',
-                                                        display: 'inline-block'
-                                                    }}
-                                                >
-                                                    <PreviewCompatibleImage
-                                                        imageInfo={articles.blurbs[3]}
-                                                    />
-                                                </div>
-                                            </div>
-                                            <div className="column is-4 is-offset-1">
-                                                <div
-                                                    style={{
-                                                        width: '100%',
-                                                        display: 'inline-block'
-                                                    }}
-                                                >
-                                                    <PreviewCompatibleImage
-                                                        imageInfo={articles.blurbs[4]}
-                                                    />
-                                                </div>
-                                            </div>
-                                            <div className="column is-6 is-offset-5">
-                                                <div
-                                                    style={{
-                                                        width: '100%',
-                                                        display: 'inline-block'
-                                                    }}
-                                                >
-                                                    <PreviewCompatibleImage
-                                                        imageInfo={articles.blurbs[5]}
-                                                    />
-                                                </div>
-                                            </div>
-                                            <div className="column is-5 is-offset-3">
-                                                <div
-                                                    style={{
-                                                        width: '100%',
-                                                        display: 'inline-block'
-                                                    }}
-                                                >
-                                                    <PreviewCompatibleImage
-                                                        imageInfo={articles.blurbs[6]}
-                                                    />
-                                                </div>
-                                            </div>
-                                            <div className="column is-4">
-                                                <div
-                                                    style={{
-                                                        width: '100%',
-                                                        display: 'inline-block'
-                                                    }}
-                                                >
-                                                    <PreviewCompatibleImage
-                                                        imageInfo={articles.blurbs[7]}
-                                                    />
-                                                </div>
-                                            </div>
-                                            <div className="column is-5 is-offset-8">
-                                                <div
-                                                    style={{
-                                                        width: '100%',
-                                                        display: 'inline-block'
-                                                    }}
-                                                >
-                                                    <PreviewCompatibleImage
-                                                        imageInfo={articles.blurbs[8]}
-                                                    />
-                                                </div>
-                                            </div>
-                                            <div className="column is-5 is-offset-2">
-                                                <div
-                                                    style={{
-                                                        width: '100%',
-                                                        display: 'inline-block'
-                                                    }}
-                                                >
-                                                    <PreviewCompatibleImage
-                                                        imageInfo={articles.blurbs[9]}
-                                                    />
-                                                </div>
-                                            </div>
-                                            <div className="column is-5 is-offset-6">
-                                                <div
-                                                    style={{
-                                                        width: '100%',
-                                                        display: 'inline-block'
-                                                    }}
-                                                >
-                                                    <PreviewCompatibleImage
-                                                        imageInfo={articles.blurbs[8]}
-                                                    />
-                                                </div>
-                                            </div>
-                                        </div>
 
-                                        {/* @ts-ignore Styled JSX*/}
-                                        <style jsx>{`
-                                            .article-wrapper {
-                                                z-index: 1;
-                                            }
-                                            .doodle-wrapper {
-                                                z-index: 0;
-                                            }
-                                            .body-wrapper {
-                                                display: grid;
-                                                grid-template: 1fr / 1fr;
-                                            }
-                                            .body-wrapper > * {
-                                                grid-column: 1 / 1;
-                                                grid-row: 1 / 1;
-                                            }
-                                        `}</style>
+                                            {/* @ts-ignore Styled JSX*/}
+                                            <style jsx>{`
+                                                .article-wrapper {
+                                                    z-index: 1;
+                                                }
+                                                .doodle-wrapper {
+                                                    z-index: 0;
+                                                }
+                                                .body-wrapper {
+                                                    display: grid;
+                                                    grid-template: 1fr / 1fr;
+                                                }
+
+                                                .svg {
+                                                    position: absolute;
+                                                    width: 2px;
+                                                    height: 1px;
+                                                    margin-top: -1px;
+                                                    background-color: black;
+                                                    z-index: -50;
+                                                }
+
+                                                @keyframes slidein {
+                                                    from {
+                                                        transform: translateY(-100%);
+                                                        background: white;
+                                                    }
+                                                    to {
+                                                        transform: translateY(0%);
+                                                        background: black;
+                                                    }
+                                                }
+
+                                                * {
+                                                    padding: 0px;
+                                                    margin: 0px;
+                                                    box-sizing: border-box;
+                                                }
+
+                                                .body-wrapper > * {
+                                                    grid-column: 1 / 1;
+                                                    grid-row: 1 / 1;
+                                                }
+                                            `}</style>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </section>
-        </div>
-    </>
-);
+                </section>
+            </div>
+        </>
+    );
+};
 
 IndexPageTemplate.propTypes = {
     image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
