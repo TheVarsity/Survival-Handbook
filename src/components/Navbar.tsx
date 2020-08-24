@@ -1,32 +1,44 @@
-import { Link } from 'gatsby';
+import { Link, StaticQuery, graphql } from 'gatsby';
 
 import React, { useState } from 'react';
 
 import { HomeIcon, SearchIcon } from './Icons';
 
+import Search from './Search';
+
 // import searchIcon from '../img/searchIcon.svg';
 
 // eslint-disable-next-line react/display-name
 const Navbar = () => {
-    const [active, setActive] = useState(false);
+    // const [active, setActive] = useState(false);
+
     const [navBarActiveClass, setNavBarActiveClass] = useState('');
 
-    const toggleHamburger = () => {
-        // toggle the active boolean in the state
-        setActive(!active);
-        setNavBarActiveClass(active ? 'is-active' : '');
-    };
+    const [searchToggle, setSearchToggle] = useState(false);
 
     return (
-        <nav className="navbar is-transparent" role="navigation" aria-label="main-navigation">
-            <div className="container">
-                <div className="navbar-brand">
-                    <Link to="/" className="navbar-item" title="Logo">
-                        {/* <img src={homeIcon} alt="Home Logo" style={{ width: '88px' }} /> */}
-                        <HomeIcon />
-                    </Link>
-                    {/* Hamburger menu */}
-                    <div
+        <StaticQuery
+            query={graphql`
+                query SearchIndexQuery {
+                    siteSearchIndex {
+                        index
+                    }
+                }
+            `}
+            render={data => (
+                <nav
+                    className="navbar is-transparent"
+                    role="navigation"
+                    aria-label="main-navigation"
+                >
+                    <div className="container">
+                        <div className="navbar-brand">
+                            <Link to="/" className="navbar-item" title="Logo">
+                                {/* <img src={homeIcon} alt="Home Logo" style={{ width: '88px' }} /> */}
+                                <HomeIcon />
+                            </Link>
+                            {/* Hamburger menu */}
+                            {/* <div
                         className={`navbar-burger burger ${navBarActiveClass}`}
                         data-target="navMenu"
                         onClick={() => toggleHamburger()}
@@ -34,10 +46,10 @@ const Navbar = () => {
                         <span />
                         <span />
                         <span />
-                    </div>
-                </div>
-                <div id="navMenu" className={`navbar-menu ${navBarActiveClass}`}>
-                    {/* <div className="navbar-start has-text-centered">
+                    </div> */}
+                        </div>
+                        <div id="navMenu" className={`navbar-menu ${navBarActiveClass}`}>
+                            {/* <div className="navbar-start has-text-centered">
                             <Link className="navbar-item" to="/about">
                                 About
                             </Link>
@@ -54,14 +66,24 @@ const Navbar = () => {
                                 Form Examples
                             </Link>
                         </div> */}
-                    <div className="navbar-end has-text-centered">
-                        <a className="navbar-item" href="/">
-                            <SearchIcon />
-                        </a>
+                            <div className="navbar-end has-text-centered">
+                                {searchToggle ? (
+                                    <Search searchIndex={data.siteSearchIndex.index} />
+                                ) : null}
+                                <a
+                                    className="navbar-item"
+                                    onClick={() => {
+                                        setSearchToggle(!searchToggle);
+                                    }}
+                                >
+                                    <SearchIcon />
+                                </a>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-        </nav>
+                </nav>
+            )}
+        />
     );
 };
 
