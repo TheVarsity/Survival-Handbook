@@ -1,14 +1,17 @@
 /* eslint-disable @typescript-eslint/restrict-plus-operands */
-import { Link, graphql } from 'gatsby';
+import { graphql } from 'gatsby';
 import PropTypes from 'prop-types';
 import React from 'react';
 
 import { IndexPageTemplateQuery } from 'types/graphql-types';
-import BlogRoll from '../components/BlogRoll';
+import ArticleBubbles from '../components/home/articleBubbles';
 import Layout from '../components/Layout';
 import Navbar from '../components/Navbar';
-import PreviewCompatibleImage from '../components/PreviewCompatibleImage';
-import TextBubble from '../components/TextBubble';
+// import PreviewCompatibleImage from '../components/PreviewCompatibleImage';
+
+import Chevron from '../components/home/chevron';
+import Doodles from '../components/home/doodles';
+import TextBubble from '../components/home/TextBubble';
 
 //@ts-ignore
 import mp4 from '../img/handbook-cover-2020.mp4';
@@ -16,24 +19,6 @@ import mp4 from '../img/handbook-cover-2020.mp4';
 import webm from '../img/handbook-cover-2020.webm';
 
 import scrollTo from 'gatsby-plugin-smoothscroll';
-
-const Chevron = () => (
-    <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 16 16">
-        <path
-            fill="black"
-            d="M4.14645,5.64645 C4.34171,5.45118 4.65829,5.45118 4.85355,5.64645 L7.9999975,8.79289 L11.1464,5.64645 C11.3417,5.45118 11.6583,5.45118 11.8536,5.64645 C12.0488,5.84171 12.0488,6.15829 11.8536,6.35355 L8.35355,9.85355 C8.15829,10.0488 7.84171,10.0488 7.64645,9.85355 L4.14645,6.35355 C3.95118,6.15829 3.95118,5.84171 4.14645,5.64645 Z"
-        />
-        {/*  @ts-ignore Styled JSX */}
-        <style jsx>
-            {`
-                svg {
-                    height: 100%;
-                    width: 100%;
-                }
-            `}
-        </style>
-    </svg>
-);
 
 type IndexPageTemplateProps = RecursiveNonNullable<
     IndexPageTemplateQuery
@@ -47,84 +32,10 @@ export const IndexPageTemplate = ({
     articles,
     doodles
 }: IndexPageTemplateProps) => {
-    const adjustLine = (
-        from: { offsetTop: number; offsetHeight: number; offsetLeft: number; offsetWidth: number },
-        to: { offsetTop: number; offsetHeight: number; offsetLeft: number; offsetWidth: number },
-        line: { style: { [x: string]: string; top: string; left: string; height: string } }
-    ) => {
-        // eslint-disable-next-line @typescript-eslint/restrict-plus-operands
-        var fT = from.offsetTop + from.offsetHeight / 2;
-        // eslint-disable-next-line @typescript-eslint/restrict-plus-operands
-        var tT = to.offsetTop + to.offsetHeight / 2;
-        // eslint-disable-next-line @typescript-eslint/restrict-plus-operands
-        var fL = from.offsetLeft + from.offsetWidth / 2;
-        // eslint-disable-next-line @typescript-eslint/restrict-plus-operands
-        var tL = to.offsetLeft + to.offsetWidth / 2;
-
-        var CA = Math.abs(tT - fT);
-        var CO = Math.abs(tL - fL);
-        var H = Math.sqrt(CA * CA + CO * CO);
-        var ANG = (180 / Math.PI) * Math.acos(CA / H);
-        var top, left;
-        if (tT > fT) {
-            top = (tT - fT) / 2 + fT;
-        } else {
-            top = (fT - tT) / 2 + tT;
-        }
-        if (tL > fL) {
-            left = (tL - fL) / 2 + fL;
-        } else {
-            left = (fL - tL) / 2 + tL;
-        }
-
-        if (
-            (fT < tT && fL < tL) ||
-            (tT < fT && tL < fL) ||
-            (fT > tT && fL > tL) ||
-            (tT > fT && tL > fL)
-        ) {
-            ANG *= -1;
-        }
-        top -= H / 2;
-
-        line.style['-webkit-transform'] = `rotate(${ANG}deg)`;
-        line.style['-moz-transform'] = `rotate(${ANG}deg)`;
-        line.style['-ms-transform'] = `rotate(${ANG}deg)`;
-        line.style['-o-transform'] = `rotate(${ANG}deg)`;
-        line.style['-transform'] = `rotate(${ANG}deg)`;
-        line.style.top = `${top}px`;
-        line.style.left = `${left}px`;
-        line.style.height = `${H}px`;
-    };
-
-    React.useEffect(() => {
-        setTimeout(() => {
-            let blurbs_num = 10;
-            let i;
-            for (i = 0; i < blurbs_num; i++) {
-                adjustLine(
-                    document.querySelector(`.blurbs__${i}`),
-                    document.querySelector(`.blurbs__${i + 1}`),
-                    document.querySelector(`#svg-${i}`)
-                );
-            }
-        }, 1000);
-    });
-
     return (
         <>
             <div>
-                <div
-                    className="parallax-container full-width-image margin-top-0"
-                    id="home"
-                    // style={{
-                    //     backgroundImage: `url(${
-                    //         image.childImageSharp ? image.childImageSharp.fluid.src : image
-                    //     })`,
-                    //     backgroundPosition: `top left`,
-                    //     backgroundAttachment: `fixed`
-                    // }}
-                >
+                <div className="parallax-container full-width-image margin-top-0" id="home">
                     <div className="video-wrapper">
                         <div className="overlay" />
 
@@ -288,284 +199,10 @@ export const IndexPageTemplate = ({
                                         <TextBubble left={advice.left} right={advice.right} />
                                         <div className="body-wrapper">
                                             <div className="doodle-wrapper">
-                                                <div
-                                                    className="column is-5 is-offset-1"
-                                                    style={{ paddingTop: '35vh' }}
-                                                >
-                                                    <div
-                                                        style={{
-                                                            width: '100%',
-                                                            display: 'inline-block'
-                                                        }}
-                                                    >
-                                                        <PreviewCompatibleImage
-                                                            imageInfo={doodles[0]}
-                                                        />
-                                                    </div>
-                                                </div>
-                                                <div
-                                                    className="column is-5 is-offset-7"
-                                                    style={{ paddingTop: '10vh' }}
-                                                >
-                                                    <div
-                                                        style={{
-                                                            width: '100%',
-                                                            display: 'inline-block'
-                                                        }}
-                                                    >
-                                                        <PreviewCompatibleImage
-                                                            imageInfo={doodles[1]}
-                                                        />
-                                                    </div>
-                                                </div>
-                                                <div
-                                                    className="column is-5 is-7offset-1"
-                                                    style={{ marginTop: '-5vh' }}
-                                                >
-                                                    <div
-                                                        style={{
-                                                            width: '100%',
-                                                            display: 'inline-block'
-                                                        }}
-                                                    >
-                                                        <PreviewCompatibleImage
-                                                            imageInfo={doodles[2]}
-                                                        />
-                                                    </div>
-                                                </div>
-                                                <div
-                                                    className="column is-5 is-offset-7"
-                                                    // style={{ paddingTop: '10vh' }}
-                                                >
-                                                    <div
-                                                        style={{
-                                                            width: '100%',
-                                                            display: 'inline-block'
-                                                        }}
-                                                    >
-                                                        <PreviewCompatibleImage
-                                                            imageInfo={doodles[3]}
-                                                        />
-                                                    </div>
-                                                </div>
-                                                <div
-                                                    className="column is-5 is-offset-1"
-                                                    // style={{ paddingTop: '10vh' }}
-                                                >
-                                                    <div
-                                                        style={{
-                                                            width: '100%',
-                                                            display: 'inline-block'
-                                                        }}
-                                                    >
-                                                        <PreviewCompatibleImage
-                                                            imageInfo={doodles[4]}
-                                                        />
-                                                    </div>
-                                                </div>
-                                                <div
-                                                    className="column is-5 is-offset-8"
-                                                    // style={{ paddingTop: '10vh' }}
-                                                >
-                                                    <div
-                                                        style={{
-                                                            width: '100%',
-                                                            display: 'inline-block'
-                                                        }}
-                                                    >
-                                                        <PreviewCompatibleImage
-                                                            imageInfo={doodles[5]}
-                                                        />
-                                                    </div>
-                                                </div>
-                                                <div
-                                                    className="column is-5 is-offset-3"
-                                                    style={{ paddingTop: '10vh' }}
-                                                >
-                                                    <div
-                                                        style={{
-                                                            width: '100%',
-                                                            display: 'inline-block'
-                                                        }}
-                                                    >
-                                                        <PreviewCompatibleImage
-                                                            imageInfo={doodles[6]}
-                                                        />
-                                                    </div>
-                                                </div>
-                                                <div
-                                                    className="column is-5 is-offset-7"
-                                                    style={{ paddingTop: '30vh' }}
-                                                >
-                                                    <div
-                                                        style={{
-                                                            width: '100%',
-                                                            display: 'inline-block'
-                                                        }}
-                                                    >
-                                                        <PreviewCompatibleImage
-                                                            imageInfo={doodles[7]}
-                                                        />
-                                                    </div>
-                                                </div>
+                                                <Doodles doodles={doodles} />
                                             </div>
                                             <div className="article-wrapper">
-                                                <div className="columns">
-                                                    <div className="column is-5 is-offset-3">
-                                                        <div
-                                                            style={{
-                                                                width: '100%',
-                                                                display: 'inline-block'
-                                                            }}
-                                                            className="blurbs__0"
-                                                        >
-                                                            <PreviewCompatibleImage
-                                                                imageInfo={articles.blurbs[0]}
-                                                            />
-                                                        </div>
-                                                        <div className="svg" id="svg-0" />
-                                                    </div>
-                                                </div>
-                                                <div className="column is-4 is-offset-7">
-                                                    <div
-                                                        style={{
-                                                            width: '100%',
-                                                            display: 'inline-block'
-                                                        }}
-                                                        className="blurbs__1"
-                                                    >
-                                                        <PreviewCompatibleImage
-                                                            imageInfo={articles.blurbs[1]}
-                                                        />
-                                                    </div>
-                                                    <div className="svg" id="svg-1" />
-                                                </div>
-                                                <div className="column is-4 is-offset-2">
-                                                    <div
-                                                        style={{
-                                                            width: '100%',
-                                                            display: 'inline-block'
-                                                        }}
-                                                        className="blurbs__2"
-                                                    >
-                                                        <PreviewCompatibleImage
-                                                            imageInfo={articles.blurbs[2]}
-                                                        />
-                                                    </div>
-                                                    <div className="svg" id="svg-2" />
-                                                </div>
-                                                <div className="column is-5 is-offset-6">
-                                                    <div
-                                                        style={{
-                                                            width: '100%',
-                                                            display: 'inline-block'
-                                                        }}
-                                                        className="blurbs__3"
-                                                    >
-                                                        <PreviewCompatibleImage
-                                                            imageInfo={articles.blurbs[3]}
-                                                        />
-                                                    </div>
-                                                    <div className="svg" id="svg-3" />
-                                                </div>
-                                                <div className="column is-4 is-offset-1">
-                                                    <div
-                                                        style={{
-                                                            width: '100%',
-                                                            display: 'inline-block'
-                                                        }}
-                                                        className="blurbs__4"
-                                                    >
-                                                        <PreviewCompatibleImage
-                                                            imageInfo={articles.blurbs[4]}
-                                                        />
-                                                    </div>
-                                                    <div className="svg" id="svg-4" />
-                                                </div>
-                                                <div className="column is-6 is-offset-5">
-                                                    <div
-                                                        style={{
-                                                            width: '100%',
-                                                            display: 'inline-block'
-                                                        }}
-                                                        className="blurbs__5"
-                                                    >
-                                                        <PreviewCompatibleImage
-                                                            imageInfo={articles.blurbs[5]}
-                                                        />
-                                                    </div>
-                                                    <div className="svg" id="svg-5" />
-                                                </div>
-                                                <div className="column is-5 is-offset-3">
-                                                    <div
-                                                        style={{
-                                                            width: '100%',
-                                                            display: 'inline-block'
-                                                        }}
-                                                        className="blurbs__6"
-                                                    >
-                                                        <PreviewCompatibleImage
-                                                            imageInfo={articles.blurbs[6]}
-                                                        />
-                                                    </div>
-                                                    <div className="svg" id="svg-6" />
-                                                </div>
-                                                <div className="column is-4">
-                                                    <div
-                                                        style={{
-                                                            width: '100%',
-                                                            display: 'inline-block'
-                                                        }}
-                                                        className="blurbs__7"
-                                                    >
-                                                        <PreviewCompatibleImage
-                                                            imageInfo={articles.blurbs[7]}
-                                                        />
-                                                    </div>
-                                                    <div className="svg" id="svg-7" />
-                                                </div>
-                                                <div className="column is-5 is-offset-8">
-                                                    <div
-                                                        style={{
-                                                            width: '100%',
-                                                            display: 'inline-block'
-                                                        }}
-                                                        className="blurbs__8"
-                                                    >
-                                                        <PreviewCompatibleImage
-                                                            imageInfo={articles.blurbs[8]}
-                                                        />
-                                                    </div>
-                                                    <div className="svg" id="svg-8" />
-                                                </div>
-                                                <div className="column is-5 is-offset-2">
-                                                    <div
-                                                        style={{
-                                                            width: '100%',
-                                                            display: 'inline-block'
-                                                        }}
-                                                        className="blurbs__9"
-                                                    >
-                                                        <PreviewCompatibleImage
-                                                            imageInfo={articles.blurbs[9]}
-                                                        />
-                                                    </div>
-                                                    <div className="svg" id="svg-9" />
-                                                </div>
-                                                <div className="column is-5 is-offset-6">
-                                                    <div
-                                                        style={{
-                                                            width: '100%',
-                                                            display: 'inline-block'
-                                                        }}
-                                                        className="blurbs__10"
-                                                    >
-                                                        <PreviewCompatibleImage
-                                                            imageInfo={articles.blurbs[8]}
-                                                        />
-                                                    </div>
-                                                    <div className="svg" id="svg-10" />
-                                                </div>
+                                                <ArticleBubbles articles={articles} />
                                             </div>
 
                                             {/* @ts-ignore Styled JSX*/}
@@ -579,32 +216,6 @@ export const IndexPageTemplate = ({
                                                 .body-wrapper {
                                                     display: grid;
                                                     grid-template: 1fr / 1fr;
-                                                }
-
-                                                .svg {
-                                                    position: absolute;
-                                                    width: 2px;
-                                                    height: 1px;
-                                                    margin-top: -1px;
-                                                    background-color: black;
-                                                    z-index: -50;
-                                                }
-
-                                                @keyframes slidein {
-                                                    from {
-                                                        transform: translateY(-100%);
-                                                        background: white;
-                                                    }
-                                                    to {
-                                                        transform: translateY(0%);
-                                                        background: black;
-                                                    }
-                                                }
-
-                                                * {
-                                                    padding: 0px;
-                                                    margin: 0px;
-                                                    box-sizing: border-box;
                                                 }
 
                                                 .body-wrapper > * {
