@@ -108,7 +108,7 @@ export const IndexPageTemplate = ({
                     document.querySelector(`#svg-${i}`)
                 );
             }
-        }, 1000);
+        }, 100);
     });
 
     return (

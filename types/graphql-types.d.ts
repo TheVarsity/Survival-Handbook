@@ -3683,7 +3683,10 @@ export type BlogPostByIdQueryVariables = Exact<{
 
 export type BlogPostByIdQuery = { markdownRemark?: Maybe<(
     Pick<MarkdownRemark, 'id' | 'html'>
-    & { frontmatter?: Maybe<Pick<MarkdownRemarkFrontmatter, 'date' | 'title' | 'description' | 'tags'>> }
+    & { frontmatter?: Maybe<(
+      Pick<MarkdownRemarkFrontmatter, 'date' | 'title' | 'description' | 'tags'>
+      & { featuredimage?: Maybe<{ childImageSharp?: Maybe<{ fluid?: Maybe<GatsbyImageSharpFluidFragment> }> }> }
+    )> }
   )> };
 
 export type IndexPageTemplateQueryVariables = Exact<{ [key: string]: never; }>;
