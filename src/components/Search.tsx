@@ -80,7 +80,7 @@ const Search: React.FC<SearchProps> = ({ searchIndex, toggle }) => {
                                 {`
                                     .search-result {
                                         word-wrap: auto;
-                                        margin: 0 2px;
+                                        margin: 0 5px;
                                     }
                                     .divider-wrapper {
                                         display: flex;

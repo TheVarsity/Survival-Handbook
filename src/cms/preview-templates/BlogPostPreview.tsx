@@ -1,4 +1,4 @@
-import { BlogPostTemplate } from '../../templates/blog-post';
+import { BlogPostTemplate } from '../../templates/article';
 import PropTypes from 'prop-types';
 import React from 'react';
 

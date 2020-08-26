@@ -210,7 +210,7 @@ const ArticleBubbles = ({ articles }: ArticleType) => {
                             height: 1px;
                             background-color: black;
                             z-index: -1;
-                            margin-top: -1px;
+                            margin-top: 1px;
                         }
                         * {
                             padding: 0px;
