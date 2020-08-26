@@ -168,19 +168,6 @@ export const IndexPageTemplate = ({
                             <div className="columns">
                                 <div className="column is-10 is-offset-1">
                                     <div className="content">
-                                        <div
-                                            className="fixedchevron columns"
-                                            onClick={() => scrollTo('#home')}
-                                            style={{
-                                                position: 'fixed',
-                                                bottom: '0px',
-                                                right: '10px',
-                                                cursor: 'pointer',
-                                                transform: 'rotate(180deg)'
-                                            }}
-                                        >
-                                            <Chevron />
-                                        </div>
                                         <div className="editor-note">
                                             <div className="tile">
                                                 <h1 className="title">{editorNote.title}</h1>
