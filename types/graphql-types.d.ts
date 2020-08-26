@@ -3614,7 +3614,11 @@ export type BlogPostByIdQuery = {
     markdownRemark?: Maybe<
         Pick<MarkdownRemark, 'id' | 'html'> & {
             frontmatter?: Maybe<
-                Pick<MarkdownRemarkFrontmatter, 'date' | 'title' | 'description' | 'tags'>
+                Pick<MarkdownRemarkFrontmatter, 'date' | 'title' | 'description' | 'tags'> & {
+                    featuredimage?: Maybe<{
+                        childImageSharp?: Maybe<{ fluid?: Maybe<GatsbyImageSharpFluidFragment> }>;
+                    }>;
+                }
             >;
         }
     >;
