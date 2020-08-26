@@ -20,6 +20,8 @@ import webm from '../img/handbook-cover-2020.webm';
 
 import scrollTo from 'gatsby-plugin-smoothscroll';
 
+import PreviewCompatibleImage from '../components/PreviewCompatibleImage';
+
 type IndexPageTemplateProps = RecursiveNonNullable<
     IndexPageTemplateQuery
 >['markdownRemark']['frontmatter'];
@@ -27,6 +29,7 @@ type IndexPageTemplateProps = RecursiveNonNullable<
 export const IndexPageTemplate = ({
     image,
     cover,
+    mainImage,
     editorNote,
     advice,
     articles,
@@ -199,6 +202,9 @@ export const IndexPageTemplate = ({
                                                 `}
                                             </style>
                                         </div>
+                                        <div className="column is-6 is-offset-3">
+                                            <PreviewCompatibleImage imageInfo={mainImage} />
+                                        </div>
                                         <TextBubble left={advice.left} right={advice.right} />
                                         <TextBubble left={advice.left} right={advice.right} />
                                         <div className="body-wrapper">
@@ -242,12 +248,14 @@ export const IndexPageTemplate = ({
 IndexPageTemplate.propTypes = {
     image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
     cover: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+    mainImage: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
     title: PropTypes.string,
     heading: PropTypes.string,
     subheading: PropTypes.string,
     editorNote: PropTypes.object,
     advice: PropTypes.object,
-    articles: PropTypes.object
+    articles: PropTypes.object,
+    doodles: PropTypes.object
 };
 
 const IndexPage = ({ data }: { data: RecursiveNonNullable<IndexPageTemplateQuery> }) => {
@@ -257,6 +265,7 @@ const IndexPage = ({ data }: { data: RecursiveNonNullable<IndexPageTemplateQuery
             <IndexPageTemplate
                 image={post?.frontmatter?.image}
                 cover={post?.frontmatter?.cover}
+                mainImage={post?.frontmatter?.mainImage}
                 title={post?.frontmatter?.title}
                 heading={post?.frontmatter?.heading}
                 subheading={post?.frontmatter?.subheading}
@@ -284,6 +293,13 @@ export const pageQuery = graphql`
                     }
                 }
                 cover {
+                    childImageSharp {
+                        fluid(maxWidth: 2048, quality: 100) {
+                            ...GatsbyImageSharpFluid
+                        }
+                    }
+                }
+                mainImage {
                     childImageSharp {
                         fluid(maxWidth: 2048, quality: 100) {
                             ...GatsbyImageSharpFluid
@@ -323,8 +339,6 @@ export const pageQuery = graphql`
                             }
                         }
                     }
-                    heading
-                    description
                 }
                 doodles {
                     image {

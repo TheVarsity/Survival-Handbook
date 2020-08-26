@@ -52,13 +52,13 @@ const ArticleBubbles = ({ articles }: ArticleType) => {
             const prevLine = lines[prevLineIndex];
 
             if (prevLine && prevLine?.lineRef?.current) {
-                console.log(
-                    'Catch Up Between',
-                    prevLineIndex,
-                    currentLineGoingDown,
-                    prevLine.lineRef.current,
-                    prevLine.height
-                );
+                // console.log(
+                //     'Catch Up Between',
+                //     prevLineIndex,
+                //     currentLineGoingDown,
+                //     prevLine.lineRef.current,
+                //     prevLine.height
+                // );
                 // prevLine.lineRef.current.style.transition = `height 2s;`;
                 // prevLine.lineRef.current.classList.add('grow-transition');
                 if (prevLineIndex < currentLineGoingDown) {
@@ -66,7 +66,7 @@ const ArticleBubbles = ({ articles }: ArticleType) => {
                 } else {
                     prevLine.lineRef.current.style.height = `0px`;
                 }
-                console.log('Caught up', prevLine.lineRef.current);
+                // console.log('Caught up', prevLine.lineRef.current);
             }
             setPrevLineIndex(currentLineGoingDown);
         }

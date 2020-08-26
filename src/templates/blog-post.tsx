@@ -13,6 +13,7 @@ interface BlogPostTemplateProps {
     tags?: (string | null)[] | null;
     title?: string | null;
     helmet?: React.ReactNode | null;
+    featureimage?: string | object;
 }
 
 export const BlogPostTemplate: React.FC<BlogPostTemplateProps> = ({
@@ -21,7 +22,8 @@ export const BlogPostTemplate: React.FC<BlogPostTemplateProps> = ({
     description,
     tags,
     title,
-    helmet
+    helmet,
+    featureimage
 }) => {
     const PostContent = contentComponent || Content;
 
@@ -30,11 +32,13 @@ export const BlogPostTemplate: React.FC<BlogPostTemplateProps> = ({
             {helmet || ''}
             <div className="container content">
                 <div className="columns">
-                    <div className="column is-10 is-offset-1">
+                    <div>
                         <h1 className="title is-size-2 has-text-weight-bold is-bold-light">
                             {title}
                         </h1>
                         <p>{description}</p>
+                    </div>
+                    <div className="column is-10 is-offset-1">
                         <PostContent content={content} />
                         {tags && tags.length ? (
                             <div style={{ marginTop: `4rem` }}>
@@ -92,9 +96,15 @@ export const pageQuery = graphql`
             id
             html
             frontmatter {
-                date(formatString: "MMMM DD, YYYY")
                 title
                 description
+                featuredimage {
+                    childImageSharp {
+                        fluid(maxWidth: 2048, quality: 100) {
+                            ...GatsbyImageSharpFluid
+                        }
+                    }
+                }
                 tags
             }
         }

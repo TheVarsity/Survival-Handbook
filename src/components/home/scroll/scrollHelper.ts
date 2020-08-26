@@ -64,13 +64,14 @@ export const adjustLine = (
         }
         top -= H / 2;
 
+        line.style.top = `${top}px`;
+        line.style.left = `${left}px`;
+
         line.style['-webkit-transform'] = `rotate(${ANG}deg)`;
         line.style['-moz-transform'] = `rotate(${ANG}deg)`;
         line.style['-ms-transform'] = `rotate(${ANG}deg)`;
         line.style['-o-transform'] = `rotate(${ANG}deg)`;
         line.style['-transform'] = `rotate(${ANG}deg)`;
-        line.style.top = `${top}px`;
-        line.style.left = `${left}px`;
         line.style.height = `${0}px`;
 
         return H;
