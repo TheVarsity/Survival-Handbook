@@ -32,6 +32,10 @@ export const IndexPageTemplate = ({
     articles,
     doodles
 }: IndexPageTemplateProps) => {
+    // React.useEffect(() => {
+    //     console.log('Doodles', doodles);
+    // }, []);
+
     return (
         <>
             <div>
@@ -143,7 +147,7 @@ export const IndexPageTemplate = ({
                         `}
                     </style>
                 </div>
-                <Navbar />
+                <Navbar isHomePage={true} />
                 <section
                     className="section section--gradient main"
                     id="editor-note"

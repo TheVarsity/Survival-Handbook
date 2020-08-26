@@ -80,6 +80,9 @@ const Doodles = ({ doodles }: DoodlesTypes) => {
                 imageObject: { ...doodles[7], alt: '' }
             }
         ];
+
+        console.log('Mounted!', doodles);
+        return console.log('Unmounting doodles...');
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
