@@ -20,7 +20,7 @@ const BlogPage = () => (
                         padding: '1rem'
                     }}
                 >
-                    Latest Stories
+                    All Articles
                 </h1>
             </div>
             <section className="section">
