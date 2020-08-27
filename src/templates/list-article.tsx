@@ -62,8 +62,6 @@ const fadePropReducer = (state: any, action: any) => {
 export const ListArticlePostTemplate: React.FC<ListArticlePostTemplateProps> = ({
     content,
     contentComponent,
-    description,
-    tags,
     title,
     helmet,
     featured_image,
@@ -198,34 +196,12 @@ export const ListArticlePostTemplate: React.FC<ListArticlePostTemplateProps> = (
                                                 background-color: transparent;
                                                 border: 0;
                                                 align-self: center;
-                                                 {
-                                                    /* align-items: center;
-                                                align-self: flex-end;
-                                                -webkit-appearance: none; */
-                                                }
                                             }
                                         `}
                                     </style>
                                 </div>
                             ) : null}
                             <PostContent content={content} />
-                            {tags && tags.length ? (
-                                <div style={{ marginTop: `4rem` }}>
-                                    <h4>Tags</h4>
-                                    <ul className="taglist">
-                                        {tags.map(
-                                            tag =>
-                                                tag && (
-                                                    <li key={`tag${tag}`}>
-                                                        <Link to={`/tags/${kebabCase(tag)}/`}>
-                                                            {tag}
-                                                        </Link>
-                                                    </li>
-                                                )
-                                        )}
-                                    </ul>
-                                </div>
-                            ) : null}
                         </div>
                     </div>
                 </div>
@@ -244,7 +220,6 @@ const ListArticlePost: React.FC<{
             <ListArticlePostTemplate
                 content={post?.html}
                 contentComponent={HTMLContent}
-                description={post?.frontmatter?.description}
                 featured_image={post?.frontmatter?.featuredimage}
                 author={post?.frontmatter?.author}
                 helmet={
@@ -253,7 +228,6 @@ const ListArticlePost: React.FC<{
                         <meta name="description" content={`${post?.frontmatter?.description}`} />
                     </Helmet>
                 }
-                tags={post?.frontmatter?.tags}
                 list={post?.frontmatter?.list}
                 title={post?.frontmatter?.title}
             />
@@ -270,7 +244,6 @@ export const pageQuery = graphql`
             html
             frontmatter {
                 title
-                description
                 featuredimage {
                     childImageSharp {
                         fluid(maxWidth: 2048, quality: 100) {
@@ -286,7 +259,6 @@ export const pageQuery = graphql`
                     title
                     text
                 }
-                tags
             }
         }
     }

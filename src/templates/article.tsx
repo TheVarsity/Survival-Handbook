@@ -24,8 +24,6 @@ interface ArticlePostTemplateProps {
 export const ArticlePostTemplate: React.FC<ArticlePostTemplateProps> = ({
     content,
     contentComponent,
-    description,
-    tags,
     title,
     helmet,
     featured_image,
@@ -53,23 +51,6 @@ export const ArticlePostTemplate: React.FC<ArticlePostTemplateProps> = ({
                     <div className="columns">
                         <div className="column is-10 is-offset-1">
                             <PostContent content={content} />
-                            {tags && tags.length ? (
-                                <div style={{ marginTop: `4rem` }}>
-                                    <h4>Tags</h4>
-                                    <ul className="taglist">
-                                        {tags.map(
-                                            tag =>
-                                                tag && (
-                                                    <li key={`tag${tag}`}>
-                                                        <Link to={`/tags/${kebabCase(tag)}/`}>
-                                                            {tag}
-                                                        </Link>
-                                                    </li>
-                                                )
-                                        )}
-                                    </ul>
-                                </div>
-                            ) : null}
                         </div>
                     </div>
                 </div>
@@ -88,7 +69,6 @@ const ArticlePost: React.FC<{
             <ArticlePostTemplate
                 content={post?.html}
                 contentComponent={HTMLContent}
-                description={post?.frontmatter?.description}
                 featured_image={post?.frontmatter?.featuredimage}
                 author={post?.frontmatter?.author}
                 helmet={
@@ -97,7 +77,6 @@ const ArticlePost: React.FC<{
                         <meta name="description" content={`${post?.frontmatter?.description}`} />
                     </Helmet>
                 }
-                tags={post?.frontmatter?.tags}
                 title={post?.frontmatter?.title}
             />
         </Layout>
@@ -113,7 +92,6 @@ export const pageQuery = graphql`
             html
             frontmatter {
                 title
-                description
                 featuredimage {
                     childImageSharp {
                         fluid(maxWidth: 2048, quality: 100) {
@@ -125,7 +103,6 @@ export const pageQuery = graphql`
                     name
                     url
                 }
-                tags
             }
         }
     }
