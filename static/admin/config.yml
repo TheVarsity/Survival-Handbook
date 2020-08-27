@@ -26,11 +26,12 @@ collections:
       - {label: "Publish Date", name: "date", widget: "datetime"}
       - {label: "Featured Post", name: "featuredpost", widget: "boolean", default: false, required: false}
       - {label: "Featured Image", name: "featuredimage", widget: image, required: false}
-      - {label: "Body", name: "body", widget: "markdown"}
       - {label: "Author", name: "author",  widget: object,  fields : [
          {label: "Name", name: "name", widget: "text"},
          {label: "Url", name: "url", widget: "text"}
          ]}
+      - {label: "Body", name: "body", widget: "markdown"}
+      
   - name: "list-articles"
     label: "List Articles"
     folder: "src/pages/listicles"
@@ -48,7 +49,7 @@ collections:
       ]}
       - {label: "Featured Post", name: "featuredpost", widget: "boolean", default: false, required: false}
       - {label: "Featured Image", name: "featuredimage", widget: image, required: false}
-      - {label: "List", name: "list",  widget: object,  fields : [{label: "title", name: "title", widget: "text"},{label: "text", name: "text", widget: "text"}]}
+      - {label: "List", name: "list",  widget: 'list',  fields : [{label: "title", name: "title", widget: "text"},{label: "text", name: "text", widget: "text"}]}
       - {label: "Body", name: "body", widget: "markdown"}
 
   - name: "pages"
@@ -64,9 +65,8 @@ collections:
           - {label: Heading, name: heading, widget: string}
           - {label: Subheading, name: subheading, widget: string}
           - {label: editorNote, name: mainpitch, widget: object, fields: [{label: Title, name: title, widget: string}, {label: Description, name: description, widget: text}]}
-          - {label: Description, name: description, widget: string}
           - {label: Advice Bubbles, name: advice, widget: object, fields: [{label: Quotes, name: text, widget: list}]}
-          - {label: Articles, name: articles, widget: object, fields: [{label: Blurbs, name: blurbs, widget: list, fields: [{label: Image, name: image, widget: image}, {label: Title, name: title, widget: text},{label: Subtitle, name: subtitle, widget: text}]}]}
+          - {label: Articles, name: articles, widget: object, fields: [{label: Blurbs, name: blurbs, widget: list, fields: [{label: Image, name: image, widget: image}, {label: Title, name: title, widget: text},{label: Subtitle, name: subtitle, widget: text},{label: Path, name: path, widget: text}]}]}
       - file: "src/pages/about/index.md"
         label: "About"
         name: "about"

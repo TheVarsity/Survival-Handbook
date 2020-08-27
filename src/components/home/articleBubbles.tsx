@@ -2,7 +2,7 @@ import React, { RefObject, createRef, useEffect, useReducer, useRef, useState } 
 
 import PreviewCompatibleImage from '../PreviewCompatibleImage';
 
-import { BrowserView, isBrowser, isMobile } from 'react-device-detect';
+import { isBrowser, isMobile } from 'react-device-detect';
 
 import { Link } from 'gatsby';
 
@@ -72,23 +72,23 @@ const ArticleBubbles = ({ articles }: ArticleType) => {
     }, []);
 
     useEffect(() => {
-        if (isBrowser) {
-            const blurbs_num = 10;
-            let i;
-            // console.log('Line Updater Called');
-            const temp = Array(blurbs_num).fill(0);
-            for (i = 0; i < blurbs_num; i++) {
-                if (!lines[i]?.height) {
-                    const objHeight = adjustLine(
-                        articleRefs[i]?.current,
-                        articleRefs[i + 1]?.current,
-                        lines[i]?.lineRef.current
-                    );
-                    temp[i] = objHeight;
-                    lineDispatch({ type: lineActions.updateHeight, index: i, height: objHeight });
-                }
+        // if (isBrowser) {
+        const blurbs_num = 10;
+        let i;
+        // console.log('Line Updater Called');
+        const temp = Array(blurbs_num).fill(0);
+        for (i = 0; i < blurbs_num; i++) {
+            if (!lines[i]?.height) {
+                const objHeight = adjustLine(
+                    articleRefs[i]?.current,
+                    articleRefs[i + 1]?.current,
+                    lines[i]?.lineRef.current
+                );
+                temp[i] = objHeight;
+                lineDispatch({ type: lineActions.updateHeight, index: i, height: objHeight });
             }
         }
+        // }
     }, [articleRefs]);
 
     useEffect(() => {
@@ -165,13 +165,13 @@ const ArticleBubbles = ({ articles }: ArticleType) => {
                                 >
                                     <PreviewCompatibleImage imageInfo={article.imageObject} />
                                 </div>
-                                <BrowserView>
-                                    <div
-                                        className="line grow-transition"
-                                        id={`line-${index}`}
-                                        ref={lines[index]?.lineRef}
-                                    />
-                                </BrowserView>
+                                {/* <BrowserView> */}
+                                <div
+                                    className="line grow-transition"
+                                    id={`line-${index}`}
+                                    ref={lines[index]?.lineRef}
+                                />
+                                {/* </BrowserView> */}
                             </div>
                             <div className={`bubble-text ${article.className}`}>
                                 <Link to={path ? path : '/'}>
@@ -188,7 +188,7 @@ const ArticleBubbles = ({ articles }: ArticleType) => {
                             position: absolute;
                             width: 2px;
                             height: 1px;
-                            background-color: black;
+                            background-color: ${isBrowser ? 'black' : 'rgba(0, 0, 0, 0.4)'};
                             z-index: -1;
                             margin-top: 1px;
                         }
@@ -226,7 +226,8 @@ const ArticleBubbles = ({ articles }: ArticleType) => {
                         }
                         .title {
                             font-size: ${isMobile ? '1.25em' : '1.5em'} !important;
-                            margin-bottom: ${isMobile ? '0.8em' : '0.6666em'} !important;
+                            margin-bottom: ${isMobile ? '0.1em' : '0.6666em'} !important;
+                            max-width: ${isMobile ? '40vw' : '15vw'};
                         }
                     `}
                 </style>

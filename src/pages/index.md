@@ -60,7 +60,7 @@ articles:
     - image: /img/doodles/article_3.png
       title: A review of online grammar-check tools
       subtitle: By Megan Brearley
-      path: /articles/
+      path: /articles/a-review-of-online-grammar-check-tools/
     - image: /img/doodles/article_1.png
       title: |
         Easy dorm room workout routines
@@ -69,11 +69,7 @@ articles:
     - image: /img/doodles/article_4.png
       title: Traveling tips during COVID-19
       subtitle: By Sarah Richter
-      path: /articles/
-    - image: /img/doodles/article_2.png
-      title: This is article title test
-      subtitle: By Rahul Tarak
-      path: /articles/2017-01-04-just-in-small-batch-of-jamaican-blue-mountain-in-store-next-week/
+      path: /articles/travelling-tips-during-covid-19/
 editorNote:
   title: Editor's Note
   description: |
