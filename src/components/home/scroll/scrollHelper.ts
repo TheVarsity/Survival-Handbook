@@ -15,66 +15,45 @@ export const getScrollLineHeight = () => {
 };
 
 export const adjustLine = (
-    from?: {
-        offsetTop: number;
-        offsetHeight: number;
-        offsetLeft: number;
-        offsetWidth: number;
-    },
-    to?: {
-        offsetTop: number;
-        offsetHeight: number;
-        offsetLeft: number;
-        offsetWidth: number;
-    },
+    from?: HTMLDivElement,
+    to?: HTMLDivElement,
     line?: { style: { [x: string]: string; top: string; left: string; height: string } }
 ) => {
     if (from && to && line) {
-        let fT = from.offsetTop + from.offsetHeight / 2;
+        let fromTop = from.offsetTop + from.offsetHeight / 2;
 
-        let tT = to.offsetTop + to.offsetHeight / 2;
+        let toTop = to.offsetTop + to.offsetHeight / 2;
 
-        let fL = from.offsetLeft + from.offsetWidth / 2;
+        let fromLeft = from.offsetLeft + from.offsetWidth / 2;
 
-        let tL = to.offsetLeft + to.offsetWidth / 2;
+        let toLeft = to.offsetLeft + to.offsetWidth / 2;
 
-        let CA = Math.abs(tT - fT);
-        let CO = Math.abs(tL - fL);
-        let H = Math.sqrt(CA * CA + CO * CO);
-        let ANG = (180 / Math.PI) * Math.acos(CA / H);
-        let top, left;
-        if (tT > fT) {
-            top = (tT - fT) / 2 + fT;
-        } else {
-            top = (fT - tT) / 2 + tT;
-        }
-        if (tL > fL) {
-            left = (tL - fL) / 2 + fL;
-        } else {
-            left = (fL - tL) / 2 + tL;
-        }
+        let adj = Math.abs(toTop - fromTop);
+        let opp = Math.abs(toLeft - fromLeft);
+        let height = Math.sqrt(adj * adj + opp * opp);
+        let angle = (180 / Math.PI) * Math.acos(adj / height);
 
         if (
-            (fT < tT && fL < tL) ||
-            (tT < fT && tL < fL) ||
-            (fT > tT && fL > tL) ||
-            (tT > fT && tL > fL)
+            (fromTop < toTop && fromLeft < toLeft) ||
+            (toTop < fromTop && toLeft < fromLeft) ||
+            (fromTop > toTop && fromLeft > toLeft) ||
+            (toTop > fromTop && toLeft > fromLeft)
         ) {
-            ANG *= -1;
+            angle *= -1;
         }
-        top -= H / 2;
 
-        line.style.top = `${top}px`;
-        line.style.left = `${left}px`;
+        line.style.top = `${from.offsetTop + from.offsetHeight / 2}px`;
+        line.style.left = `${from.offsetLeft + from.offsetWidth / 2}px`;
 
-        line.style['-webkit-transform'] = `rotate(${ANG}deg)`;
-        line.style['-moz-transform'] = `rotate(${ANG}deg)`;
-        line.style['-ms-transform'] = `rotate(${ANG}deg)`;
-        line.style['-o-transform'] = `rotate(${ANG}deg)`;
-        line.style['-transform'] = `rotate(${ANG}deg)`;
-        line.style.height = `${0}px`;
+        line.style['-webkit-transform'] = `rotate(${angle}deg)`;
+        line.style['-moz-transform'] = `rotate(${angle}deg)`;
+        line.style['-ms-transform'] = `rotate(${angle}deg)`;
+        line.style['-o-transform'] = `rotate(${angle}deg)`;
+        line.style['-transform'] = `rotate(${angle}deg)`;
+        line.style['transform-origin'] = `0% 0%`;
+        line.style.height = `${1}px`;
 
-        return H;
+        return height;
     }
     return 0;
 };
