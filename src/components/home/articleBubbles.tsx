@@ -149,33 +149,37 @@ const ArticleBubbles = ({ articles }: ArticleType) => {
                 {articleElements.current.map((article, index) => {
                     const { title, subtitle, path } = article.imageObject;
                     return (
-                        <Link to={path} key={`section-${index}`} ref={scrollRefs[index]}>
-                            <section className="section bubble-wrapper">
-                                <div className={`bubble-image ${article.className}`}>
+                        <section
+                            className="section bubble-wrapper"
+                            key={`section-${index}`}
+                            ref={scrollRefs[index]}
+                        >
+                            <div className={`bubble-image ${article.className}`}>
+                                <div
+                                    style={{
+                                        width: '100%',
+                                        display: 'inline-block'
+                                    }}
+                                    ref={articleRefs[index]}
+                                    className={`blurbs-${index}`}
+                                >
+                                    <PreviewCompatibleImage imageInfo={article.imageObject} />
+                                </div>
+                                <BrowserView>
                                     <div
-                                        style={{
-                                            width: '100%',
-                                            display: 'inline-block'
-                                        }}
-                                        ref={articleRefs[index]}
-                                        className={`blurbs-${index}`}
-                                    >
-                                        <PreviewCompatibleImage imageInfo={article.imageObject} />
-                                    </div>
-                                    <BrowserView>
-                                        <div
-                                            className="line grow-transition"
-                                            id={`line-${index}`}
-                                            ref={lines[index]?.lineRef}
-                                        />
-                                    </BrowserView>
-                                </div>
-                                <div className={`bubble-text ${article.className}`}>
-                                    <h3>{title}</h3>
-                                    <p>{subtitle}</p>
-                                </div>
-                            </section>
-                        </Link>
+                                        className="line grow-transition"
+                                        id={`line-${index}`}
+                                        ref={lines[index]?.lineRef}
+                                    />
+                                </BrowserView>
+                            </div>
+                            <div className={`bubble-text ${article.className}`}>
+                                <Link to={path ? path : '/'}>
+                                    <h3 className="article-link">{title}</h3>
+                                    <p className="article-link byline">{subtitle}</p>
+                                </Link>
+                            </div>
+                        </section>
                     );
                 })}
                 <style jsx>
@@ -212,6 +216,12 @@ const ArticleBubbles = ({ articles }: ArticleType) => {
                         .bubble-wrapper > * {
                             grid-column: 1 / 1;
                             grid-row: 1 / 1;
+                        }
+                        .byline {
+                            color: black;
+                        }
+                        .article-link:hover {
+                            text-decoration: underline;
                         }
                     `}
                 </style>
