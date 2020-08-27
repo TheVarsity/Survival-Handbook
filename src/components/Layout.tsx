@@ -44,9 +44,10 @@ const TemplateWrapper = ({
                     href={`${withPrefix('/')}img/safari-pinned-tab.svg`}
                     color="#ff4400"
                 />
+                <link rel="manifest" href={`${withPrefix('/')}site.webmanifest`} />
                 <meta name="theme-color" content="#fff" />
 
-                <meta property="og:type" content="business.business" />
+                <meta property="og:type" content="university newspaper" />
                 <meta property="og:title" content={title} />
                 <meta property="og:url" content="/" />
                 <meta property="og:image" content={`${withPrefix('/')}img/og-image.jpg`} />
