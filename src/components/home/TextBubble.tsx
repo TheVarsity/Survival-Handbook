@@ -1,5 +1,5 @@
 import { IndexPageTemplateQuery } from 'types/graphql-types';
-import PreviewCompatibleImage from './PreviewCompatibleImage';
+import PreviewCompatibleImage from '../PreviewCompatibleImage';
 import React from 'react';
 
 type TextBubbleProps = RecursiveNonNullable<
