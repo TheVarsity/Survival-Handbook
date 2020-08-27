@@ -1,63 +1,52 @@
 import { BlogPostByIdQuery } from 'types/graphql-types';
 import { Link, graphql } from 'gatsby';
 import { kebabCase } from 'lodash';
+import ArticleHead from '../components/ArticleHead';
 import Content, { HTMLContent } from '../components/Content';
 import Helmet from 'react-helmet';
 import Layout from '../components/Layout';
-import PreviewCompatibleImage from '../components/PreviewCompatibleImage';
-import PropTypes from 'prop-types';
+import Navbar from '../components/Navbar';
+// import PreviewCompatibleImage from '../components/PreviewCompatibleImage';
+// import PropTypes from 'prop-types';
 import React from 'react';
 
-interface BlogPostTemplateProps {
+interface ArticlePostTemplateProps {
     content?: string | null;
     contentComponent?: React.FC<any>;
     description?: string | null;
     tags?: (string | null)[] | null;
     title?: string | null;
     helmet?: React.ReactNode | null;
-    featured_image?: object | null;
+    featured_image?: { childImageSharp?: { fluid?: any } } | null;
+    author?: { name: string; url: string };
 }
 
-export const BlogPostTemplate: React.FC<BlogPostTemplateProps> = ({
+export const ArticlePostTemplate: React.FC<ArticlePostTemplateProps> = ({
     content,
     contentComponent,
     description,
     tags,
     title,
     helmet,
-    featured_image
+    featured_image,
+    author
 }) => {
     const PostContent = contentComponent || Content;
-
+    const style = {
+        backgroundImage: `url(${
+            featured_image?.childImageSharp
+                ? featured_image.childImageSharp.fluid.src
+                : featured_image
+        })`,
+        backgroundSize: `cover`
+    };
+    console.log(style);
     return (
         <div>
-            <div className="parallax-container full-width-image margin-top-0" id="home">
-                <div
-                    style={{
-                        width: '100%',
-                        display: 'inline-block',
-                        height: '100vh'
-                    }}
-                >
-                    <div
-                        style={{
-                            backgroundImage: `url(${
-                                featured_image.childImageSharp
-                                    ? featured_image.childImageSharp.fluid.src
-                                    : featured_image
-                            })`,
-                            backgroundPosition: `center`,
-                            backgroundAttachment: `fixed`,
-                            backgroundSize: `cover`
-                        }}
-                    >
-                        <h1 className="title is-size-2 has-text-weight-bold is-bold-light">
-                            {title}
-                        </h1>
-                        <p>{description}</p>
-                    </div>
-                </div>
-            </div>
+            <ArticleHead title={title} author={author} featuredImage={featured_image} />
+
+            <Navbar isHomePage={true} />
+
             <section className="section">
                 {helmet || ''}
                 <div className="container content">
@@ -89,20 +78,21 @@ export const BlogPostTemplate: React.FC<BlogPostTemplateProps> = ({
     );
 };
 
-const BlogPost: React.FC<{
+const ArticlePost: React.FC<{
     data: BlogPostByIdQuery;
 }> = ({ data }) => {
     const { markdownRemark: post } = data;
 
     return (
-        <Layout>
-            <BlogPostTemplate
+        <Layout isIndexPage={true}>
+            <ArticlePostTemplate
                 content={post?.html}
                 contentComponent={HTMLContent}
                 description={post?.frontmatter?.description}
                 featured_image={post?.frontmatter?.featuredimage}
+                author={post?.frontmatter?.author}
                 helmet={
-                    <Helmet titleTemplate="%s | Blog">
+                    <Helmet titleTemplate="%s | Article">
                         <title>{`${post?.frontmatter?.title}`}</title>
                         <meta name="description" content={`${post?.frontmatter?.description}`} />
                     </Helmet>
@@ -114,15 +104,14 @@ const BlogPost: React.FC<{
     );
 };
 
-export default BlogPost;
+export default ArticlePost;
 
 export const pageQuery = graphql`
-    query BlogPostByID($id: String!) {
+    query ArticlePostByID($id: String!) {
         markdownRemark(id: { eq: $id }) {
             id
             html
             frontmatter {
-                date(formatString: "MMMM DD, YYYY")
                 title
                 description
                 featuredimage {
@@ -131,6 +120,10 @@ export const pageQuery = graphql`
                             ...GatsbyImageSharpFluid
                         }
                     }
+                }
+                author {
+                    name
+                    url
                 }
                 tags
             }

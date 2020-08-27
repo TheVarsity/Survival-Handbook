@@ -15,6 +15,7 @@ export const getScrollLineHeight = () => {
 };
 
 export const adjustLine = (
+<<<<<<< HEAD
     from?: {
         offsetTop: number;
         offsetHeight: number;
@@ -75,6 +76,47 @@ export const adjustLine = (
         line.style.height = `${0}px`;
 
         return H;
+=======
+    from?: HTMLDivElement,
+    to?: HTMLDivElement,
+    line?: { style: { [x: string]: string; top: string; left: string; height: string } }
+) => {
+    if (from && to && line) {
+        let fromTop = from.offsetTop + from.offsetHeight / 2;
+
+        let toTop = to.offsetTop + to.offsetHeight / 2;
+
+        let fromLeft = from.offsetLeft + from.offsetWidth / 2;
+
+        let toLeft = to.offsetLeft + to.offsetWidth / 2;
+
+        let adj = Math.abs(toTop - fromTop);
+        let opp = Math.abs(toLeft - fromLeft);
+        let height = Math.sqrt(adj * adj + opp * opp);
+        let angle = (180 / Math.PI) * Math.acos(adj / height);
+
+        if (
+            (fromTop < toTop && fromLeft < toLeft) ||
+            (toTop < fromTop && toLeft < fromLeft) ||
+            (fromTop > toTop && fromLeft > toLeft) ||
+            (toTop > fromTop && toLeft > fromLeft)
+        ) {
+            angle *= -1;
+        }
+
+        line.style.top = `${from.offsetTop + from.offsetHeight / 2}px`;
+        line.style.left = `${from.offsetLeft + from.offsetWidth / 2}px`;
+
+        line.style['-webkit-transform'] = `rotate(${angle}deg)`;
+        line.style['-moz-transform'] = `rotate(${angle}deg)`;
+        line.style['-ms-transform'] = `rotate(${angle}deg)`;
+        line.style['-o-transform'] = `rotate(${angle}deg)`;
+        line.style['-transform'] = `rotate(${angle}deg)`;
+        line.style['transform-origin'] = `0% 0%`;
+        line.style.height = `${1}px`;
+
+        return height;
+>>>>>>> e1a44b09a14023d512216899abd7139c627c7cd8
     }
     return 0;
 };
