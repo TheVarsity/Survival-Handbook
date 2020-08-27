@@ -2,7 +2,7 @@ import React, { RefObject, createRef, useEffect, useReducer, useRef, useState } 
 
 import PreviewCompatibleImage from '../PreviewCompatibleImage';
 
-import { BrowserView, isBrowser } from 'react-device-detect';
+import { BrowserView, isBrowser, isMobile } from 'react-device-detect';
 
 import { Link } from 'gatsby';
 
@@ -175,7 +175,7 @@ const ArticleBubbles = ({ articles }: ArticleType) => {
                             </div>
                             <div className={`bubble-text ${article.className}`}>
                                 <Link to={path ? path : '/'}>
-                                    <h3 className="article-link">{title}</h3>
+                                    <h3 className="article-link title">{title}</h3>
                                     <p className="article-link byline">{subtitle}</p>
                                 </Link>
                             </div>
@@ -211,6 +211,7 @@ const ArticleBubbles = ({ articles }: ArticleType) => {
                         .bubble-wrapper {
                             display: grid;
                             grid-template: 1fr / 1fr;
+                            margin-top: ${isMobile ? '12vh' : ''};
                         }
 
                         .bubble-wrapper > * {
@@ -222,6 +223,10 @@ const ArticleBubbles = ({ articles }: ArticleType) => {
                         }
                         .article-link:hover {
                             text-decoration: underline;
+                        }
+                        .title {
+                            font-size: ${isMobile ? '1.25em' : '1.5em'} !important;
+                            margin-bottom: ${isMobile ? '0.8em' : '0.6666em'} !important;
                         }
                     `}
                 </style>

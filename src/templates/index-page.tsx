@@ -7,7 +7,6 @@ import { IndexPageTemplateQuery } from 'types/graphql-types';
 import ArticleBubbles from '../components/home/articleBubbles';
 import Layout from '../components/Layout';
 import Navbar from '../components/Navbar';
-// import PreviewCompatibleImage from '../components/PreviewCompatibleImage';
 
 import Doodles from '../components/home/doodles';
 import TextBubble from '../components/home/TextBubble';
