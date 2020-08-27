@@ -135,6 +135,9 @@ export type ArticleElement = {
         childImageSharp?: { fluid?: any };
         image?: string | { childImageSharp?: { fluid?: any } | null } | null;
         style?: object;
+        title?: string;
+        subtitle?: string;
+        path?: string;
     };
 };
 

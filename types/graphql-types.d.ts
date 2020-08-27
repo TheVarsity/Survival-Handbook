@@ -3649,6 +3649,7 @@ export type IndexPageTemplateQuery = {
                     right?: Maybe<{
                         childImageSharp?: Maybe<{ fluid?: Maybe<GatsbyImageSharpFluidFragment> }>;
                     }>;
+                    text?: Maybe<Array<string>>;
                 }>;
                 articles?: Maybe<
                     Pick<MarkdownRemarkFrontmatterArticles, 'heading' | 'description'> & {
@@ -3660,6 +3661,9 @@ export type IndexPageTemplateQuery = {
                                             fluid?: Maybe<GatsbyImageSharpFluidFragment>;
                                         }>;
                                     }>;
+                                    title?: Maybe<string>;
+                                    subtitle?: Maybe<string>;
+                                    path?: Maybe<string>;
                                 }>
                             >
                         >;
