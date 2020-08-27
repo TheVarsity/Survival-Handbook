@@ -38,9 +38,9 @@ type DoodleElementType = {
 };
 
 const Doodles = ({ doodles }: DoodlesTypes) => {
-    const doodleElements = React.useRef<DoodleElementType[]>([]);
+    const [doodleElements, setDoodleElements] = React.useState<DoodleElementType[]>([]);
     useEffect(() => {
-        doodleElements.current = [
+        setDoodleElements([
             {
                 className: 'column is-5 is-offset-1',
                 style: { paddingTop: '35vh' },
@@ -79,16 +79,16 @@ const Doodles = ({ doodles }: DoodlesTypes) => {
                 style: { paddingTop: '10vh' },
                 imageObject: { ...doodles[7], alt: '' }
             }
-        ];
+        ]);
 
-        console.log('Mounted!', doodles);
+        console.log('Mounted!', doodles, doodleElements);
         return console.log('Unmounting doodles...');
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (
         <>
-            {doodleElements.current.map((doodle, index) => {
+            {doodleElements.map((doodle, index) => {
                 return (
                     <div className={doodle.className} style={doodle.style} key={`doodle-${index}`}>
                         <div
