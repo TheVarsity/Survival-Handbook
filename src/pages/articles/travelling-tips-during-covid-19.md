@@ -6,7 +6,7 @@ featuredpost: false
 featuredVideo:
   webm: /video/covidTravelVideo.webm
   mp4:  /video/covidTravelVideo.mp4
-featuredimage:
+featuredimage: /img/covidTravelCover.jpg
 author:
   name: |
     Sarah Richter
