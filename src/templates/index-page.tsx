@@ -35,7 +35,7 @@ export const IndexPageTemplate = ({
     return (
         <>
             <div>
-                <VideoContainer mp4={mp4} webm={webm} cover={cover} />
+                <VideoContainer mp4={mp4} webm={webm} cover={cover} chevron={true} />
                 <Navbar isHomePage={true} />
                 <section
                     className="section section--gradient main"
