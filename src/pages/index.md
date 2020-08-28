@@ -36,7 +36,7 @@ articles:
     - image: /img/articles/article_3.png
       title: A revamped first year to-do list
       subtitle: By Rina Lee
-      path: /articles/a-revamped-first-year-to-do-list/
+      path: /listicles/a-revamped-first-year-to-do-list/
     - image: /img/articles/article_4.png
       title: "How to make connections over Zoom "
       subtitle: By Shaina Sharma
@@ -44,7 +44,7 @@ articles:
     - image: /img/articles/article_1.png
       title: Getting started in research during COVID
       subtitle: By Oviya Muralidharan
-      path: articles/how-to-get-started-in-research-in-the-covid-era/
+      path: /articles/how-to-get-started-in-research-in-the-covid-era/
     - image: /img/articles/article_3.png
       title: How to report sexual assault
       subtitle: By Candice Lee
@@ -52,7 +52,7 @@ articles:
     - image: /img/doodles/article_4.png
       title: Get to know U of T
       subtitle: By Reshma Aser
-      path: articles/u-of-t-—-the-good-the-bad-and-the-ugly/
+      path: /articles/u-of-t-—-the-good-the-bad-and-the-ugly/
     - image: /img/doodles/article_2.png
       title: Quick and easy dorm room recipes
       subtitle: By Ana Pereira

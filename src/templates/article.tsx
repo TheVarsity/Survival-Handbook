@@ -1,11 +1,13 @@
 import { BlogPostByIdQuery } from 'types/graphql-types';
-import { Link, graphql } from 'gatsby';
-import { kebabCase } from 'lodash';
+import { graphql } from 'gatsby';
 import ArticleHead from '../components/ArticleHead';
 import Content, { HTMLContent } from '../components/Content';
 import Helmet from 'react-helmet';
 import Layout from '../components/Layout';
 import Navbar from '../components/Navbar';
+
+import VideoContainer from '../components/home/VideoContainer';
+
 // import PreviewCompatibleImage from '../components/PreviewCompatibleImage';
 // import PropTypes from 'prop-types';
 import React from 'react';
@@ -18,6 +20,7 @@ interface ArticlePostTemplateProps {
     title?: string | null;
     helmet?: React.ReactNode | null;
     featured_image?: { childImageSharp?: { fluid?: any } } | null;
+    featuredVideo?: { webm?: string; mp4?: string } | null;
     author?: { name: string; url: string };
 }
 
@@ -27,7 +30,8 @@ export const ArticlePostTemplate: React.FC<ArticlePostTemplateProps> = ({
     title,
     helmet,
     featured_image,
-    author
+    author,
+    featuredVideo
 }) => {
     const PostContent = contentComponent || Content;
     const style = {
@@ -41,7 +45,22 @@ export const ArticlePostTemplate: React.FC<ArticlePostTemplateProps> = ({
     console.log(style);
     return (
         <div>
-            <ArticleHead title={title} author={author} featuredImage={featured_image} />
+            {featuredVideo ? (
+                <ArticleHead
+                    title={title}
+                    author={author}
+                    featuredImage={featured_image}
+                    backgroundComponent={true}
+                >
+                    <VideoContainer
+                        webm={featuredVideo.webm}
+                        mp4={featuredVideo.mp4}
+                        cover={featured_image}
+                    />
+                </ArticleHead>
+            ) : (
+                <ArticleHead title={title} author={author} featuredImage={featured_image} />
+            )}
 
             <Navbar isHomePage={true} />
 
@@ -70,6 +89,7 @@ const ArticlePost: React.FC<{
                 content={post?.html}
                 contentComponent={HTMLContent}
                 featured_image={post?.frontmatter?.featuredimage}
+                featuredVideo={post?.frontmatter?.featuredVideo}
                 author={post?.frontmatter?.author}
                 helmet={
                     <Helmet titleTemplate="%s | Article">
@@ -92,6 +112,10 @@ export const pageQuery = graphql`
             html
             frontmatter {
                 title
+                featuredVideo {
+                    webm
+                    mp4
+                }
                 featuredimage {
                     childImageSharp {
                         fluid(maxWidth: 2048, quality: 100) {

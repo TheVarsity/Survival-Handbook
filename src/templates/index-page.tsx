@@ -12,6 +12,11 @@ import Doodles from '../components/home/doodles';
 import TextBubble from '../components/home/TextBubble';
 import VideoContainer from '../components/home/VideoContainer';
 
+//@ts-ignore
+import mp4 from '../img/handbook-cover-2020.mp4';
+//@ts-ignore
+import webm from '../img/handbook-cover-2020.webm';
+
 import PreviewCompatibleImage from '../components/PreviewCompatibleImage';
 
 type IndexPageTemplateProps = RecursiveNonNullable<
@@ -30,7 +35,7 @@ export const IndexPageTemplate = ({
     return (
         <>
             <div>
-                <VideoContainer cover={cover} />
+                <VideoContainer mp4={mp4} webm={webm} cover={cover} chevron={true} />
                 <Navbar isHomePage={true} />
                 <section
                     className="section section--gradient main"

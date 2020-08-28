@@ -1,14 +1,19 @@
 import React from 'react';
 
-//@ts-ignore
-import mp4 from '../../img/handbook-cover-2020.mp4';
-//@ts-ignore
-import webm from '../../img/handbook-cover-2020.webm';
-
 import Chevron from './chevron';
 import scrollTo from 'gatsby-plugin-smoothscroll';
 
-const VideoContainer = ({ cover }: { cover: { childImageSharp?: { fluid: any } } }) => {
+const VideoContainer = ({
+    cover,
+    webm,
+    mp4,
+    chevron = false
+}: {
+    cover?: { childImageSharp?: { fluid: any } };
+    webm?: string;
+    mp4?: string;
+    chevron: boolean;
+}) => {
     return (
         <div className="parallax-container full-width-image margin-top-0" id="home">
             <div className="video-wrapper">
@@ -18,17 +23,19 @@ const VideoContainer = ({ cover }: { cover: { childImageSharp?: { fluid: any } }
                     autoPlay
                     muted
                     loop
-                    poster={`${cover.childImageSharp ? cover.childImageSharp.fluid.src : cover}`}
+                    poster={`${cover?.childImageSharp ? cover.childImageSharp.fluid.src : cover}`}
                     className="video-cover"
                 >
                     <source src={webm} type="video/webm" />
                     <source src={mp4} type="video/mp4" />
                 </video>
-                <div className="video-overlay chevron-down is-size-5-mobile is-size-5-tablet is-size-4-widescreen">
-                    <a onClick={() => scrollTo('#editor-note')} className="icon">
-                        <Chevron />
-                    </a>
-                </div>
+                {chevron ? (
+                    <div className="video-overlay chevron-down is-size-5-mobile is-size-5-tablet is-size-4-widescreen">
+                        <a onClick={() => scrollTo('#editor-note')} className="icon">
+                            <Chevron />
+                        </a>
+                    </div>
+                ) : null}
             </div>
             {/* @ts-ignore Styled JSX */}
             <style jsx>

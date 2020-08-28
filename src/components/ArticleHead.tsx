@@ -4,9 +4,17 @@ type ArticleHeadProps = {
     title?: string | null;
     author?: { name: string; url: string };
     featuredImage?: { childImageSharp?: { fluid?: any } } | null;
+    backgroundComponent?: boolean;
+    children?: JSX.Element;
 };
 
-const ArticleHead = ({ title, author, featuredImage }: ArticleHeadProps) => {
+const ArticleHead = ({
+    title,
+    author,
+    featuredImage,
+    backgroundComponent,
+    children
+}: ArticleHeadProps) => {
     // const { name, url } = author;
     const style = {
         backgroundImage: `url(${
@@ -14,12 +22,12 @@ const ArticleHead = ({ title, author, featuredImage }: ArticleHeadProps) => {
         })`,
         backgroundSize: `cover`
     };
-    console.log(style, featuredImage);
+    console.log(backgroundComponent, children);
     return (
         <div className="parallax-container full-width-image margin-top-0" id="home">
-            <div className="video-wrapper">
+            <div className="image-wrapper">
                 <div
-                    className="video-overlay"
+                    className="image-overlay"
                     style={{
                         marginTop: 'auto',
                         display: 'flex',
@@ -74,8 +82,11 @@ const ArticleHead = ({ title, author, featuredImage }: ArticleHeadProps) => {
                         </p>
                     </div>
                 </div>
-
-                <picture className="video-cover" style={style} />
+                {backgroundComponent ? (
+                    <div className="image-cover">{children}</div>
+                ) : (
+                    <picture className="image-cover" style={style} />
+                )}
             </div>
             <style jsx>{`
                 .author-link {
@@ -85,14 +96,14 @@ const ArticleHead = ({ title, author, featuredImage }: ArticleHeadProps) => {
                     text-decoration: underline;
                 }
 
-                .video-wrapper {
+                .image-wrapper {
                     position: relative;
                     background-color: black;
                     height: 100%;
                     width: 100%;
                     overflow: hidden;
                 }
-                .video-overlay {
+                .image-overlay {
                     z-index: 1;
                     position: relative;
                     padding-top: 50vh;
@@ -100,7 +111,7 @@ const ArticleHead = ({ title, author, featuredImage }: ArticleHeadProps) => {
                     max-width: 80vw;
                 }
 
-                .video-cover {
+                .image-cover {
                     object-fit: cover;
                     position: absolute;
                     width: 100%;

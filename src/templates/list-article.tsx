@@ -91,7 +91,7 @@ export const ListArticlePostTemplate: React.FC<ListArticlePostTemplateProps> = (
                             {list && stateList && list.length ? (
                                 <div className="todo-wrapper">
                                     <h3 className="has-text-centered">
-                                        {list.name ? list.name : 'Listicle'}
+                                        {list.name ? list.name : ''}
                                     </h3>
                                     {stateList.length ? null : (
                                         <div className="finished">
