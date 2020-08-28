@@ -3,6 +3,10 @@ templateKey: article
 title: Travelling tips during COVID-19
 date: 2020-08-27T10:45:09.181Z
 featuredpost: false
+featuredVideo:
+  webm: /video/covidTravelVideo.webm
+  mp4:  /video/covidTravelVideo.mp4
+featuredimage:
 author:
   name: |
     Sarah Richter
