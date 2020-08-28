@@ -1,5 +1,7 @@
 import React from 'react';
 
+import Img from 'gatsby-image';
+
 type ArticleHeadProps = {
     title?: string | null;
     author?: { name: string; url: string };
@@ -16,17 +18,7 @@ const ArticleHead = ({
     children
 }: ArticleHeadProps) => {
     // const { name, url } = author;
-    const style = {
-        backgroundImage: `url(${
-            featuredImage?.childImageSharp
-                ? featuredImage.childImageSharp.fluid.srcWebp
-                    ? featuredImage.childImageSharp.fluid.srcWebp
-                    : featuredImage.childImageSharp.fluid.src
-                : featuredImage
-        })`,
-        backgroundSize: `cover`
-    };
-    console.log(backgroundComponent, children);
+    // console.log('Background Style', style);
     return (
         <div className="parallax-container full-width-image margin-top-0" id="home">
             <div className="image-wrapper">
@@ -89,7 +81,14 @@ const ArticleHead = ({
                 {backgroundComponent ? (
                     <div className="image-cover">{children}</div>
                 ) : (
-                    <picture className="image-cover" style={style} />
+                    <div className="image-cover">
+                        <Img
+                            style={{ position: 'unset !important' }}
+                            fluid={{
+                                ...featuredImage?.childImageSharp?.fluid
+                            }}
+                        />
+                    </div>
                 )}
             </div>
             <style jsx>{`
