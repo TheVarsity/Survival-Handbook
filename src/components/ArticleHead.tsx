@@ -18,7 +18,11 @@ const ArticleHead = ({
     // const { name, url } = author;
     const style = {
         backgroundImage: `url(${
-            featuredImage?.childImageSharp ? featuredImage.childImageSharp.fluid.src : featuredImage
+            featuredImage?.childImageSharp
+                ? featuredImage.childImageSharp.fluid.srcWebp
+                    ? featuredImage.childImageSharp.fluid.srcWebp
+                    : featuredImage.childImageSharp.fluid.src
+                : featuredImage
         })`,
         backgroundSize: `cover`
     };

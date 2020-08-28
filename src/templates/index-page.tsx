@@ -42,7 +42,11 @@ export const IndexPageTemplate = ({
                     id="editor-note"
                     style={{
                         backgroundImage: `url(${
-                            image.childImageSharp ? image.childImageSharp.fluid.src : image
+                            image.childImageSharp
+                                ? image.childImageSharp.fluid.srcWebp
+                                    ? image.childImageSharp.fluid.srcWebp
+                                    : image.childImageSharp.fluid.src
+                                : image
                         })`,
                         backgroundPosition: `top left`,
                         backgroundAttachment: `fixed`,
@@ -169,21 +173,21 @@ export const pageQuery = graphql`
                 image {
                     childImageSharp {
                         fluid(maxWidth: 2048, quality: 100) {
-                            ...GatsbyImageSharpFluid
+                            ...GatsbyImageSharpFluid_withWebp
                         }
                     }
                 }
                 cover {
                     childImageSharp {
                         fluid(maxWidth: 2048, quality: 100) {
-                            ...GatsbyImageSharpFluid
+                            ...GatsbyImageSharpFluid_withWebp
                         }
                     }
                 }
                 mainImage {
                     childImageSharp {
                         fluid(maxWidth: 2048, quality: 100) {
-                            ...GatsbyImageSharpFluid
+                            ...GatsbyImageSharpFluid_withWebp
                         }
                     }
                 }
@@ -197,14 +201,14 @@ export const pageQuery = graphql`
                     left {
                         childImageSharp {
                             fluid(maxWidth: 375, quality: 100) {
-                                ...GatsbyImageSharpFluid
+                                ...GatsbyImageSharpFluid_withWebp_noBase64
                             }
                         }
                     }
                     right {
                         childImageSharp {
                             fluid(maxWidth: 375, quality: 100) {
-                                ...GatsbyImageSharpFluid
+                                ...GatsbyImageSharpFluid_withWebp_noBase64
                             }
                         }
                     }
@@ -216,7 +220,7 @@ export const pageQuery = graphql`
                         image {
                             childImageSharp {
                                 fluid(maxWidth: 375, quality: 100) {
-                                    ...GatsbyImageSharpFluid
+                                    ...GatsbyImageSharpFluid_withWebp_noBase64
                                 }
                             }
                         }
@@ -229,7 +233,7 @@ export const pageQuery = graphql`
                     image {
                         childImageSharp {
                             fluid(maxWidth: 375, quality: 100) {
-                                ...GatsbyImageSharpFluid
+                                ...GatsbyImageSharpFluid_withWebp_noBase64
                             }
                         }
                     }

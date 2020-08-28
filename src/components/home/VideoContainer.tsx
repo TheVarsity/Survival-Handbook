@@ -14,6 +14,7 @@ const VideoContainer = ({
     mp4?: string;
     chevron: boolean;
 }) => {
+    // console.log('Video Container', cover);
     return (
         <div className="parallax-container full-width-image margin-top-0" id="home">
             <div className="video-wrapper">
@@ -23,7 +24,13 @@ const VideoContainer = ({
                     autoPlay
                     muted
                     loop
-                    poster={`${cover?.childImageSharp ? cover.childImageSharp.fluid.src : cover}`}
+                    poster={`${
+                        cover?.childImageSharp
+                            ? cover.childImageSharp.fluid.srcSetWebp
+                                ? cover.childImageSharp.fluid.srcSetWebp
+                                : cover.childImageSharp.fluid.srcSet
+                            : cover
+                    }`}
                     className="video-cover"
                 >
                     <source src={webm} type="video/webm" />
