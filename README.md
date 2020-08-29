@@ -4,7 +4,7 @@
 
 As a result of the pandemic, 2020's freshman handbook had to be pivoted to a digital form, this is version control of that digital handbook.
 
-The digital infrastructure for the handbook was built by @CryogenicPlanet and @Munasco
+The digital infrastructure for the handbook was built by [@CryogenicPlanet](https://github.com/CryogenicPlanet) and @Munasco
 
 This website was built on top of a typescript version of netlify-cms-gatsby-starter templateKey
 
