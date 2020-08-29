@@ -6,6 +6,8 @@ import Helmet from 'react-helmet';
 import Layout from '../components/Layout';
 import Navbar from '../components/Navbar';
 
+import { isMobile } from 'react-device-detect';
+
 import VideoContainer from '../components/home/VideoContainer';
 
 // import PreviewCompatibleImage from '../components/PreviewCompatibleImage';
@@ -20,7 +22,12 @@ interface ArticlePostTemplateProps {
     title?: string | null;
     helmet?: React.ReactNode | null;
     featured_image?: { childImageSharp?: { fluid?: any } } | null;
-    featuredVideo?: { webm?: string; mp4?: string } | null;
+    featuredVideo?: {
+        webm?: string;
+        mp4?: string;
+        mobileWebm?: string;
+        mobileMp4?: string;
+    } | null;
     author?: { name: string; url: string };
 }
 
@@ -34,15 +41,6 @@ export const ArticlePostTemplate: React.FC<ArticlePostTemplateProps> = ({
     featuredVideo
 }) => {
     const PostContent = contentComponent || Content;
-    const style = {
-        backgroundImage: `url(${
-            featured_image?.childImageSharp
-                ? featured_image.childImageSharp.fluid.src
-                : featured_image
-        })`,
-        backgroundSize: `cover`
-    };
-    console.log(style);
     return (
         <div>
             {featuredVideo ? (
@@ -53,8 +51,16 @@ export const ArticlePostTemplate: React.FC<ArticlePostTemplateProps> = ({
                     backgroundComponent={true}
                 >
                     <VideoContainer
-                        webm={featuredVideo.webm}
-                        mp4={featuredVideo.mp4}
+                        webm={
+                            featuredVideo.mobileWebm && isMobile
+                                ? featuredVideo.mobileWebm
+                                : featuredVideo.webm
+                        }
+                        mp4={
+                            featuredVideo.mobileMp4 && isMobile
+                                ? featuredVideo.mobileMp4
+                                : featuredVideo.mp4
+                        }
                         cover={featured_image}
                     />
                 </ArticleHead>
@@ -115,6 +121,8 @@ export const pageQuery = graphql`
                 featuredVideo {
                     webm
                     mp4
+                    mobileWebm
+                    mobileMp4
                 }
                 featuredimage {
                     childImageSharp {
