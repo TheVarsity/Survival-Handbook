@@ -81,9 +81,13 @@ const Navbar = ({ isHomePage }: { isHomePage?: boolean }) => {
                                     </a>
                                 </BrowserView>
                             </div>
-                            <style jsx>{``}</style>
                         </div>
                     </div>
+                    <style jsx>{`
+                        .navbar-brand {
+                            justify-content: space-between;
+                        }
+                    `}</style>
                 </nav>
             )}
         />

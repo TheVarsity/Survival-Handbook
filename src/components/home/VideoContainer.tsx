@@ -14,7 +14,7 @@ const VideoContainer = ({
     mp4?: string;
     chevron: boolean;
 }) => {
-    // console.log('Video Container', cover);
+    console.log('Video Container', cover);
     return (
         <div className="parallax-container full-width-image margin-top-0" id="home">
             <div className="video-wrapper">
@@ -26,6 +26,8 @@ const VideoContainer = ({
                     loop
                     poster={`${
                         cover?.childImageSharp
+                            ? cover.childImageSharp.fluid.base64
+                            : cover.childImageSharp.fluid.base64
                             ? cover.childImageSharp.fluid.srcSetWebp
                                 ? cover.childImageSharp.fluid.srcSetWebp
                                 : cover.childImageSharp.fluid.srcSet
