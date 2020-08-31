@@ -10,7 +10,7 @@ import ArticleBubbles from '../components/home/articleBubbles';
 import Layout from '../components/Layout';
 import Navbar from '../components/Navbar';
 
-import ArticleHead from '../components/ArticleHead';
+import Content, { HTMLContent } from '../components/Content';
 import Doodles from '../components/home/doodles';
 import TextBubble from '../components/home/TextBubble';
 import VideoContainer from '../components/home/VideoContainer';
@@ -90,14 +90,14 @@ export const IndexPageTemplate = ({
                             <div className="columns">
                                 <div className="column is-10 is-offset-1">
                                     <div className="content">
-                                        <div className="editor-note">
-                                            <div className="tile">
-                                                <h1 className="title">{editorNote.title}</h1>
-                                            </div>
-                                            <div className="tile">
-                                                <h3 className="subtitle">
-                                                    {editorNote.description}
-                                                </h3>
+                                        <div className="card editor-note">
+                                            <header className="card-header">
+                                                <h1 className="card-header-title">
+                                                    {`Editor's Note`}
+                                                </h1>
+                                            </header>
+                                            <div className="card-content tile">
+                                                <HTMLContent content={editorNote} />
                                             </div>
                                             {/* @ts-ignore Styled JSX*/}
                                             <style jsx>
@@ -186,7 +186,7 @@ const IndexPage = ({ data }: { data: RecursiveNonNullable<IndexPageTemplateQuery
                 title={post?.frontmatter?.title}
                 heading={post?.frontmatter?.heading}
                 subheading={post?.frontmatter?.subheading}
-                editorNote={post?.frontmatter?.editorNote}
+                editorNote={post?.html}
                 advice={post?.frontmatter?.advice}
                 articles={post?.frontmatter?.articles}
                 doodles={post?.frontmatter?.doodles}
@@ -200,6 +200,7 @@ export default IndexPage;
 export const pageQuery = graphql`
     query IndexPageTemplate {
         markdownRemark(frontmatter: { templateKey: { eq: "index-page" } }) {
+            html
             frontmatter {
                 title
                 image {
@@ -225,10 +226,6 @@ export const pageQuery = graphql`
                 }
                 heading
                 subheading
-                editorNote {
-                    title
-                    description
-                }
                 advice {
                     left {
                         childImageSharp {

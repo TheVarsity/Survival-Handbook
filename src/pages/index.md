@@ -12,10 +12,10 @@ cover: /img/title.png
 description: Invalid Field
 advice:
   text:
-    - This is test text
-    - Second Quote
-    - This is third test text
-    - Fourth Quote
+    - The University College dining hall has a chicken caesar wrap that’s not on any menu. Find it; it’s one of the better things to eat on campus. — Tahmeed
+    - Write your essays to your intended audience, which is a sleep-deprived teaching assistant at 2:00 am who has 10 minutes to get through your essay. — Ori
+    - Use the chat box in Zoom to form Facebook groups with your classmates! You’ll thank yourself later when your prof sends out two different midterm dates, and you don’t know which one’s real. — Jadine 
+    - They don’t tell you this, but the burrito place in Robarts and Sids and the coffee truck in front of Robarts have punch cards — get one. — Megan
   left: /img/adviceLeft.png
   right: /img/adviceRight.png
 doodles:
@@ -70,8 +70,14 @@ articles:
       title: Traveling tips during COVID-19
       subtitle: By Sarah Richter
       path: /articles/travelling-tips-during-covid-19/
-editorNote:
-  title: Editor's Note
-  description: |
-    Editors note text
 ---
+
+Honestly, 2020 kinda sucks. I think this is the general sentiment we’re all heading into this year with, and for all the new students at U of T, I know this isn’t how you pictured your first time at university. 
+
+This handbook guide to surviving U of T has been drastically impacted by the limitations that COVID-19 has put on our lives, but it’s just a small way to tell you that, regardless of the circumstances, there’s still a community for you at U of T. There are still opportunities to be seized, memories to be made, and Robarts fugue states to emerge from. 
+
+This community might look different this year, and hey, it honestly might never look the same down the line. But here at U of T, where we have a species-ambiguous mascot and great pasta at Daddyo’s, we’re nothing if not adaptive. And I’d like to think that this is the kind of community you’re getting yourself into this year. So enjoy these articles, muse over the realities shared about this university, and imagine all of the new windows to climb through in 2020. 
+
+And as always, stay safe, wear a mask, and perfect that sweet, sweet elbow-tap. Anyway, don’t worry — even with all the chaos and a pandemic going on, you’ll all still be first-years to us. 
+
+— Stephanie Bai, Handbook Editor

@@ -2,6 +2,8 @@ import { IndexPageTemplateQuery } from 'types/graphql-types';
 import PreviewCompatibleImage from '../PreviewCompatibleImage';
 import React from 'react';
 
+import { isMobile } from 'react-device-detect';
+
 type TextBubbleProps = RecursiveNonNullable<
     IndexPageTemplateQuery
 >['markdownRemark']['frontmatter']['advice'];
@@ -25,7 +27,7 @@ const TextBubble = ({ left, right, text }: TextBubbleProps) => {
         <>
             <div>
                 <div className="columns bubble-wrapper">
-                    <div className="column is-4 is-offset-7 has-text-centered bubble-image">
+                    <div className="column is-5 is-offset-7 has-text-centered is-12-mobile bubble-image">
                         <div
                             style={{
                                 width: '100%',
@@ -35,12 +37,12 @@ const TextBubble = ({ left, right, text }: TextBubbleProps) => {
                             <PreviewCompatibleImage imageInfo={rightImageInfo} />
                         </div>
                     </div>
-                    <div className="column is-4 is-offset-7 bubble-text">
-                        <h3>{text ? text[0] : ''}</h3>
+                    <div className="column is-5 is-offset-7 bubble-text is-12-mobile">
+                        <p style={{ maxWidth: '80%', fontWeight: 'bold' }}>{text ? text[0] : ''}</p>
                     </div>
                 </div>
                 <div className="columns bubble-wrapper">
-                    <div className="column is-4 is-offset-1 has-text-centered bubble-image">
+                    <div className="column is-5 is-offset-1 is-12-mobile has-text-centered bubble-image">
                         <div
                             style={{
                                 width: '100%',
@@ -50,8 +52,8 @@ const TextBubble = ({ left, right, text }: TextBubbleProps) => {
                             <PreviewCompatibleImage imageInfo={leftImageInfo} />
                         </div>
                     </div>
-                    <div className="column is-4 is-offset-1  bubble-text">
-                        <h3>{text ? text[1] : ''}</h3>
+                    <div className="column is-5 is-offset-1  bubble-text is-12-mobile">
+                        <p style={{ maxWidth: '80%', fontWeight: 'bold' }}>{text ? text[1] : ''}</p>
                     </div>
                 </div>
                 <style jsx>{`
@@ -64,10 +66,12 @@ const TextBubble = ({ left, right, text }: TextBubbleProps) => {
                     }
                     .bubble-image {
                         z-index: 0;
+                        transform: ${isMobile ? 'scale(1.2)' : ''};
                     }
                     .bubble-wrapper {
                         display: grid;
                         grid-template: 1fr / 1fr;
+                        padding-bottom: ${isMobile ? '5vh' : ''};
                     }
 
                     .bubble-wrapper > * {
