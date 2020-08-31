@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/restrict-plus-operands */
 import { graphql } from 'gatsby';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import { IndexPageTemplateQuery } from 'types/graphql-types';
 import ArticleBubbles from '../components/home/articleBubbles';
@@ -11,6 +11,8 @@ import Navbar from '../components/Navbar';
 import Doodles from '../components/home/doodles';
 import TextBubble from '../components/home/TextBubble';
 import VideoContainer from '../components/home/VideoContainer';
+
+import useScrollSpy from '../components/home/useScrollSpy';
 
 //@ts-ignore
 import mp4 from '../img/handbook-cover-2020.mp4';
@@ -32,14 +34,35 @@ export const IndexPageTemplate = ({
     articles,
     doodles
 }: IndexPageTemplateProps) => {
+    const [floatingNav, setFloatingNav] = useState(true);
+
+    const parallaxRef = useRef<HTMLDivElement | null>(null);
+
+    const bodyRef = useRef<HTMLElement | null>(null);
+
+    const currentSection = useScrollSpy({
+        sectionElementRefs: [parallaxRef, bodyRef]
+    });
+
+    useEffect(() => {
+        if (currentSection === 0) {
+            setFloatingNav(true);
+        } else {
+            setFloatingNav(false);
+        }
+    }, [currentSection]);
+
     return (
         <>
             <div>
-                <VideoContainer mp4={mp4} webm={webm} cover={cover} chevron={true} />
-                <Navbar isHomePage={true} />
+                <div ref={parallaxRef}>
+                    <VideoContainer mp4={mp4} webm={webm} cover={cover} chevron={true} />
+                </div>
+                <Navbar isHomePage={floatingNav} />
                 <section
                     className="section section--gradient main"
                     id="editor-note"
+                    ref={bodyRef}
                     style={{
                         backgroundImage: `url(${
                             image.childImageSharp

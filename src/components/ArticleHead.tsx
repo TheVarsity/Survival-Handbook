@@ -28,10 +28,12 @@ const ArticleHead = ({
                         marginTop: 'auto',
                         display: 'flex',
                         height: '150px',
+                        width: '100%',
                         lineHeight: '1',
                         justifyContent: 'space-around',
                         alignItems: 'left',
-                        flexDirection: 'column'
+                        flexDirection: 'column',
+                        alignItems: 'center'
                         // textAlign: 'center'
                     }}
                 >
@@ -111,7 +113,9 @@ const ArticleHead = ({
                     position: relative;
                     padding-top: 50vh;
                     padding-left: 1em;
-                    max-width: 80vw;
+                     {
+                        /* max-width: 80vw; */
+                    }
                 }
 
                 .image-cover {

@@ -97,7 +97,7 @@ export const createInitialArticleState = ({ articles }: ArticleType) => {
                 imageObject: { ...articles?.blurbs[1], alt: '' }
             },
             {
-                className: 'column is-4 is-offset-2',
+                className: 'column is-5 is-offset-1',
                 imageObject: { ...articles?.blurbs[2], alt: '' }
             },
             {

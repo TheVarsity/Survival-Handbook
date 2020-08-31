@@ -87,6 +87,9 @@ const Navbar = ({ isHomePage }: { isHomePage?: boolean }) => {
                         .navbar-brand {
                             justify-content: space-between;
                         }
+                        .navbar {
+                            border-bottom: 3px solid rgba(1, 1, 1, 0.3);
+                        }
                     `}</style>
                 </nav>
             )}
