@@ -4,8 +4,8 @@ title: Easy dorm room workout routines
 date: 2020-08-31T16:02:01.664Z
 featuredpost: false
 featuredVideo:
-  webm: /video/workouts/glute_bridges.webm
-  mp4:  /video/workouts/glute_bridges.mp4
+  webm: /video/workouts/gluteBridges.webm
+  mp4:  /video/gluteBridges.mp4
 author:
   name: Ana Pereira
   url: /
