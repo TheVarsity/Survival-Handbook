@@ -8,7 +8,7 @@ subheading: The Varsity's UofT Survival Guide
 mainpitch:
   title: Editor's Note
   description: Pending
-cover: /img/cover.png
+cover: /img/title.png
 description: Invalid Field
 advice:
   text:

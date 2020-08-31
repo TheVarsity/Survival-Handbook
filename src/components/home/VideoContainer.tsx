@@ -1,24 +1,29 @@
 import React from 'react';
 
 import Chevron from './chevron';
+import Img from 'gatsby-image';
 import scrollTo from 'gatsby-plugin-smoothscroll';
+
+import { isMobile } from 'react-device-detect';
 
 const VideoContainer = ({
     cover,
     webm,
     mp4,
+    image,
     chevron = false
 }: {
     cover?: { childImageSharp?: { fluid: any } };
     webm?: string;
     mp4?: string;
+    image?: { childImageSharp?: { fluid: any } };
     chevron: boolean;
 }) => {
     console.log('Video Container', cover);
     return (
         <div className="parallax-container full-width-image margin-top-0" id="home">
             <div className="video-wrapper">
-                <div className="overlay" />
+                <div className="video-overlay is-size-5-mobile is-size-5-tablet is-size-4-widescreen" />
 
                 <video
                     autoPlay
@@ -38,17 +43,47 @@ const VideoContainer = ({
                     <source src={webm} type="video/webm" />
                     <source src={mp4} type="video/mp4" />
                 </video>
-                {chevron ? (
-                    <div className="video-overlay chevron-down is-size-5-mobile is-size-5-tablet is-size-4-widescreen">
-                        <a onClick={() => scrollTo('#editor-note')} className="icon">
-                            <Chevron />
-                        </a>
+
+                <div className="video-overlay">
+                    <div className="overlay-container">
+                        <div className="image-wrapper">
+                            {image ? (
+                                <Img
+                                    imgStyle={{
+                                        objectFit: 'contain',
+                                        transform: isMobile ? 'scale(1.5)' : ''
+                                    }}
+                                    style={{ position: 'unset !important', objectFit: 'contain' }}
+                                    fluid={{
+                                        ...image?.childImageSharp?.fluid,
+                                        sizes: '200vw'
+                                    }}
+                                />
+                            ) : null}
+                        </div>
+                        <div className="chevron-down is-size-5-mobile is-size-5-tablet is-size-4-widescreen">
+                            {chevron ? (
+                                <a onClick={() => scrollTo('#editor-note')} className="icon">
+                                    <Chevron />
+                                </a>
+                            ) : null}
+                        </div>
                     </div>
-                ) : null}
+                </div>
             </div>
             {/* @ts-ignore Styled JSX */}
             <style jsx>
                 {`
+                    .image-wrapper {
+                        height: 70vh;
+                    }
+
+                    .overlay-container {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                    }
+
                     .video-wrapper {
                         position: relative;
                         background-color: black;
@@ -59,7 +94,6 @@ const VideoContainer = ({
                     .video-overlay {
                         z-index: 1;
                         position: relative;
-                        padding-top: 85vh;
                     }
 
                     .video-cover {
@@ -83,51 +117,8 @@ const VideoContainer = ({
                     .chevron-down {
                         display: flex;
                         justify-content: center;
-                        margin-top: auto;
-                         {
-                            /* padding-top: 10%; */
-                        }
-                    }
-                    .strike-large::before {
-                        content: '';
-                        border-bottom: 1rem dashed rgba(255, 68, 0, 0.8);
-                        width: 100%;
-                        position: absolute;
-                        right: 0;
-                        top: 50%;
-                    }
-                    .strike-large::after {
-                        content: '';
-                        border-bottom: 1.5rem dashed black;
-                        width: 100%;
-                        position: absolute;
-                        right: 0.8%;
-                        top: 48%;
-                    }
-
-                    .strike-large {
-                        position: relative;
-                        display: inline-block;
-                    }
-                    .strike-small {
-                        position: relative;
-                        display: inline-block;
-                    }
-                    .strike-small::before {
-                        content: '';
-                        border-bottom: 0.4rem dashed rgba(255, 68, 0, 0.8);
-                        width: 100%;
-                        position: absolute;
-                        right: 0;
-                        top: 50%;
-                    }
-                    .strike-small::after {
-                        content: '';
-                        border-bottom: 0.3rem dashed black;
-                        width: 100%;
-                        position: absolute;
-                        right: 0.8%;
-                        top: 50%;
+                        margin-top: 10vh;
+                        z-index: 10;
                     }
                 `}
             </style>

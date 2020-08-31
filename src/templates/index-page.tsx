@@ -1,5 +1,7 @@
 /* eslint-disable @typescript-eslint/restrict-plus-operands */
+
 import { graphql } from 'gatsby';
+import Img from 'gatsby-image';
 import PropTypes from 'prop-types';
 import React, { useEffect, useRef, useState } from 'react';
 
@@ -8,6 +10,7 @@ import ArticleBubbles from '../components/home/articleBubbles';
 import Layout from '../components/Layout';
 import Navbar from '../components/Navbar';
 
+import ArticleHead from '../components/ArticleHead';
 import Doodles from '../components/home/doodles';
 import TextBubble from '../components/home/TextBubble';
 import VideoContainer from '../components/home/VideoContainer';
@@ -15,9 +18,9 @@ import VideoContainer from '../components/home/VideoContainer';
 import useScrollSpy from '../components/home/useScrollSpy';
 
 //@ts-ignore
-import mp4 from '../img/handbook-cover-2020.mp4';
+import mp4 from '../img/coverBg.mp4';
 //@ts-ignore
-import webm from '../img/handbook-cover-2020.webm';
+import webm from '../img/coverBg.webm';
 
 import PreviewCompatibleImage from '../components/PreviewCompatibleImage';
 
@@ -56,7 +59,13 @@ export const IndexPageTemplate = ({
         <>
             <div>
                 <div ref={parallaxRef}>
-                    <VideoContainer mp4={mp4} webm={webm} cover={cover} chevron={true} />
+                    <VideoContainer
+                        mp4={mp4}
+                        webm={webm}
+                        chevron={true}
+                        cover={cover}
+                        image={cover}
+                    />
                 </div>
                 <Navbar isHomePage={floatingNav} />
                 <section

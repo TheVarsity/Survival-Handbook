@@ -4,11 +4,11 @@ import React, { useEffect, useState } from 'react';
 
 import { HomeIcon, SearchIcon } from './Icons';
 
-import Slide from 'react-reveal/Slide';
+import { Fade, Slide } from 'react-reveal';
 
 import Search from './Search';
 
-import { BrowserView, MobileView } from 'react-device-detect';
+import { BrowserView, MobileView, isMobile } from 'react-device-detect';
 
 // import searchIcon from '../img/searchIcon.svg';
 
@@ -56,32 +56,49 @@ const Navbar = ({ isHomePage }: { isHomePage?: boolean }) => {
                                 </MobileView>
                             </div>
                         </div>
-                        <div id="navMenu" className={`navbar-menu is-active`}>
-                            <div className="navbar-end has-text-centered navbar-item is-relative">
-                                <Slide
-                                    right
-                                    when={searchToggle}
-                                    style={{ display: searchToggle ? 'visible' : 'none' }}
-                                >
-                                    {' '}
-                                    <Search
-                                        searchIndex={data.siteSearchIndex.index}
-                                        toggle={searchToggle}
-                                    />
-                                </Slide>
-
-                                <BrowserView>
-                                    <a
-                                        className="navbar-item"
-                                        onClick={() => {
-                                            setSearchToggle(!searchToggle);
-                                        }}
+                        {isMobile ? (
+                            <Slide right when={searchToggle}>
+                                {searchToggle ? (
+                                    <div id="navMenu" className={`navbar-menu is-active`}>
+                                        <div className="navbar-end has-text-centered navbar-item is-relative">
+                                            <Search
+                                                searchIndex={data.siteSearchIndex.index}
+                                                toggle={searchToggle}
+                                            />
+                                        </div>
+                                    </div>
+                                ) : (
+                                    <div />
+                                )}
+                            </Slide>
+                        ) : (
+                            <div id="navMenu" className={`navbar-menu is-active`}>
+                                <div className="navbar-end has-text-centered navbar-item is-relative">
+                                    <Slide
+                                        right
+                                        when={searchToggle}
+                                        style={{ display: searchToggle ? 'visible' : 'none' }}
                                     >
-                                        <SearchIcon />
-                                    </a>
-                                </BrowserView>
+                                        {' '}
+                                        <Search
+                                            searchIndex={data.siteSearchIndex.index}
+                                            toggle={searchToggle}
+                                        />
+                                    </Slide>
+
+                                    <BrowserView>
+                                        <a
+                                            className="navbar-item"
+                                            onClick={() => {
+                                                setSearchToggle(!searchToggle);
+                                            }}
+                                        >
+                                            <SearchIcon />
+                                        </a>
+                                    </BrowserView>
+                                </div>
                             </div>
-                        </div>
+                        )}
                     </div>
                     <style jsx>{`
                         .navbar-brand {
