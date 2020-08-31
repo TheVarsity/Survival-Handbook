@@ -104,6 +104,16 @@ Instructions
 4. Add the cooked chickpea noodles and sauce mixture; fold gently to combine. Continue to cook for about three more minutes, or until the sauce is thickened and heated throughout.
 
 
+<style>
+.unordered-list-wrapper > * > ul {
+    list-style : disclosure-closed;
+}
+.unordered-list-wrapper > * > ul > li {
+  font-size : 1rem;
+  font-weight : bold;
+}
+
+</style>
 
 
 

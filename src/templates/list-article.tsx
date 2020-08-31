@@ -1,6 +1,5 @@
 import { BlogPostByIdQuery } from 'types/graphql-types';
-import { Link, graphql } from 'gatsby';
-import { kebabCase } from 'lodash';
+import { graphql } from 'gatsby';
 import ArticleHead from '../components/ArticleHead';
 import Content, { HTMLContent } from '../components/Content';
 import Helmet from 'react-helmet';
@@ -100,16 +99,19 @@ export const ListArticlePostTemplate: React.FC<ListArticlePostTemplateProps> = (
 
     return (
         <div>
-            <di ref={parallaxRef}>
+            <div ref={parallaxRef}>
                 <ArticleHead title={title} author={author} featuredImage={featured_image} />
-            </di>
+            </div>
             <Navbar isHomePage={floatingNav} />
 
             <section className="section" ref={bodyRef}>
                 {helmet || ''}
                 <div className="container content">
                     <div className="columns">
-                        <div className="column is-10 is-offset-1">
+                        <div className="column is-8 is-offset-2">
+                            <div className="unordered-list-wrapper">
+                                <PostContent content={content} />
+                            </div>
                             {list && stateList && list.length ? (
                                 <div className="todo-wrapper">
                                     <h3 className="has-text-centered">
@@ -152,24 +154,6 @@ export const ListArticlePostTemplate: React.FC<ListArticlePostTemplateProps> = (
                                                                             {item.title}
                                                                         </p>
                                                                     </div>
-                                                                    <button
-                                                                        data-id={index}
-                                                                        onClick={() => {
-                                                                            setStateList(
-                                                                                stateList.filter(
-                                                                                    (item, i) =>
-                                                                                        i !== index
-                                                                                )
-                                                                            );
-                                                                        }}
-                                                                        type="button"
-                                                                        className="close"
-                                                                        aria-label="Close"
-                                                                    >
-                                                                        <span aria-hidden="true">
-                                                                            &times;
-                                                                        </span>
-                                                                    </button>
                                                                 </div>
                                                             </header>
                                                             <div className="card-content">
@@ -223,7 +207,6 @@ export const ListArticlePostTemplate: React.FC<ListArticlePostTemplateProps> = (
                                     </style>
                                 </div>
                             ) : null}
-                            <PostContent content={content} />
                         </div>
                     </div>
                 </div>

@@ -5,9 +5,28 @@ templateKey: index-page
 title: DECLASSIFIED
 image: /img/background.jpg
 subheading: The Varsity's UofT Survival Guide
-mainpitch:
-  title: Editor's Note
-  description: Pending
+covidGuidelines:
+  title: Staying safe with your friends
+  description: Candice Zhang
+  text: 
+    para: Your first year at university is a chance to make new friends and connections. Even though physical distancing guidelines have been relaxed in Ontario, we have to remember that a pandemic is still going on. This means implementing safety measures when hanging out with others. If you have recently planned to socialize with your peers or plan to in the future, remember to follow the advice provided below.
+    list:
+    - Sanitize and wash your hands regularly. Wash your hands for at least 20 seconds each time, and make sure to use soap and water.
+    - Wear a mask in public spaces — including on campus.
+    - Always maintain a physical distance of two metres from others — with or without a mask.
+    - Know the risk of your chosen activity. Be mindful of the location, transportation, and crowd.
+    - Greet others from a distance to limit physical contact.
+    - Avoid travelling to crowded places. 
+    - Cover your mouth and nose with a tissue or bent elbow when you sneeze or cough.
+    - Avoid touching your face.
+    - Make sure that there are less than 10 people in your group.
+    - Use cashless transactions — cards, not cash!
+    - Carry your own water bottle, and avoid drinking from fountains.  
+    - Avoid sharing items with who people you don’t live with, including gym and sports equipment.
+    - Know the symptoms of COVID-19 — including coughing, difficulty breathing, and fever —  and get tested if you feel sick.
+    - Overall, have fun and enjoy your first year, but be safe!
+
+  
 cover: /img/title.png
 description: Invalid Field
 advice:
