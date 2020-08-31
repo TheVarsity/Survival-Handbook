@@ -34,14 +34,12 @@ How-to: do as many rounds as possible in 20 minutes of the following series. Try
 
 <video autoPlay muted loop>
   <source src="/video/workouts/glute_bridges.webm">
-   <source src="/video/workouts/glute_bridges.mp4">
 </video>
 
 * 20 air squats: go deeper than a regular squat! Make sure your hips go lower than your knees.
 
 <video autoPlay muted loop>
   <source src="/video/workouts/air_squats.webm">
-   <source src="/video/workouts/air_squats.mp4">
 </video>
 
 “You can set a timer and say, ‘Okay, I want to see how many squats I can get in 30-second bursts,’ and that’s really going to pump up your intensity,” Segat said.
@@ -58,7 +56,6 @@ How-to: try five to six rounds of the following series of exercises for a 10–1
 
 <video autoPlay muted loop>
   <source src="/video/workouts/skipping_rope.webm">
-   <source src="/video/workouts/skipping_rope.mp4">
 </video>
 
 
@@ -66,7 +63,6 @@ How-to: try five to six rounds of the following series of exercises for a 10–1
 
 <video autoPlay muted loop>
   <source src="/video/workouts/pushups.webm">
-   <source src="/video/workouts/pushups.mp4">
 </video>
 
 
@@ -74,7 +70,6 @@ How-to: try five to six rounds of the following series of exercises for a 10–1
 
 <video autoPlay muted loop>
   <source src="/video/workouts/walking_lunges.webm">
-   <source src="/video/workouts/walking_lunges.mp4">
 </video>
 
 
@@ -90,7 +85,6 @@ How-to: try five to six rounds of the following series of exercises for a 10–1
 
 <video autoPlay muted loop>
   <source src="/video/workouts/skipping_rope.webm">
-   <source src="/video/workouts/skipping_rope.mp4">
 </video>
 
 
@@ -98,7 +92,6 @@ How-to: try five to six rounds of the following series of exercises for a 10–1
 
 <video autoPlay muted loop>
   <source src="/video/workouts/step-ups.webm">
-   <source src="/video/workouts/step-ups.mp4">
 </video>
 
 
@@ -106,7 +99,6 @@ How-to: try five to six rounds of the following series of exercises for a 10–1
 
 <video autoPlay muted loop>
   <source src="/video/workouts/side_lunges.webm">
-   <source src="/video/workouts/side_lunges.mp4">
 </video>
 
 
@@ -114,7 +106,6 @@ How-to: try five to six rounds of the following series of exercises for a 10–1
 
 <video autoPlay muted loop>
   <source src="/video/workouts/tricep_dips.webm">
-   <source src="/video/workouts/tricep_dips.mp4">
 </video>
 
 
