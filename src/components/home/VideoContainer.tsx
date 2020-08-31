@@ -20,26 +20,24 @@ const VideoContainer = ({
     chevron: boolean;
 }) => {
     console.log('Video Container', cover);
+    const props = {
+        poster: cover
+            ? cover?.childImageSharp
+                ? cover.childImageSharp.fluid.base64
+                : cover.childImageSharp.fluid.base64
+                ? cover.childImageSharp.fluid.srcSetWebp
+                    ? cover.childImageSharp.fluid.srcSetWebp
+                    : cover.childImageSharp.fluid.srcSet
+                : cover
+            : undefined
+    };
+
     return (
         <div className="parallax-container full-width-image margin-top-0" id="home">
             <div className="video-wrapper">
                 <div className="video-overlay is-size-5-mobile is-size-5-tablet is-size-4-widescreen" />
 
-                <video
-                    autoPlay
-                    muted
-                    loop
-                    poster={`${
-                        cover?.childImageSharp
-                            ? cover.childImageSharp.fluid.base64
-                            : cover.childImageSharp.fluid.base64
-                            ? cover.childImageSharp.fluid.srcSetWebp
-                                ? cover.childImageSharp.fluid.srcSetWebp
-                                : cover.childImageSharp.fluid.srcSet
-                            : cover
-                    }`}
-                    className="video-cover"
-                >
+                <video autoPlay muted loop {...props} className="video-cover">
                     <source src={webm} type="video/webm" />
                     <source src={mp4} type="video/mp4" />
                 </video>
