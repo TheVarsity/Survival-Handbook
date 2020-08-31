@@ -1,12 +1,8 @@
 ---
 templateKey: article
-title: A review of online grammar-check tools
 date: 2020-08-27T10:42:53.839Z
 featuredpost: false
 featuredimage: /img/grammarly-01-01.png
-author:
-  name: Megan Brearley
-  url: /
 ---
 <!--StartFragment-->
 
