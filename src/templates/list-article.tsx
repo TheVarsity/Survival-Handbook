@@ -8,7 +8,9 @@ import Layout from '../components/Layout';
 import Navbar from '../components/Navbar';
 // import PreviewCompatibleImage from '../components/PreviewCompatibleImage';
 // import PropTypes from 'prop-types';
-import React, { useReducer, useState } from 'react';
+import useScrollSpy from '../components/home/useScrollSpy';
+
+import React, { useEffect, useReducer, useRef, useState } from 'react';
 
 import Fade from 'react-reveal/Fade';
 
@@ -78,12 +80,32 @@ export const ListArticlePostTemplate: React.FC<ListArticlePostTemplateProps> = (
         cascade: true
     });
 
+    const [floatingNav, setFloatingNav] = useState(true);
+
+    const parallaxRef = useRef<HTMLDivElement | null>(null);
+
+    const bodyRef = useRef<HTMLElement | null>(null);
+
+    const currentSection = useScrollSpy({
+        sectionElementRefs: [parallaxRef, bodyRef]
+    });
+
+    useEffect(() => {
+        if (currentSection === 0) {
+            setFloatingNav(true);
+        } else {
+            setFloatingNav(false);
+        }
+    }, [currentSection]);
+
     return (
         <div>
-            <ArticleHead title={title} author={author} featuredImage={featured_image} />
-            <Navbar isHomePage={true} />
+            <di ref={parallaxRef}>
+                <ArticleHead title={title} author={author} featuredImage={featured_image} />
+            </di>
+            <Navbar isHomePage={floatingNav} />
 
-            <section className="section">
+            <section className="section" ref={bodyRef}>
                 {helmet || ''}
                 <div className="container content">
                     <div className="columns">

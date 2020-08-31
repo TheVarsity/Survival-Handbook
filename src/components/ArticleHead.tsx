@@ -28,55 +28,61 @@ const ArticleHead = ({
                         marginTop: 'auto',
                         display: 'flex',
                         height: '150px',
+                        width: '100%',
                         lineHeight: '1',
                         justifyContent: 'space-around',
                         alignItems: 'left',
-                        flexDirection: 'column'
+                        flexDirection: 'column',
+                        alignItems: 'center'
                         // textAlign: 'center'
                     }}
                 >
-                    <div className="is-size-3-mobile is-size-2-tablet is-size-1-widescreen">
-                        <h3
-                            className="has-text-weight-bold strike-large"
-                            style={{
-                                // boxShadow:
-                                //     'rgb(255, 68, 0.6) 0.5rem 0px 0px, rgb(255, 68, 0.6) -0.5rem 0px 0px',
-                                backgroundColor: 'rgba(0, 0, 0, 0.6)',
-                                // fontSize: '7rem',
-                                color: 'white',
-                                lineHeight: '1',
-                                padding: '0.25em'
-                                // textDecoration: 'line-through'
-                            }}
-                        >
-                            {title}
-                        </h3>
-                    </div>
-                    <div className=" is-size-5-mobile is-size-5-tablet is-size-4-widescreen">
-                        <p
-                            className="strike-small"
-                            style={{
-                                // boxShadow:
-                                //     'rgb(255, 68, 0.6) 0.5rem 0px 0px, rgb(255, 68, 0.6) -0.5rem 0px 0px',
-                                backgroundColor: 'rgba(0, 0, 0, 0.6)',
-                                color: 'white',
+                    {title && author ? (
+                        <>
+                            <div className="is-size-3-mobile is-size-2-tablet is-size-1-widescreen">
+                                <h3
+                                    className="has-text-weight-bold strike-large"
+                                    style={{
+                                        // boxShadow:
+                                        //     'rgb(255, 68, 0.6) 0.5rem 0px 0px, rgb(255, 68, 0.6) -0.5rem 0px 0px',
+                                        backgroundColor: 'rgba(0, 0, 0, 0.6)',
+                                        // fontSize: '7rem',
+                                        color: 'white',
+                                        lineHeight: '1',
+                                        padding: '0.25em'
+                                        // textDecoration: 'line-through'
+                                    }}
+                                >
+                                    {title}
+                                </h3>
+                            </div>
+                            <div className=" is-size-5-mobile is-size-5-tablet is-size-4-widescreen">
+                                <p
+                                    className="strike-small"
+                                    style={{
+                                        // boxShadow:
+                                        //     'rgb(255, 68, 0.6) 0.5rem 0px 0px, rgb(255, 68, 0.6) -0.5rem 0px 0px',
+                                        backgroundColor: 'rgba(0, 0, 0, 0.6)',
+                                        color: 'white',
 
-                                // fontSize: '2rem',
-                                // lineHeight: '1',
-                                padding: '0.25em'
-                            }}
-                        >
-                            <a
-                                href={author?.url}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="author-link"
-                            >
-                                {' '}
-                                By {author?.name}
-                            </a>
-                        </p>
-                    </div>
+                                        // fontSize: '2rem',
+                                        // lineHeight: '1',
+                                        padding: '0.25em'
+                                    }}
+                                >
+                                    <a
+                                        href={author?.url}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="author-link"
+                                    >
+                                        {' '}
+                                        By {author?.name}
+                                    </a>
+                                </p>
+                            </div>
+                        </>
+                    ) : null}
                 </div>
                 {backgroundComponent ? (
                     <div className="image-cover">{children}</div>
@@ -111,7 +117,9 @@ const ArticleHead = ({
                     position: relative;
                     padding-top: 50vh;
                     padding-left: 1em;
-                    max-width: 80vw;
+                     {
+                        /* max-width: 80vw; */
+                    }
                 }
 
                 .image-cover {

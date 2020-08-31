@@ -1,21 +1,26 @@
 /* eslint-disable @typescript-eslint/restrict-plus-operands */
+
 import { graphql } from 'gatsby';
+import Img from 'gatsby-image';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import { IndexPageTemplateQuery } from 'types/graphql-types';
 import ArticleBubbles from '../components/home/articleBubbles';
 import Layout from '../components/Layout';
 import Navbar from '../components/Navbar';
 
+import Content, { HTMLContent } from '../components/Content';
 import Doodles from '../components/home/doodles';
 import TextBubble from '../components/home/TextBubble';
 import VideoContainer from '../components/home/VideoContainer';
 
+import useScrollSpy from '../components/home/useScrollSpy';
+
 //@ts-ignore
-import mp4 from '../img/handbook-cover-2020.mp4';
+import mp4 from '../img/coverBg.mp4';
 //@ts-ignore
-import webm from '../img/handbook-cover-2020.webm';
+import webm from '../img/coverBg.webm';
 
 import PreviewCompatibleImage from '../components/PreviewCompatibleImage';
 
@@ -32,14 +37,41 @@ export const IndexPageTemplate = ({
     articles,
     doodles
 }: IndexPageTemplateProps) => {
+    const [floatingNav, setFloatingNav] = useState(true);
+
+    const parallaxRef = useRef<HTMLDivElement | null>(null);
+
+    const bodyRef = useRef<HTMLElement | null>(null);
+
+    const currentSection = useScrollSpy({
+        sectionElementRefs: [parallaxRef, bodyRef]
+    });
+
+    useEffect(() => {
+        if (currentSection === 0) {
+            setFloatingNav(true);
+        } else {
+            setFloatingNav(false);
+        }
+    }, [currentSection]);
+
     return (
         <>
             <div>
-                <VideoContainer mp4={mp4} webm={webm} cover={cover} chevron={true} />
-                <Navbar isHomePage={true} />
+                <div ref={parallaxRef}>
+                    <VideoContainer
+                        mp4={mp4}
+                        webm={webm}
+                        chevron={true}
+                        cover={cover}
+                        image={cover}
+                    />
+                </div>
+                <Navbar isHomePage={floatingNav} />
                 <section
                     className="section section--gradient main"
                     id="editor-note"
+                    ref={bodyRef}
                     style={{
                         backgroundImage: `url(${
                             image.childImageSharp
@@ -58,14 +90,14 @@ export const IndexPageTemplate = ({
                             <div className="columns">
                                 <div className="column is-10 is-offset-1">
                                     <div className="content">
-                                        <div className="editor-note">
-                                            <div className="tile">
-                                                <h1 className="title">{editorNote.title}</h1>
-                                            </div>
-                                            <div className="tile">
-                                                <h3 className="subtitle">
-                                                    {editorNote.description}
-                                                </h3>
+                                        <div className="card editor-note">
+                                            <header className="card-header">
+                                                <h1 className="card-header-title">
+                                                    {`Editor's Note`}
+                                                </h1>
+                                            </header>
+                                            <div className="card-content tile">
+                                                <HTMLContent content={editorNote} />
                                             </div>
                                             {/* @ts-ignore Styled JSX*/}
                                             <style jsx>
@@ -154,7 +186,7 @@ const IndexPage = ({ data }: { data: RecursiveNonNullable<IndexPageTemplateQuery
                 title={post?.frontmatter?.title}
                 heading={post?.frontmatter?.heading}
                 subheading={post?.frontmatter?.subheading}
-                editorNote={post?.frontmatter?.editorNote}
+                editorNote={post?.html}
                 advice={post?.frontmatter?.advice}
                 articles={post?.frontmatter?.articles}
                 doodles={post?.frontmatter?.doodles}
@@ -168,6 +200,7 @@ export default IndexPage;
 export const pageQuery = graphql`
     query IndexPageTemplate {
         markdownRemark(frontmatter: { templateKey: { eq: "index-page" } }) {
+            html
             frontmatter {
                 title
                 image {
@@ -193,10 +226,6 @@ export const pageQuery = graphql`
                 }
                 heading
                 subheading
-                editorNote {
-                    title
-                    description
-                }
                 advice {
                     left {
                         childImageSharp {

@@ -10,9 +10,11 @@ import { isMobile } from 'react-device-detect';
 
 import VideoContainer from '../components/home/VideoContainer';
 
+import useScrollSpy from '../components/home/useScrollSpy';
+
 // import PreviewCompatibleImage from '../components/PreviewCompatibleImage';
 // import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 interface ArticlePostTemplateProps {
     content?: string | null;
@@ -41,40 +43,61 @@ export const ArticlePostTemplate: React.FC<ArticlePostTemplateProps> = ({
     featuredVideo
 }) => {
     const PostContent = contentComponent || Content;
+
+    const [floatingNav, setFloatingNav] = useState(true);
+
+    const parallaxRef = useRef<HTMLDivElement | null>(null);
+
+    const bodyRef = useRef<HTMLElement | null>(null);
+
+    const currentSection = useScrollSpy({
+        sectionElementRefs: [parallaxRef, bodyRef]
+    });
+
+    useEffect(() => {
+        if (currentSection === 0) {
+            setFloatingNav(true);
+        } else {
+            setFloatingNav(false);
+        }
+    }, [currentSection]);
+
     return (
         <div>
-            {featuredVideo ? (
-                <ArticleHead
-                    title={title}
-                    author={author}
-                    featuredImage={featured_image}
-                    backgroundComponent={true}
-                >
-                    <VideoContainer
-                        webm={
-                            featuredVideo.mobileWebm && isMobile
-                                ? featuredVideo.mobileWebm
-                                : featuredVideo.webm
-                        }
-                        mp4={
-                            featuredVideo.mobileMp4 && isMobile
-                                ? featuredVideo.mobileMp4
-                                : featuredVideo.mp4
-                        }
-                        cover={featured_image}
-                    />
-                </ArticleHead>
-            ) : (
-                <ArticleHead title={title} author={author} featuredImage={featured_image} />
-            )}
+            <div ref={parallaxRef}>
+                {featuredVideo ? (
+                    <ArticleHead
+                        title={title}
+                        author={author}
+                        featuredImage={featured_image}
+                        backgroundComponent={true}
+                    >
+                        <VideoContainer
+                            webm={
+                                featuredVideo.mobileWebm && isMobile
+                                    ? featuredVideo.mobileWebm
+                                    : featuredVideo.webm
+                            }
+                            mp4={
+                                featuredVideo.mobileMp4 && isMobile
+                                    ? featuredVideo.mobileMp4
+                                    : featuredVideo.mp4
+                            }
+                            cover={featured_image}
+                        />
+                    </ArticleHead>
+                ) : (
+                    <ArticleHead title={title} author={author} featuredImage={featured_image} />
+                )}
+            </div>
 
-            <Navbar isHomePage={true} />
+            <Navbar isHomePage={floatingNav} />
 
-            <section className="section">
+            <section className="section" ref={bodyRef}>
                 {helmet || ''}
                 <div className="container content">
                     <div className="columns">
-                        <div className="column is-10 is-offset-1">
+                        <div className="column is-8 is-offset-2">
                             <PostContent content={content} />
                         </div>
                     </div>

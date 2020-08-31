@@ -1,4 +1,4 @@
-# [The Varsity's Digital UofT Survival Handbook](https://open.thevarsity.ca/)
+# [The Varsity's Digital UofT Survival Handbook](https://handbook.thevarsity.ca/)
 
 **The Varsity's Digital Freshman Student Handbook for 2020**
 
