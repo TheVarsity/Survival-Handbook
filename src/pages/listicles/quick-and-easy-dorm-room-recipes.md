@@ -35,7 +35,9 @@ Ingredients
 Instructions
 
 1. Put your pan on the stove and turn it to low heat.
+`youtube: https://youtu.be/1bFSNcpc2XI`
 2. Butter your bread and place the first slice in the pan.
+`youtube: https://youtu.be/9v1de-WrsJk`
 3. Add your cheese, protein, and other add-ons. Top with the other slice of buttered bread.
 4. Cook until the first slice of bread is golden brown. Then, flip the sandwich and continue to cook until the other slice is also golden brown and the cheese is melted.
 5. Remove from heat, cut diagonally — this is very important — and garnish with ketchup, if desired.
