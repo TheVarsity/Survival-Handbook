@@ -44,4 +44,6 @@ One thing that none of the programs picked up were comma splices — although Pr
 
 At the end of the day, nothing is perfect, and nothing can beat another set of eyes and opinions. But if you only have a couple of minutes before your next deadline, give one of these programs a shot!
 
+Visual by: William Xiao
+
 <!--EndFragment-->

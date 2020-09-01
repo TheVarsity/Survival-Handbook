@@ -34,4 +34,6 @@ Additionally, if you feel overwhelmed, U of T Student Life organizes many low-in
 
 As U of T prepares to digitally welcome you, keep in mind that every first-year is in the same position as you. Everyone is eager to settle in during this anomalous year. And while we wish that we could have welcomed you to campus another way, know that you have a place in the U of T community, and that is an unfailing truth — independent of time zones, online classes, and distance.
 
+Visual by: Hayden Mak Long Hei
+
 <!--EndFragment-->

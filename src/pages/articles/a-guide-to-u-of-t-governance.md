@@ -44,4 +44,6 @@ Though people sometimes say that your college doesn’t matter after first year,
 
 There you have it — a general sketch of U of T’s governance structure. From the administration to the student executives, each role has a specific impact in shaping your experience at U of T.
 
+Visual by: Fiona Tung
+
 <!--EndFragment-->

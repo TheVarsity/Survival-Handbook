@@ -109,9 +109,6 @@ export const ListArticlePostTemplate: React.FC<ListArticlePostTemplateProps> = (
                 <div className="container content">
                     <div className="columns">
                         <div className="column is-8 is-offset-2">
-                            <div className="unordered-list-wrapper">
-                                <PostContent content={content} />
-                            </div>
                             {list && stateList && list.length ? (
                                 <div className="todo-wrapper">
                                     <h3 className="has-text-centered">
@@ -207,6 +204,9 @@ export const ListArticlePostTemplate: React.FC<ListArticlePostTemplateProps> = (
                                     </style>
                                 </div>
                             ) : null}
+                            <div className="unordered-list-wrapper">
+                                <PostContent content={content} />
+                            </div>
                         </div>
                     </div>
                 </div>

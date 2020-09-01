@@ -5,6 +5,9 @@ import { Link } from 'gatsby';
 // import facebook from '../img/social/facebook.svg';
 // import instagram from '../img/social/instagram.svg';
 import logo from '../img/logo.svg';
+
+import { isMobile } from 'react-device-detect';
+
 // import twitter from '../img/social/twitter.svg';
 
 const HeartSvg = () => (
@@ -35,6 +38,7 @@ const Footer = class extends React.Component {
                             {`
                                 .main-row {
                                     display: flex;
+                                    flex-direction: ${isMobile ? 'column' : 'row'};
                                     justify-content: space-around;
                                     align-items: center;
                                 }

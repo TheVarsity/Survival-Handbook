@@ -58,3 +58,4 @@ list:
 
       Fun fact: True Blue also has a sister, Blaze. To date, few have seen her.
 ---
+Visual by: Jadine Ngan

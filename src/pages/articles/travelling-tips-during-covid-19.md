@@ -59,4 +59,7 @@ UTGSU student insurance benefits: <https://utgsu.ca/health-and-dental/benefits/>
 
 Health and Wellness Centre at U of T (virtual appointments available): <https://studentlife.utoronto.ca/department/health-wellness/>
 
+
+Visual by: Jadine Ngan
+
 <!--EndFragment-->

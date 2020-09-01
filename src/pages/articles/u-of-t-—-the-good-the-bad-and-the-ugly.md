@@ -34,6 +34,5 @@ As a U of T student, you have a wealth of opportunities to help you achieve this
 
 To sum up, the best advice I can possibly give you is that you must be diligent at U of T. Not just in your studies, but in every aspect of your life, in defence of your morals, in the upkeep of your mental health, in making connections, and so forth. Hopefully this guide makes it a bit easier for you to prepare for what’s to come.
 
-
-
+Visual by: Fiona Tung
 <!--EndFragment-->

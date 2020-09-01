@@ -54,4 +54,5 @@ Here are some resources to help you get started.
 
 UTSC’s research catalogue: a [collection](https://www.utsc.utoronto.ca/aacc/research-catalogue) of research opportunities at UTSC and its partner institutes.
 
+Visual by: Charlotte Hood
 <!--EndFragment-->
