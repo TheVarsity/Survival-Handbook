@@ -142,5 +142,15 @@ Instructions
   font-weight : bold;
 }
 
+
+.unordered-list-wrapper > * > ol > li {
+  font-size : 1.25rem;
+  font-weight : bold;
+  margin : 1em auto;
+}
+.gatsby-resp-iframe-wrapper {
+  margin : 2em auto;
+}
+
 </style>
 <!--EndFragment-->

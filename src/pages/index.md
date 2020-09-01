@@ -66,12 +66,12 @@ articles:
       path: /articles/how-to-get-started-in-research-in-the-covid-era/
     - image: /img/articles/article_3.png
       title: How to report sexual assault
-      subtitle: By Candice Lee
+      subtitle: By Candice Lee Zhang
       path: /articles/how-to-report-sexual-assault-at-u-of-t/
     - image: /img/doodles/article_4.png
       title: Get to know U of T
       subtitle: By Reshma Aser
-      path: /articles/u-of-t-—-the-good-the-bad-and-the-ugly/
+      path: /articles/get-to-know-u-of-t/
     - image: /img/doodles/article_2.png
       title: Quick and easy dorm room recipes
       subtitle: By Kate Haberl and Alexa DiFrancesco

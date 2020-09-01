@@ -92,13 +92,14 @@ module.exports = {
                 modulePath: `${__dirname}/src/cms/cms.ts`
             }
         },
-        {
-            resolve: 'gatsby-plugin-purgecss', // purges all unused/unreferenced css rules
-            options: {
-                develop: false, // Activates purging in npm run develop
-                purgeOnly: ['/all.sass'] // applies purging only on the bulma css file
-            }
-        }, // must be after other CSS plugins
+        // {
+        //     resolve: 'gatsby-plugin-purgecss', // purges all unused/unreferenced css rules
+        //     options: {
+        //         develop: false, // Activates purging in npm run develop
+        //         purgeOnly: ['/all.sass'], // applies purging only on the bulma css file
+        //         whitelist: ['card']
+        //     }
+        // }, // must be after other CSS plugins
         'gatsby-plugin-netlify', // make sure to keep it last in the array
         {
             resolve: `@gatsby-contrib/gatsby-plugin-elasticlunr-search`,

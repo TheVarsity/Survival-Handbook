@@ -5,7 +5,7 @@ date: 2020-08-31T15:59:17.775Z
 featuredpost: false
 featuredimage: /img/reporting-sa.png
 author:
-  name: Candice Zhang
+  name: Candice Lee Zhang
   url: /
 ---
 <!--StartFragment-->

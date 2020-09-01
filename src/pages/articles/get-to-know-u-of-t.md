@@ -1,6 +1,6 @@
 ---
 templateKey: article
-title: U of T — the good, the bad, and the ugly
+title: Get to know U of T
 date: 2020-08-27T10:37:57.890Z
 featuredpost: false
 featuredimage: /img/handbook_get-to-know-uoft.jpg
