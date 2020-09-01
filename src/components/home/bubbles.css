@@ -1,0 +1,19 @@
+.bubble-text {
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+.bubble-image {
+    z-index: 0;
+}
+.bubble-wrapper {
+    display: grid !important;
+    grid-template: 1fr / 1fr;
+}
+
+.bubble-wrapper > * {
+    grid-column: 1 / 1;
+    grid-row: 1 / 1;
+}

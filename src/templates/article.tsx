@@ -24,6 +24,7 @@ interface ArticlePostTemplateProps {
     title?: string | null;
     helmet?: React.ReactNode | null;
     featured_image?: { childImageSharp?: { fluid?: any } } | null;
+    featuredMobile?: { childImageSharp?: { fluid?: any } } | null;
     featuredVideo?: {
         webm?: string;
         mp4?: string;
@@ -40,6 +41,7 @@ export const ArticlePostTemplate: React.FC<ArticlePostTemplateProps> = ({
     helmet,
     featured_image,
     author,
+    featuredMobile,
     featuredVideo
 }) => {
     const PostContent = contentComponent || Content;
@@ -69,7 +71,7 @@ export const ArticlePostTemplate: React.FC<ArticlePostTemplateProps> = ({
                     <ArticleHead
                         title={title}
                         author={author}
-                        featuredImage={featured_image}
+                        featuredImage={isMobile && featuredMobile ? featuredMobile : featured_image}
                         backgroundComponent={true}
                     >
                         <VideoContainer
@@ -87,7 +89,11 @@ export const ArticlePostTemplate: React.FC<ArticlePostTemplateProps> = ({
                         />
                     </ArticleHead>
                 ) : (
-                    <ArticleHead title={title} author={author} featuredImage={featured_image} />
+                    <ArticleHead
+                        title={title}
+                        author={author}
+                        featuredImage={isMobile && featuredMobile ? featuredMobile : featured_image}
+                    />
                 )}
             </div>
 
@@ -118,6 +124,7 @@ const ArticlePost: React.FC<{
                 content={post?.html}
                 contentComponent={HTMLContent}
                 featured_image={post?.frontmatter?.featuredimage}
+                featuredMobile={post?.frontmatter?.featuredMobile}
                 featuredVideo={post?.frontmatter?.featuredVideo}
                 author={post?.frontmatter?.author}
                 helmet={
@@ -148,6 +155,13 @@ export const pageQuery = graphql`
                     mobileMp4
                 }
                 featuredimage {
+                    childImageSharp {
+                        fluid(maxWidth: 2048, quality: 100) {
+                            ...GatsbyImageSharpFluid_withWebp_noBase64
+                        }
+                    }
+                }
+                featuredMobile {
                     childImageSharp {
                         fluid(maxWidth: 2048, quality: 100) {
                             ...GatsbyImageSharpFluid_withWebp_noBase64

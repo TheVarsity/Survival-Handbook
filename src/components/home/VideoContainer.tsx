@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import Chevron from './chevron';
 import Img from 'gatsby-image';
@@ -19,29 +19,74 @@ const VideoContainer = ({
     image?: { childImageSharp?: { fluid: any } };
     chevron: boolean;
 }) => {
-    console.log('Video Container', cover);
-    const props = {
-        poster: cover
-            ? cover?.childImageSharp
-                ? cover.childImageSharp.fluid.base64
-                : cover.childImageSharp.fluid.base64
-                ? cover.childImageSharp.fluid.srcSetWebp
-                    ? cover.childImageSharp.fluid.srcSetWebp
-                    : cover.childImageSharp.fluid.srcSet
-                : cover
-            : undefined
-    };
+    const videoRef = useRef<HTMLVideoElement | null>(null);
+    const [loaded, setVideoLoadState] = useState(false);
+
+    useEffect(() => {
+        console.info('Inside Use Effect');
+        if (videoRef && videoRef.current) {
+            console.info('Inside If');
+            videoRef.current.muted = true;
+            try {
+                videoRef.current.load();
+                let playing = videoRef.current.play();
+                if (playing !== undefined) {
+                    playing
+                        .then(_ => {
+                            console.info('Success!');
+                            setVideoLoadState(true);
+                            // Autoplay started!
+                        })
+                        .catch(e => {
+                            // Show something in the UI that the video is muted
+                            console.warn('Error Loading Video', e.message);
+                            videoRef.current.muted = true;
+                            videoRef.current.play();
+                        });
+                }
+            } catch (e) {
+                console.warn('Error Loading Video', e.message);
+            }
+        }
+    }, []);
+
+    useEffect(() => {
+        console.info('Updated State', loaded);
+    }, [loaded]);
 
     return (
         <div className="parallax-container full-width-image margin-top-0" id="home">
             <div className="video-wrapper">
-                <div className="video-overlay is-size-5-mobile is-size-5-tablet is-size-4-widescreen" />
-
-                <video autoPlay muted loop playsinline {...props} className="video-cover">
+                (
+                <video
+                    ref={videoRef}
+                    muted
+                    playsInline
+                    loop
+                    poster={
+                        cover
+                            ? cover?.childImageSharp
+                                ? cover?.childImageSharp.fluid.base64
+                                : cover?.childImageSharp?.fluid.base64
+                                ? cover?.childImageSharp.fluid.srcSetWebp
+                                    ? cover?.childImageSharp.fluid.srcSetWebp
+                                    : cover?.childImageSharp.fluid.srcSet
+                                : cover
+                            : undefined
+                    }
+                    className="video-cover video-bg"
+                >
                     <source src={webm} type="video/webm" />
                     <source src={mp4} type="video/mp4" />
                 </video>
-
+                <div className="video-cover image-bg">
+                    <Img
+                        style={{ position: 'unset !important' }}
+                        fluid={{
+                            ...cover?.childImageSharp?.fluid
+                        }}
+                    />
+                </div>
                 <div className="video-overlay">
                     <div className="overlay-container">
                         <div className="image-wrapper">
@@ -72,6 +117,13 @@ const VideoContainer = ({
             {/* @ts-ignore Styled JSX */}
             <style jsx>
                 {`
+                    .image-bg {
+                        display: ${loaded ? 'none' : 'block'};
+                    }
+                    .video-bg {
+                        display: ${loaded ? 'block' : 'none'};
+                    }
+
                     .image-wrapper {
                         height: 70vh;
                     }

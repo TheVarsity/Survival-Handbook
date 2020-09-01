@@ -11,21 +11,19 @@ import Layout from '../components/Layout';
 
 // Components
 import { HTMLContent } from '../components/Content';
-import ArticleBubbles from '../components/home/articleBubbles';
-import Doodles from '../components/home/doodles';
-import Navbar from '../components/Navbar';
-import PreviewCompatibleImage from '../components/PreviewCompatibleImage';
+
+//import ArticleHead from '../components/ArticleHead';
 import TextBubble from '../components/home/TextBubble';
 import VideoContainer from '../components/home/VideoContainer';
+
+import Doodles from '../components/home/doodles';
+import Navbar from '../components/Navbar';
+
+import ArticleBubbles from '../components/home/articleBubbles';
 
 // Hooks
 
 import useScrollSpy from '../components/home/useScrollSpy';
-
-//@ts-ignore
-import mp4 from '../img/coverBg.mp4';
-//@ts-ignore
-import webm from '../img/coverBg.webm';
 
 type IndexPageTemplateProps = RecursiveNonNullable<
     IndexPageTemplateQuery
@@ -39,7 +37,8 @@ export const IndexPageTemplate = ({
     advice,
     articles,
     doodles,
-    covidGuidelines
+    covidGuidelines,
+    video
 }: IndexPageTemplateProps) => {
     const [floatingNav, setFloatingNav] = useState(true);
 
@@ -64,8 +63,8 @@ export const IndexPageTemplate = ({
             <div>
                 <div ref={parallaxRef}>
                     <VideoContainer
-                        mp4={mp4}
-                        webm={webm}
+                        mp4={video.mp4}
+                        webm={video.webm}
                         chevron={true}
                         cover={mainImage}
                         image={cover}
@@ -229,6 +228,7 @@ const IndexPage = ({ data }: { data: RecursiveNonNullable<IndexPageTemplateQuery
                 articles={post?.frontmatter?.articles}
                 doodles={post?.frontmatter?.doodles}
                 covidGuidelines={post?.frontmatter?.covidGuidelines}
+                video={post?.frontmatter?.video}
             />
         </Layout>
     );
@@ -262,6 +262,10 @@ export const pageQuery = graphql`
                             ...GatsbyImageSharpFluid_withWebp
                         }
                     }
+                }
+                video {
+                    webm
+                    mp4
                 }
                 heading
                 subheading

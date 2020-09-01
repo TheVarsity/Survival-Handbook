@@ -771,6 +771,8 @@ export type FileFieldsEnum =
   | 'childMarkdownRemark___frontmatter___image___id'
   | 'childMarkdownRemark___frontmatter___image___children'
   | 'childMarkdownRemark___frontmatter___subheading'
+  | 'childMarkdownRemark___frontmatter___video___mp4'
+  | 'childMarkdownRemark___frontmatter___video___webm'
   | 'childMarkdownRemark___frontmatter___covidGuidelines___title'
   | 'childMarkdownRemark___frontmatter___covidGuidelines___description'
   | 'childMarkdownRemark___frontmatter___cover___sourceInstanceName'
@@ -858,6 +860,42 @@ export type FileFieldsEnum =
   | 'childMarkdownRemark___frontmatter___featuredVideo___mp4'
   | 'childMarkdownRemark___frontmatter___featuredVideo___mobileWebm'
   | 'childMarkdownRemark___frontmatter___featuredVideo___mobileMp4'
+  | 'childMarkdownRemark___frontmatter___featuredMobile___sourceInstanceName'
+  | 'childMarkdownRemark___frontmatter___featuredMobile___absolutePath'
+  | 'childMarkdownRemark___frontmatter___featuredMobile___relativePath'
+  | 'childMarkdownRemark___frontmatter___featuredMobile___extension'
+  | 'childMarkdownRemark___frontmatter___featuredMobile___size'
+  | 'childMarkdownRemark___frontmatter___featuredMobile___prettySize'
+  | 'childMarkdownRemark___frontmatter___featuredMobile___modifiedTime'
+  | 'childMarkdownRemark___frontmatter___featuredMobile___accessTime'
+  | 'childMarkdownRemark___frontmatter___featuredMobile___changeTime'
+  | 'childMarkdownRemark___frontmatter___featuredMobile___birthTime'
+  | 'childMarkdownRemark___frontmatter___featuredMobile___root'
+  | 'childMarkdownRemark___frontmatter___featuredMobile___dir'
+  | 'childMarkdownRemark___frontmatter___featuredMobile___base'
+  | 'childMarkdownRemark___frontmatter___featuredMobile___ext'
+  | 'childMarkdownRemark___frontmatter___featuredMobile___name'
+  | 'childMarkdownRemark___frontmatter___featuredMobile___relativeDirectory'
+  | 'childMarkdownRemark___frontmatter___featuredMobile___dev'
+  | 'childMarkdownRemark___frontmatter___featuredMobile___mode'
+  | 'childMarkdownRemark___frontmatter___featuredMobile___nlink'
+  | 'childMarkdownRemark___frontmatter___featuredMobile___uid'
+  | 'childMarkdownRemark___frontmatter___featuredMobile___gid'
+  | 'childMarkdownRemark___frontmatter___featuredMobile___rdev'
+  | 'childMarkdownRemark___frontmatter___featuredMobile___ino'
+  | 'childMarkdownRemark___frontmatter___featuredMobile___atimeMs'
+  | 'childMarkdownRemark___frontmatter___featuredMobile___mtimeMs'
+  | 'childMarkdownRemark___frontmatter___featuredMobile___ctimeMs'
+  | 'childMarkdownRemark___frontmatter___featuredMobile___atime'
+  | 'childMarkdownRemark___frontmatter___featuredMobile___mtime'
+  | 'childMarkdownRemark___frontmatter___featuredMobile___ctime'
+  | 'childMarkdownRemark___frontmatter___featuredMobile___birthtime'
+  | 'childMarkdownRemark___frontmatter___featuredMobile___birthtimeMs'
+  | 'childMarkdownRemark___frontmatter___featuredMobile___blksize'
+  | 'childMarkdownRemark___frontmatter___featuredMobile___blocks'
+  | 'childMarkdownRemark___frontmatter___featuredMobile___publicURL'
+  | 'childMarkdownRemark___frontmatter___featuredMobile___id'
+  | 'childMarkdownRemark___frontmatter___featuredMobile___children'
   | 'childMarkdownRemark___frontmatter___list'
   | 'childMarkdownRemark___frontmatter___list___title'
   | 'childMarkdownRemark___frontmatter___list___text'
@@ -1757,6 +1795,8 @@ export type MarkdownRemarkFieldsEnum =
   | 'frontmatter___image___childMarkdownRemark___tableOfContents'
   | 'frontmatter___image___childMarkdownRemark___children'
   | 'frontmatter___subheading'
+  | 'frontmatter___video___mp4'
+  | 'frontmatter___video___webm'
   | 'frontmatter___covidGuidelines___title'
   | 'frontmatter___covidGuidelines___description'
   | 'frontmatter___covidGuidelines___text___para'
@@ -2007,6 +2047,67 @@ export type MarkdownRemarkFieldsEnum =
   | 'frontmatter___featuredVideo___mp4'
   | 'frontmatter___featuredVideo___mobileWebm'
   | 'frontmatter___featuredVideo___mobileMp4'
+  | 'frontmatter___featuredMobile___sourceInstanceName'
+  | 'frontmatter___featuredMobile___absolutePath'
+  | 'frontmatter___featuredMobile___relativePath'
+  | 'frontmatter___featuredMobile___extension'
+  | 'frontmatter___featuredMobile___size'
+  | 'frontmatter___featuredMobile___prettySize'
+  | 'frontmatter___featuredMobile___modifiedTime'
+  | 'frontmatter___featuredMobile___accessTime'
+  | 'frontmatter___featuredMobile___changeTime'
+  | 'frontmatter___featuredMobile___birthTime'
+  | 'frontmatter___featuredMobile___root'
+  | 'frontmatter___featuredMobile___dir'
+  | 'frontmatter___featuredMobile___base'
+  | 'frontmatter___featuredMobile___ext'
+  | 'frontmatter___featuredMobile___name'
+  | 'frontmatter___featuredMobile___relativeDirectory'
+  | 'frontmatter___featuredMobile___dev'
+  | 'frontmatter___featuredMobile___mode'
+  | 'frontmatter___featuredMobile___nlink'
+  | 'frontmatter___featuredMobile___uid'
+  | 'frontmatter___featuredMobile___gid'
+  | 'frontmatter___featuredMobile___rdev'
+  | 'frontmatter___featuredMobile___ino'
+  | 'frontmatter___featuredMobile___atimeMs'
+  | 'frontmatter___featuredMobile___mtimeMs'
+  | 'frontmatter___featuredMobile___ctimeMs'
+  | 'frontmatter___featuredMobile___atime'
+  | 'frontmatter___featuredMobile___mtime'
+  | 'frontmatter___featuredMobile___ctime'
+  | 'frontmatter___featuredMobile___birthtime'
+  | 'frontmatter___featuredMobile___birthtimeMs'
+  | 'frontmatter___featuredMobile___blksize'
+  | 'frontmatter___featuredMobile___blocks'
+  | 'frontmatter___featuredMobile___publicURL'
+  | 'frontmatter___featuredMobile___childImageSharp___id'
+  | 'frontmatter___featuredMobile___childImageSharp___children'
+  | 'frontmatter___featuredMobile___id'
+  | 'frontmatter___featuredMobile___parent___id'
+  | 'frontmatter___featuredMobile___parent___children'
+  | 'frontmatter___featuredMobile___children'
+  | 'frontmatter___featuredMobile___children___id'
+  | 'frontmatter___featuredMobile___children___children'
+  | 'frontmatter___featuredMobile___internal___content'
+  | 'frontmatter___featuredMobile___internal___contentDigest'
+  | 'frontmatter___featuredMobile___internal___description'
+  | 'frontmatter___featuredMobile___internal___fieldOwners'
+  | 'frontmatter___featuredMobile___internal___ignoreType'
+  | 'frontmatter___featuredMobile___internal___mediaType'
+  | 'frontmatter___featuredMobile___internal___owner'
+  | 'frontmatter___featuredMobile___internal___type'
+  | 'frontmatter___featuredMobile___childMarkdownRemark___id'
+  | 'frontmatter___featuredMobile___childMarkdownRemark___excerpt'
+  | 'frontmatter___featuredMobile___childMarkdownRemark___rawMarkdownBody'
+  | 'frontmatter___featuredMobile___childMarkdownRemark___fileAbsolutePath'
+  | 'frontmatter___featuredMobile___childMarkdownRemark___html'
+  | 'frontmatter___featuredMobile___childMarkdownRemark___htmlAst'
+  | 'frontmatter___featuredMobile___childMarkdownRemark___excerptAst'
+  | 'frontmatter___featuredMobile___childMarkdownRemark___headings'
+  | 'frontmatter___featuredMobile___childMarkdownRemark___timeToRead'
+  | 'frontmatter___featuredMobile___childMarkdownRemark___tableOfContents'
+  | 'frontmatter___featuredMobile___childMarkdownRemark___children'
   | 'frontmatter___list'
   | 'frontmatter___list___title'
   | 'frontmatter___list___text'
@@ -2143,6 +2244,7 @@ export type MarkdownRemarkFrontmatter = {
   templateKey?: Maybe<Scalars['String']>;
   image?: Maybe<File>;
   subheading?: Maybe<Scalars['String']>;
+  video?: Maybe<MarkdownRemarkFrontmatterVideo>;
   covidGuidelines?: Maybe<MarkdownRemarkFrontmatterCovidGuidelines>;
   cover?: Maybe<File>;
   description?: Maybe<Scalars['String']>;
@@ -2155,6 +2257,7 @@ export type MarkdownRemarkFrontmatter = {
   author?: Maybe<MarkdownRemarkFrontmatterAuthor>;
   tags?: Maybe<Array<Maybe<Scalars['String']>>>;
   featuredVideo?: Maybe<MarkdownRemarkFrontmatterFeaturedVideo>;
+  featuredMobile?: Maybe<File>;
   list?: Maybe<Array<Maybe<MarkdownRemarkFrontmatterList>>>;
   path?: Maybe<Scalars['String']>;
 };
@@ -2270,6 +2373,7 @@ export type MarkdownRemarkFrontmatterFilterInput = {
   templateKey?: Maybe<StringQueryOperatorInput>;
   image?: Maybe<FileFilterInput>;
   subheading?: Maybe<StringQueryOperatorInput>;
+  video?: Maybe<MarkdownRemarkFrontmatterVideoFilterInput>;
   covidGuidelines?: Maybe<MarkdownRemarkFrontmatterCovidGuidelinesFilterInput>;
   cover?: Maybe<FileFilterInput>;
   description?: Maybe<StringQueryOperatorInput>;
@@ -2282,6 +2386,7 @@ export type MarkdownRemarkFrontmatterFilterInput = {
   author?: Maybe<MarkdownRemarkFrontmatterAuthorFilterInput>;
   tags?: Maybe<StringQueryOperatorInput>;
   featuredVideo?: Maybe<MarkdownRemarkFrontmatterFeaturedVideoFilterInput>;
+  featuredMobile?: Maybe<FileFilterInput>;
   list?: Maybe<MarkdownRemarkFrontmatterListFilterListInput>;
   path?: Maybe<StringQueryOperatorInput>;
 };
@@ -2298,6 +2403,16 @@ export type MarkdownRemarkFrontmatterListFilterInput = {
 
 export type MarkdownRemarkFrontmatterListFilterListInput = {
   elemMatch?: Maybe<MarkdownRemarkFrontmatterListFilterInput>;
+};
+
+export type MarkdownRemarkFrontmatterVideo = {
+  mp4?: Maybe<Scalars['String']>;
+  webm?: Maybe<Scalars['String']>;
+};
+
+export type MarkdownRemarkFrontmatterVideoFilterInput = {
+  mp4?: Maybe<StringQueryOperatorInput>;
+  webm?: Maybe<StringQueryOperatorInput>;
 };
 
 export type MarkdownRemarkGroupConnection = {
@@ -3177,9 +3292,6 @@ export type SitePageFieldsEnum =
   | 'pluginCreator___pluginOptions___maxWidth'
   | 'pluginCreator___pluginOptions___destinationDir'
   | 'pluginCreator___pluginOptions___modulePath'
-  | 'pluginCreator___pluginOptions___develop'
-  | 'pluginCreator___pluginOptions___purgeOnly'
-  | 'pluginCreator___pluginOptions___whitelist'
   | 'pluginCreator___pluginOptions___fields'
   | 'pluginCreator___pluginOptions___pathCheck'
   | 'pluginCreator___nodeAPIs'
@@ -3400,9 +3512,6 @@ export type SitePluginFieldsEnum =
   | 'pluginOptions___maxWidth'
   | 'pluginOptions___destinationDir'
   | 'pluginOptions___modulePath'
-  | 'pluginOptions___develop'
-  | 'pluginOptions___purgeOnly'
-  | 'pluginOptions___whitelist'
   | 'pluginOptions___fields'
   | 'pluginOptions___pathCheck'
   | 'nodeAPIs'
@@ -3534,9 +3643,6 @@ export type SitePluginPluginOptions = {
   maxWidth?: Maybe<Scalars['Int']>;
   destinationDir?: Maybe<Scalars['String']>;
   modulePath?: Maybe<Scalars['String']>;
-  develop?: Maybe<Scalars['Boolean']>;
-  purgeOnly?: Maybe<Array<Maybe<Scalars['String']>>>;
-  whitelist?: Maybe<Array<Maybe<Scalars['String']>>>;
   fields?: Maybe<Array<Maybe<Scalars['String']>>>;
   pathCheck?: Maybe<Scalars['Boolean']>;
 };
@@ -3556,9 +3662,6 @@ export type SitePluginPluginOptionsFilterInput = {
   maxWidth?: Maybe<IntQueryOperatorInput>;
   destinationDir?: Maybe<StringQueryOperatorInput>;
   modulePath?: Maybe<StringQueryOperatorInput>;
-  develop?: Maybe<BooleanQueryOperatorInput>;
-  purgeOnly?: Maybe<StringQueryOperatorInput>;
-  whitelist?: Maybe<StringQueryOperatorInput>;
   fields?: Maybe<StringQueryOperatorInput>;
   pathCheck?: Maybe<BooleanQueryOperatorInput>;
 };
@@ -3872,7 +3975,7 @@ export type ArticlePostByIdQuery = { markdownRemark?: Maybe<(
     Pick<MarkdownRemark, 'id' | 'html'>
     & { frontmatter?: Maybe<(
       Pick<MarkdownRemarkFrontmatter, 'title'>
-      & { featuredVideo?: Maybe<Pick<MarkdownRemarkFrontmatterFeaturedVideo, 'webm' | 'mp4' | 'mobileWebm' | 'mobileMp4'>>, featuredimage?: Maybe<{ childImageSharp?: Maybe<{ fluid?: Maybe<GatsbyImageSharpFluid_WithWebp_NoBase64Fragment> }> }>, author?: Maybe<Pick<MarkdownRemarkFrontmatterAuthor, 'name' | 'url'>> }
+      & { featuredVideo?: Maybe<Pick<MarkdownRemarkFrontmatterFeaturedVideo, 'webm' | 'mp4' | 'mobileWebm' | 'mobileMp4'>>, featuredimage?: Maybe<{ childImageSharp?: Maybe<{ fluid?: Maybe<GatsbyImageSharpFluid_WithWebp_NoBase64Fragment> }> }>, featuredMobile?: Maybe<{ childImageSharp?: Maybe<{ fluid?: Maybe<GatsbyImageSharpFluid_WithWebp_NoBase64Fragment> }> }>, author?: Maybe<Pick<MarkdownRemarkFrontmatterAuthor, 'name' | 'url'>> }
     )> }
   )> };
 
@@ -3883,7 +3986,7 @@ export type IndexPageTemplateQuery = { markdownRemark?: Maybe<(
     Pick<MarkdownRemark, 'html'>
     & { frontmatter?: Maybe<(
       Pick<MarkdownRemarkFrontmatter, 'title' | 'heading' | 'subheading'>
-      & { image?: Maybe<{ childImageSharp?: Maybe<{ fluid?: Maybe<GatsbyImageSharpFluid_WithWebpFragment> }> }>, cover?: Maybe<{ childImageSharp?: Maybe<{ fluid?: Maybe<GatsbyImageSharpFluid_WithWebpFragment> }> }>, mainImage?: Maybe<{ childImageSharp?: Maybe<{ fluid?: Maybe<GatsbyImageSharpFluid_WithWebpFragment> }> }>, advice?: Maybe<(
+      & { image?: Maybe<{ childImageSharp?: Maybe<{ fluid?: Maybe<GatsbyImageSharpFluid_WithWebpFragment> }> }>, cover?: Maybe<{ childImageSharp?: Maybe<{ fluid?: Maybe<GatsbyImageSharpFluid_WithWebpFragment> }> }>, mainImage?: Maybe<{ childImageSharp?: Maybe<{ fluid?: Maybe<GatsbyImageSharpFluid_WithWebpFragment> }> }>, video?: Maybe<Pick<MarkdownRemarkFrontmatterVideo, 'webm' | 'mp4'>>, advice?: Maybe<(
         Pick<MarkdownRemarkFrontmatterAdvice, 'text'>
         & { left?: Maybe<{ childImageSharp?: Maybe<{ fluid?: Maybe<GatsbyImageSharpFluid_WithWebpFragment> }> }>, right?: Maybe<{ childImageSharp?: Maybe<{ fluid?: Maybe<GatsbyImageSharpFluid_WithWebpFragment> }> }> }
       )>, covidGuidelines?: Maybe<(

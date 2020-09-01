@@ -2,7 +2,8 @@
 templateKey: article
 date: 2020-08-27T10:42:53.839Z
 featuredpost: false
-featuredimage: /img/grammarly-01-01.png
+featuredimage: /img/Grammarly16x9rl.png
+featuredMobile: /img/Grammarly9x16rl.png
 ---
 <!--StartFragment-->
 

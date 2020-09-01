@@ -7,8 +7,8 @@ featuredimage: /img/fitnessCover.png
 featuredVideo:
   webm: /video/workouts/gluteBridges.webm
   mp4:  /video/gluteBridges.mp4
-  mobileWebm : /video/gluteBridges-mobile.webm
-  mobileMp4 : /video/gluteBridges-mobile.mp4
+  mobileWebm : /video/situps-mobile.webm
+  mobileMp4 : /video/situps-mobile.mp4
 author:
   name: Ana Pereira
   url: /

@@ -5,6 +5,9 @@ templateKey: index-page
 title: DECLASSIFIED
 image: /img/background.jpg
 subheading: The Varsity's UofT Survival Guide
+video:
+  mp4: /video/coverBg.mp4
+  webm: /video/coverBg.webm
 covidGuidelines:
   title: Staying safe with your friends
   description: Candice Lee Zhang
