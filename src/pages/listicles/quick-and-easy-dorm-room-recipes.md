@@ -6,7 +6,7 @@ author:
   name: Kate Haberl and Alexa DiFrancesco
   url: /
 featuredpost: false
-featuredimage: /img/vegan_sesame_noodles_photo-DINA_DONG_THE_VARSITY.jpg
+featuredimage: /img/HANDBOOK-EASYRECIPIES-DINA_DONG-THE_VARSITY-collage.jpg
 ---
 <!--StartFragment-->
 
@@ -14,11 +14,18 @@ First year’s starting, and it’s probably the first time for many of you to s
 
 ## The fastest recipes you can make on the go
 
+
+
 **By Kate Haberl**
 
 It doesn’t get much simpler than this! I will note that all of these ingredients are readily available at any grocery store. If you have a meal plan, you might be able to swap some ingredients out for what they give you as take-out. And if you’re a commuter, just take them from your parents!
 
-The ultimate loaded grilled cheese
+### The ultimate loaded grilled cheese
+
+![Grilled Cheese](/img/HANDBOOK-cooking_with_dorm_room_coverphotos-DINA_DONG-THE_VARSITY-grilled_cheese.jpg)
+
+<center>[DINA DONG/THE VARSITY]</center>
+<br/>
 
 You can find all of these ingredients in your local grocery store — I took from my dining hall, which always had shredded mozzarella, cheddar, and feta cheese. I didn’t use feta in this recipe, but feel free to do so if that’s your vibe.
 
@@ -43,7 +50,12 @@ Instructions
 4. Cook until the first slice of bread is golden brown. Then, flip the sandwich and continue to cook until the other slice is also golden brown and the cheese is melted.
 5. Remove from heat, cut diagonally — this is very important — and garnish with ketchup, if desired.
 
-Making some smoothie moves
+### Making some smoothie moves
+
+![Smoothie](/img/HANDBOOK-cooking_with_dorm_room_coverphotos-DINA_DONG-THE_VARSITY-smoothie.jpg)
+
+<center>[DINA DONG/THE VARSITY]</center>
+<br/>
 
 While living in the dorms at Victoria College during my first year, for some reason, the only cooking instrument that I owned was a blender, so I probably drank 30 per cent of my meals.
 
@@ -72,7 +84,10 @@ Instructions
 
 **By Alexa DiFrancesco**
 
+![Sesame Noodles](/img/vegan_sesame_noodles_photo-DINA_DONG_THE_VARSITY.jpg)
 
+<center>[DINA DONG/THE VARSITY]</center>
+<br/>
 
 My first day of university consisted of a three-hour, C-level French lecture. Within seconds of entering the room — and hearing other students speak — it became blatantly obvious that my peers’ French comprehension was leagues above my own. The most flawless talent found in the class was that of my current best friend, Julia.
 
