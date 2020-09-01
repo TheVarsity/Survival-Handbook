@@ -96,7 +96,7 @@ export const IndexPageTemplate = ({
                                         <div className="card editor-note">
                                             <header className="card-header">
                                                 <h1 className="card-header-title">
-                                                    {`Editor's Note`}
+                                                    {`Editor’s Note`}
                                                 </h1>
                                             </header>
                                             <div className="card-content tile">

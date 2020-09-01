@@ -40,3 +40,5 @@ Copy Editors: Marta Anielska, Toryanse Blanchard, Linda Chen, Vivian Cheng, Aman
 Website Design: Munachi Ernest-Eze and Rahul Tarak
 
 Cover Illustration: Fiona Tung
+
+Special thanks to: Rahul and Munachi for being so patient, diligent, and talented during this entire handbook process; Nathalie for being an amazing collaborator and sounding board for any and all ideas; Megan and Maya for tirelessly copy editing all these pieces and being so responsive; Fiona, Jadine, and Dina for being the most creative visuals editors a girl could ask for; Ibnul for being supportive and providing a careful second set of eyes on all pieces; Silas and Kathryn for promoting this thing so people will actually read it; and Tahmeed, Nadine, Laura, Ori, Hannah, and Spencer for providing their time and attention to help pitch out and edit pieces.
