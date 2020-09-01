@@ -6,6 +6,7 @@ author:
   name: Kate Haberl and Alexa DiFrancesco
   url: /
 featuredpost: false
+featuredimage: /img/vegan_sesame_noodles_photo-DINA_DONG_THE_VARSITY.jpg
 ---
 <!--StartFragment-->
 
