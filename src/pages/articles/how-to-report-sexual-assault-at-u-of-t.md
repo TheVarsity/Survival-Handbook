@@ -112,5 +112,5 @@ Members of U of T’s community can create a consent culture by agreeing to addr
 
 By being on the lookout for others, we can contribute to a safer and healthier environment for future incoming and returning members of the U of T community.
 
-Visual by: Fiona Tung
+Visual by: Nathalie Whitten
 <!--EndFragment-->

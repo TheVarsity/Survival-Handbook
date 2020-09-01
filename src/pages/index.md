@@ -1,13 +1,13 @@
 ---
 heading: DECLASSIFIED
-mainImage: /img/clipboard.png
+mainImage: /img/bg.png
 templateKey: index-page
 title: DECLASSIFIED
 image: /img/background.jpg
 subheading: The Varsity's UofT Survival Guide
 covidGuidelines:
   title: Staying safe with your friends
-  description: Candice Zhang
+  description: Candice Lee Zhang
   text: 
     para: Your first year at university is a chance to make new friends and connections. Even though physical distancing guidelines have been relaxed in Ontario, we have to remember that a pandemic is still going on. This means implementing safety measures when hanging out with others. If you have recently planned to socialize with your peers or plan to in the future, remember to follow the advice provided below.
     list:
@@ -31,7 +31,7 @@ cover: /img/title.png
 description: Invalid Field
 advice:
   text:
-    - Pro tip:University College dining hall has a chicken caesar wrap that’s not on any menu. — Tahmeed
+    - "Pro tip: University College dining hall has a chicken caesar wrap that’s not on any menu. — Tahmeed"
     - Write your essays knowing a sleep-deprived teaching assistant at 2:00 am has 10 minutes to get through it. — Ori
     - Use the chat box in Blackboard Collaborate or Zoom to form Facebook groups with your classmates! You’ll thank yourself later.— Jadine 
     - The burrito place in Robarts and Sids and the coffee truck in front of Robarts each have punch cards — get one. — Megan
@@ -54,7 +54,7 @@ articles:
       path: /articles/a-guide-to-u-of-t-governance/
     - image: /img/articles/article_3.png
       title: A revamped first year to-do list
-      subtitle: By Rina Lee
+      subtitle: By Yerin Lee
       path: /listicles/a-revamped-first-year-to-do-list/
     - image: /img/articles/article_4.png
       title: "How to make connections over Zoom "
@@ -86,7 +86,7 @@ articles:
       subtitle: "By Ana Pereira"
       path: /articles/easy-dorm-room-workout-routines/
     - image: /img/doodles/article_4.png
-      title: Traveling tips during COVID-19
+      title: Travelling  tips during COVID-19
       subtitle: By Sarah Richter
       path: /articles/travelling-tips-during-covid-19/
 ---

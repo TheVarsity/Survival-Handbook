@@ -37,7 +37,7 @@ const VideoContainer = ({
             <div className="video-wrapper">
                 <div className="video-overlay is-size-5-mobile is-size-5-tablet is-size-4-widescreen" />
 
-                <video autoPlay muted loop {...props} className="video-cover">
+                <video autoPlay muted loop playsinline {...props} className="video-cover">
                     <source src={webm} type="video/webm" />
                     <source src={mp4} type="video/mp4" />
                 </video>

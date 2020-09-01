@@ -67,7 +67,7 @@ export const IndexPageTemplate = ({
                         mp4={mp4}
                         webm={webm}
                         chevron={true}
-                        cover={cover}
+                        cover={mainImage}
                         image={cover}
                     />
                 </div>
@@ -115,85 +115,42 @@ export const IndexPageTemplate = ({
                                                 `}
                                             </style>
                                         </div>
+                                        <div className="divider-wrapper">
+                                            <style jsx>
+                                                {`
+                                                    .divider-wrapper {
+                                                        border-top: 1rem dotted black;
+                                                        margin: 5vh auto;
+                                                    }
+                                                `}
+                                            </style>
+                                        </div>
                                         <div className="covid-guidelines-wrapper">
-                                            {isMobile ? (
-                                                <div
-                                                    className="card mobile-covid-guidelines"
-                                                    style={{ margin: '10vh auto' }}
-                                                >
-                                                    <header className="card-header">
-                                                        <h1 className="card-header-title">
-                                                            {covidGuidelines.title}
-                                                        </h1>
-                                                    </header>
-                                                    <div className="card-content">
-                                                        <strong>
-                                                            By {covidGuidelines.description}
-                                                        </strong>
-                                                        <p>{covidGuidelines.text.para}</p>
-                                                        <ul>
-                                                            {covidGuidelines.text.list.map(
-                                                                (element, index) => {
-                                                                    return (
-                                                                        <li key={index}>
-                                                                            {element}
-                                                                        </li>
-                                                                    );
-                                                                }
-                                                            )}
-                                                        </ul>
-                                                    </div>
+                                            <div
+                                                className="card mobile-covid-guidelines"
+                                                style={{ margin: '10vh auto' }}
+                                            >
+                                                <header className="card-header">
+                                                    <h1 className="card-header-title">
+                                                        {covidGuidelines.title}
+                                                    </h1>
+                                                </header>
+                                                <div className="card-content">
+                                                    <strong>
+                                                        By {covidGuidelines.description}
+                                                    </strong>
+                                                    <p>{covidGuidelines.text.para}</p>
+                                                    <ul>
+                                                        {covidGuidelines.text.list.map(
+                                                            (element, index) => {
+                                                                return (
+                                                                    <li key={index}>{element}</li>
+                                                                );
+                                                            }
+                                                        )}
+                                                    </ul>
                                                 </div>
-                                            ) : (
-                                                <div className="clipboard-wrapper">
-                                                    <div className="clipboard-text column is-6 is-offset-3">
-                                                        <h4>{covidGuidelines.title}</h4>
-                                                        <strong>
-                                                            By {covidGuidelines.description}
-                                                        </strong>
-                                                        <p>{covidGuidelines.text.para}</p>
-                                                        <ul style={{ marginTop: '-1vh' }}>
-                                                            {covidGuidelines.text.list.map(
-                                                                (element, index) => {
-                                                                    return (
-                                                                        <li key={index}>
-                                                                            {element}
-                                                                        </li>
-                                                                    );
-                                                                }
-                                                            )}
-                                                        </ul>
-                                                    </div>
-                                                    <div className="clipboard-image column is-12">
-                                                        <PreviewCompatibleImage
-                                                            imageInfo={mainImage}
-                                                        />
-                                                    </div>
-                                                    <style jsx>{`
-                                                        .clipboard-text {
-                                                            margin-top: 6vh;
-                                                            max-width: 50%;
-                                                            z-index: 1;
-                                                            display: flex;
-                                                            flex-direction: column;
-                                                            justify-content: center;
-                                                            align-items: center;
-                                                        }
-                                                        .clipboard-image {
-                                                            z-index: 0;
-                                                        }
-                                                        .clipboard-wrapper {
-                                                            display: grid;
-                                                            grid-template: 1fr / 1fr;
-                                                        }
-
-                                                        .clipboard-wrapper > * {
-                                                            grid-column: 1 / 1;
-                                                            grid-row: 1 / 1;
-                                                        }
-                                                    `}</style>
-                                                </div>
-                                            )}
+                                            </div>
                                         </div>
                                         <TextBubble
                                             left={advice.left}

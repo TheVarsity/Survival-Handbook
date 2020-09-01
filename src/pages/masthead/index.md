@@ -29,9 +29,9 @@ Back End Web Developer: Rahul Tarak
 
 Business Manager: Joy Fan
 
-Writers: Reshma Aser, Megan Brearley, Hannah Carty, Alexa DiFrancesco, Kate Haberl, Candice Lee, Rina Lee, Oviya Muralidharan, Sarah Richter, and Shaina Sharma
+Writers: Reshma Aser, Megan Brearley, Hannah Carty, Alexa DiFrancesco, Kate Haberl, Candice Lee Zhang, Yerin Lee, Oviya Muralidharan, Sarah Richter, and Shaina Sharma
 
-Photographers: Jadine Ngan, Dina Dong, Hayden Mak Long Hei, Candice Lee, Charlotte Hood 
+Photographers: Jadine Ngan, Dina Dong, Hayden Mak Long Hei, Candice Lee Zhang, Charlotte Hood 
 
 Illustrators: Fiona Tung
 

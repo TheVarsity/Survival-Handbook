@@ -1,7 +1,7 @@
 module.exports = {
     siteMetadata: {
-        title: `The Varsity's Declassified UofT Survival Handbook`,
-        description: 'The Varsity Publications Freshman year UofT Survival Handbook'
+        title: `The Varsity's Declassified U of T Survival Handbook`,
+        description: 'The Varsity Publications Freshman year U of T Survival Handbook'
     },
     plugins: [
         `gatsby-plugin-typescript`,

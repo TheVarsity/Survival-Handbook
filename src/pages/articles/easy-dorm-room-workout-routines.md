@@ -3,6 +3,7 @@ templateKey: article
 title: Easy dorm room workout routines
 date: 2020-08-31T16:02:01.664Z
 featuredpost: false
+featuredimage: /img/fitnessCover.png
 featuredVideo:
   webm: /video/workouts/gluteBridges.webm
   mp4:  /video/gluteBridges.mp4
