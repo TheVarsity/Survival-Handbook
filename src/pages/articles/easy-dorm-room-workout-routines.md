@@ -6,6 +6,8 @@ featuredpost: false
 featuredVideo:
   webm: /video/workouts/gluteBridges.webm
   mp4:  /video/gluteBridges.mp4
+  mobileWebm : /video/gluteBridges-mobile.webm
+  mobileMp4 : /video/gluteBridges-mobile.mp4
 author:
   name: Ana Pereira
   url: /

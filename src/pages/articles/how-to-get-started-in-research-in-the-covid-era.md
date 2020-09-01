@@ -6,7 +6,7 @@ featuredVideo:
   webm: /video/covidResearch-desktop.webm
   mp4:  /video/covidResearch-desktop.mp4
   mobileWebm : /video/covidResearch-mobile.webm
-  mobileMp4 : /video/covidResearch-desktop.webm
+  mobileMp4 : /video/covidResearch-mobile.mp4
 featuredimage: /img/covidResearchCover.jpg
 featuredpost: false
 author:
