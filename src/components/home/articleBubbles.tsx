@@ -176,8 +176,8 @@ const ArticleBubbles = ({ articles }: ArticleType) => {
                             <div className={`bubble-text ${article.className}`}>
                                 <Link to={path ? path : '/'}>
                                     <h3 className="article-link title">{title}</h3>
-                                    <p className="article-link byline">{subtitle}</p>
                                 </Link>
+                                <p className="byline">{subtitle}</p>
                             </div>
                         </section>
                     );

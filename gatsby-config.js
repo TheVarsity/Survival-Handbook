@@ -55,7 +55,7 @@ module.exports = {
                                 {
                                     id: 'youtube',
                                     embedURL: videoId =>
-                                        `https://www.youtube-nocookie.com/embed/${videoId}?version=3&autoplay=1&loop=1&playsinline=1&playlist=${videoId}`
+                                        `https://www.youtube.com/embed/${videoId}?version=3&autoplay=1&loop=1&playsinline=1&playlist=${videoId}`
                                 }
                             ], //Optional: Override URL of a service provider, e.g to enable youtube-nocookie support
                             containerClass: 'embedVideo-container' //Optional: Custom CSS class for iframe container, for multiple classes separate them by space

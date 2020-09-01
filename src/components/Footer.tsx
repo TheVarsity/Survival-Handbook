@@ -1,6 +1,7 @@
 // import { Link } from 'gatsby';
 import React from 'react';
 
+import { Link } from 'gatsby';
 // import facebook from '../img/social/facebook.svg';
 // import instagram from '../img/social/instagram.svg';
 import logo from '../img/logo.svg';
@@ -18,14 +19,32 @@ const Footer = class extends React.Component {
         return (
             <footer className="footer has-background-black has-text-white-ter">
                 <div className="content has-text-centered">
-                    <a href="https://thevarsity.ca" target="_blank" rel="noopener noreferrer">
-                        {' '}
-                        <img
-                            src={logo}
-                            alt="Varsity Logo"
-                            style={{ width: '20em', height: '15em' }}
-                        />
-                    </a>
+                    <div className="main-row">
+                        <a href="https://thevarsity.ca" target="_blank" rel="noopener noreferrer">
+                            {' '}
+                            <img
+                                src={logo}
+                                alt="Varsity Logo"
+                                style={{ width: '20em', height: '15em' }}
+                            />
+                        </a>
+                        <Link to="/masthead">
+                            <h1 className="masthead">MASTHEAD</h1>
+                        </Link>
+                        <style jsx>
+                            {`
+                                .main-row {
+                                    display: flex;
+                                    justify-content: space-around;
+                                    align-items: center;
+                                }
+                                .masthead {
+                                    color: white;
+                                    font-weight: bold;
+                                }
+                            `}
+                        </style>
+                    </div>
                     <p style={{ paddingBottom: '1em', fontSize: '14px' }}>
                         {`<>`} with <HeartSvg /> by{' '}
                         <a

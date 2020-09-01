@@ -31,10 +31,10 @@ cover: /img/title.png
 description: Invalid Field
 advice:
   text:
-    - The University College dining hall has a chicken caesar wrap that’s not on any menu. Find it; it’s one of the better things to eat on campus. — Tahmeed
-    - Write your essays to your intended audience, which is a sleep-deprived teaching assistant at 2:00 am who has 10 minutes to get through your essay. — Ori
-    - Use the chat box in Zoom to form Facebook groups with your classmates! You’ll thank yourself later when your prof sends out two different midterm dates, and you don’t know which one’s real. — Jadine 
-    - They don’t tell you this, but the burrito place in Robarts and Sids and the coffee truck in front of Robarts have punch cards — get one. — Megan
+    - Pro tip:University College dining hall has a chicken caesar wrap that’s not on any menu. — Tahmeed
+    - Write your essays knowing a sleep-deprived teaching assistant at 2:00 am has 10 minutes to get through it. — Ori
+    - Use the chat box in Blackboard Collaborate or Zoom to form Facebook groups with your classmates! You’ll thank yourself later.— Jadine 
+    - The burrito place in Robarts and Sids and the coffee truck in front of Robarts each have punch cards — get one. — Megan
   left: /img/adviceLeft.png
   right: /img/adviceRight.png
 doodles:
@@ -67,15 +67,15 @@ articles:
     - image: /img/articles/article_3.png
       title: How to report sexual assault
       subtitle: By Candice Lee
-      path: /articles/
+      path: /articles/how-to-report-sexual-assault-at-u-of-t/
     - image: /img/doodles/article_4.png
       title: Get to know U of T
       subtitle: By Reshma Aser
       path: /articles/u-of-t-—-the-good-the-bad-and-the-ugly/
     - image: /img/doodles/article_2.png
       title: Quick and easy dorm room recipes
-      subtitle: By Ana Pereira
-      path: /articles/
+      subtitle: By Kate Haberl and Alexa DiFrancesco
+      path: /listicles/quick-and-easy-dorm-room-recipes/
     - image: /img/doodles/article_3.png
       title: A review of online grammar-check tools
       subtitle: By Megan Brearley
@@ -83,8 +83,8 @@ articles:
     - image: /img/doodles/article_1.png
       title: |
         Easy dorm room workout routines
-      subtitle: "By Ana Pereira "
-      path: /articles/
+      subtitle: "By Ana Pereira"
+      path: /articles/easy-dorm-room-workout-routines/
     - image: /img/doodles/article_4.png
       title: Traveling tips during COVID-19
       subtitle: By Sarah Richter
