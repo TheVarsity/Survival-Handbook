@@ -22,7 +22,7 @@ It doesn’t get much simpler than this! I will note that all of these ingredien
 
 ![Grilled Cheese](/img/HANDBOOK-cooking_with_dorm_room_coverphotos-DINA_DONG-THE_VARSITY-grilled_cheese.jpg)
 
-<center>[A delicious cheesy treat. DINA DONG/THE VARSITY]</center>
+<center>\[A delicious cheesy treat. DINA DONG/THE VARSITY]</center>
 <br/>
 
 You can find all of these ingredients in your local grocery store — I took from my dining hall, which always had shredded mozzarella, cheddar, and feta cheese. I didn’t use feta in this recipe, but feel free to do so if that’s your vibe. 
@@ -41,20 +41,19 @@ Ingredients
 Instructions
 
 1. Put your pan on the stove and turn it to low heat. Butter your bread.
-`youtube: https://youtu.be/1bFSNcpc2XI`
+   `youtube: https://youtu.be/1bFSNcpc2XI`
 2. Place the first slice in the pan.
-`youtube: https://youtu.be/9v1de-WrsJk`
+   `youtube: https://youtu.be/9v1de-WrsJk`
 3. Add your cheese, protein, and other add-ons. Top with the other slice of buttered bread. Cook until the first slice of bread is golden brown. 
-`youtube: https://youtu.be/b7uVR0HEzCg`
+   `youtube: https://youtu.be/b7uVR0HEzCg`
 4. Then, flip the sandwich and continue to cook until the other slice is also golden brown and the cheese is melted. Remove from heat, cut diagonally — this is very important — and garnish with ketchup, if desired.
-`youtube: https://youtu.be/w_4SPWKEf5U`
-
+   `youtube: https://youtu.be/w_4SPWKEf5U`
 
 ### Making some smoothie moves
 
 ![Smoothie](/img/HANDBOOK-cooking_with_dorm_room_coverphotos-DINA_DONG-THE_VARSITY-smoothie.jpg)
 
-<center>[A sweet and refreshing smoothie. DINA DONG/THE VARSITY]</center>
+<center>\[A sweet and refreshing smoothie. DINA DONG/THE VARSITY]</center>
 <br/>
 
 While living in the dorms at Victoria College during my first year, for some reason, the only cooking instrument that I owned was a blender, so I probably drank 30 per cent of my meals.
@@ -88,13 +87,13 @@ Instructions
 
 
 
-## Vegan garlic sesame noodle recipe
+### Vegan garlic sesame noodle recipe — as seen in [“Yup, it’s Vegan!”](https://yupitsvegan.com/garlic-sesame-noodles/)
 
 **By Alexa DiFrancesco**
 
 ![Sesame Noodles](/img/vegan_sesame_noodles_photo-DINA_DONG_THE_VARSITY.jpg)
 
-<center>[The final vegan garlic sesame noodle dish! DINA DONG/THE VARSITY]</center>
+<center>\[The final vegan garlic sesame noodle dish! DINA DONG/THE VARSITY]</center>
 <br/>
 
 My first day of university consisted of a three-hour, C-level French lecture. Within seconds of entering the room — and hearing other students speak — it became blatantly obvious that my peers’ French comprehension was leagues above my own. The most flawless talent found in the class was that of my current best friend, Julia. 
@@ -102,7 +101,6 @@ My first day of university consisted of a three-hour, C-level French lecture. Wi
 Our friendship fully blossomed during an October thunderstorm. We’d splayed our study supplies across the hallways of UTSC, spending hours translating practice sentences over cartons of Chinese food. It was then that learned that Julia was vegan, as she’d bring her own food. 
 
 These meals soon became my solace — the first time that I found a sense of belonging that year. Below is the recipe for one of my favourite meals from then. It’s my hope that, with it, you’ll find the comfort of a best friend, too.
-
 
 Ingredients
 
@@ -124,14 +122,13 @@ Ingredients for the sauce
 Instructions
 
 1. Boil a large pot of water. Cook the spaghetti following package directions or until ready. Drain and rinse with cold water.
-`youtube: https://youtu.be/flgl_XFWXZ4`
+   `youtube: https://youtu.be/flgl_XFWXZ4`
 2. While the pasta cooks, heat the oil in a large skillet or wok over medium to high heat. Add the bell pepper and carrot. Cook for about three minutes. Add the broccoli, and cook for another two minutes until the broccoli turns bright green.
-`youtube: https://youtu.be/Si3QX_fZFYs`
+   `youtube: https://youtu.be/Si3QX_fZFYs`
 3. Whisk together all of the sauce ingredients in a small bowl. 
-`youtube: https://youtu.be/OyEsC87_O2E`
+   `youtube: https://youtu.be/OyEsC87_O2E`
 4. Add the cooked chickpea noodles and sauce mixture; fold gently to combine. Continue to cook for about three more minutes, or until the sauce is thickened and heated throughout. 
-`youtube: https://youtu.be/cEXAsd0Zw-U`
-
+   `youtube: https://youtu.be/cEXAsd0Zw-U`
 
 <style>
 .unordered-list-wrapper > * > ul {
@@ -153,4 +150,5 @@ Instructions
 }
 
 </style>
+
 <!--EndFragment-->
