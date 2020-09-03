@@ -1,6 +1,6 @@
 ---
 templateKey: article
-title: " Where U of T falls short — and how students are fighting back "
+title: Where U of T falls short — and how students are fighting back
 date: 2020-08-27T10:37:57.890Z
 featuredpost: false
 featuredimage: /img/handbook_get-to-know-uoft.jpg

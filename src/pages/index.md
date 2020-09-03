@@ -72,9 +72,9 @@ articles:
       subtitle: By Candice Lee Zhang
       path: /articles/how-to-report-sexual-assault-at-u-of-t/
     - image: /img/doodles/article_4.png
-      title: Get to know U of T
+      title: Where U of T falls short — and how students are fighting back
       subtitle: By Reshma Aser
-      path: /articles/get-to-know-u-of-t/
+      path: /articles/where-u-of-t-falls-short-—-and-how-students-are-fighting-back
     - image: /img/doodles/article_2.png
       title: Quick and easy dorm room recipes
       subtitle: By Kate Haberl and Alexa DiFrancesco
