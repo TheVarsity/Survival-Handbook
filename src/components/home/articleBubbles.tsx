@@ -2,7 +2,9 @@ import React, { RefObject, createRef, useEffect, useReducer, useRef, useState } 
 
 import PreviewCompatibleImage from '../PreviewCompatibleImage';
 
-import { BrowserView, isBrowser } from 'react-device-detect';
+import { isBrowser, isMobile } from 'react-device-detect';
+
+import { Link } from 'gatsby';
 
 import {
     ArticleElement,
@@ -52,33 +54,15 @@ const ArticleBubbles = ({ articles }: ArticleType) => {
             const prevLine = lines[prevLineIndex];
 
             if (prevLine && prevLine?.lineRef?.current) {
-                // console.log(
-                //     'Catch Up Between',
-                //     prevLineIndex,
-                //     currentLineGoingDown,
-                //     prevLine.lineRef.current,
-                //     prevLine.height
-                // );
-                // prevLine.lineRef.current.style.transition = `height 2s;`;
-                // prevLine.lineRef.current.classList.add('grow-transition');
                 if (prevLineIndex < currentLineGoingDown) {
                     prevLine.lineRef.current.style.height = `${prevLine.height}px`;
                 } else {
                     prevLine.lineRef.current.style.height = `0px`;
                 }
-                // console.log('Caught up', prevLine.lineRef.current);
             }
             setPrevLineIndex(currentLineGoingDown);
         }
     }, [currentLineGoingDown]);
-
-    // useEffect(() => {
-    //     setLines(
-    //         Object.assign([], lines, {
-    //             [currentLineGoingUp]: { ...lines[currentLineGoingUp], direction: 'Up' }
-    //         })
-    //     );
-    // }, [currentLineGoingUp]);
 
     useEffect(() => {
         articleElements.current = createInitialArticleState({ articles });
@@ -88,37 +72,26 @@ const ArticleBubbles = ({ articles }: ArticleType) => {
     }, []);
 
     useEffect(() => {
-        if (isBrowser) {
-            const blurbs_num = 10;
-            let i;
-            // console.log('Line Updater Called');
-            const temp = Array(blurbs_num).fill(0);
-            for (i = 0; i < blurbs_num; i++) {
-                if (!lines[i]?.height) {
-                    const objHeight = adjustLine(
-                        articleRefs[i]?.current,
-                        articleRefs[i + 1]?.current,
-                        lines[i]?.lineRef.current
-                    );
-                    temp[i] = objHeight;
-                    lineDispatch({ type: lineActions.updateHeight, index: i, height: objHeight });
-                }
+        // if (isBrowser) {
+        const blurbs_num = 10;
+        let i;
+        // console.log('Line Updater Called');
+        const temp = Array(blurbs_num).fill(0);
+        for (i = 0; i < blurbs_num; i++) {
+            if (!lines[i]?.height) {
+                const objHeight = adjustLine(
+                    articleRefs[i]?.current,
+                    articleRefs[i + 1]?.current,
+                    lines[i]?.lineRef.current
+                );
+                temp[i] = objHeight;
+                lineDispatch({ type: lineActions.updateHeight, index: i, height: objHeight });
             }
-            // console.log('Line Updater Done', temp);
-            // const newLines = Array(blurbs_num).fill(0);
-            // for (let i = 0; i < blurbs_num; i++) {
-            //     newLines[i] = {
-            //         ...lines[i],
-            //         height: temp[i] === 0 && lines[i]?.height ? lines[i].height : temp[i]
-            //     };
-            // }
-            // console.log('New lines', newLines);
-            // setLines(newLines);
         }
+        // }
     }, [articleRefs]);
 
     useEffect(() => {
-        // console.log('Updating Lines', lines);
         let currentIndex = currentLineGoingDown;
         if (currentIndex != -1 && lines[currentIndex]) {
             const { lineRef, position } = lines[currentIndex];
@@ -174,13 +147,14 @@ const ArticleBubbles = ({ articles }: ArticleType) => {
         <>
             <div ref={scrollableRef}>
                 {articleElements.current.map((article, index) => {
+                    const { title, subtitle, path } = article.imageObject;
                     return (
                         <section
-                            className="section"
+                            className="section bubble-wrapper"
                             key={`section-${index}`}
                             ref={scrollRefs[index]}
                         >
-                            <div className={article.className}>
+                            <div className={`bubble-image ${article.className}`}>
                                 <div
                                     style={{
                                         width: '100%',
@@ -191,13 +165,19 @@ const ArticleBubbles = ({ articles }: ArticleType) => {
                                 >
                                     <PreviewCompatibleImage imageInfo={article.imageObject} />
                                 </div>
-                                <BrowserView>
-                                    <div
-                                        className="line grow-transition"
-                                        id={`line-${index}`}
-                                        ref={lines[index]?.lineRef}
-                                    />
-                                </BrowserView>
+                                {/* <BrowserView> */}
+                                <div
+                                    className="line grow-transition"
+                                    id={`line-${index}`}
+                                    ref={lines[index]?.lineRef}
+                                />
+                                {/* </BrowserView> */}
+                            </div>
+                            <div className={`bubble-text ${article.className}`}>
+                                <Link to={path ? path : '/'}>
+                                    <h3 className="article-link title">{title}</h3>
+                                </Link>
+                                <p className="byline">{subtitle}</p>
                             </div>
                         </section>
                     );
@@ -208,7 +188,7 @@ const ArticleBubbles = ({ articles }: ArticleType) => {
                             position: absolute;
                             width: 2px;
                             height: 1px;
-                            background-color: black;
+                            background-color: ${isBrowser ? 'black' : 'rgba(0, 0, 0, 0.4)'};
                             z-index: -1;
                             margin-top: 1px;
                         }
@@ -216,6 +196,38 @@ const ArticleBubbles = ({ articles }: ArticleType) => {
                             padding: 0px;
                             margin: 0px;
                             box-sizing: border-box;
+                        }
+                        .bubble-text {
+                            z-index: 1;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            text-align: center;
+                            flex-direction: column;
+                        }
+                        .bubble-image {
+                            z-index: 0;
+                        }
+                        .bubble-wrapper {
+                            display: grid;
+                            grid-template: 1fr / 1fr;
+                            margin-top: ${isMobile ? '12vh' : ''};
+                        }
+
+                        .bubble-wrapper > * {
+                            grid-column: 1 / 1;
+                            grid-row: 1 / 1;
+                        }
+                        .byline {
+                            color: black;
+                        }
+                        .article-link:hover {
+                            text-decoration: underline;
+                        }
+                        .title {
+                            font-size: ${isMobile ? '1.25em' : '1.5em'} !important;
+                            margin-bottom: ${isMobile ? '0.1em' : '0.6666em'} !important;
+                            max-width: ${isMobile ? '40vw' : '15vw'};
                         }
                     `}
                 </style>

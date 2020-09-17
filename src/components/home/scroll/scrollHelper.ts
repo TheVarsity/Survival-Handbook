@@ -4,6 +4,8 @@ import {
     Maybe
 } from 'types/graphql-types';
 
+import { isMobile } from 'react-device-detect';
+
 export const getScrollLineHeight = () => {
     const el = document.createElement('div');
     el.style.fontSize = 'initial';
@@ -107,11 +109,18 @@ export const adjustLine = (
         line.style.top = `${from.offsetTop + from.offsetHeight / 2}px`;
         line.style.left = `${from.offsetLeft + from.offsetWidth / 2}px`;
 
-        line.style['-webkit-transform'] = `rotate(${angle}deg)`;
-        line.style['-moz-transform'] = `rotate(${angle}deg)`;
-        line.style['-ms-transform'] = `rotate(${angle}deg)`;
-        line.style['-o-transform'] = `rotate(${angle}deg)`;
-        line.style['-transform'] = `rotate(${angle}deg)`;
+        if (!isMobile) {
+            line.style['-webkit-transform'] = `rotate(${angle}deg)`;
+            line.style['-moz-transform'] = `rotate(${angle}deg)`;
+            line.style['-ms-transform'] = `rotate(${angle}deg)`;
+            line.style['-o-transform'] = `rotate(${angle}deg)`;
+            line.style['-transform'] = `rotate(${angle}deg)`;
+        } else {
+            const posOrNeg = (-1) ** (Math.floor(Math.random() * 2) + 1);
+            const randomNumber = posOrNeg * (Math.floor(Math.random() * 15) + 1);
+            line.style.transform = `skew(${randomNumber}deg)`;
+        }
+
         line.style['transform-origin'] = `0% 0%`;
         line.style.height = `${1}px`;
 
@@ -151,7 +160,7 @@ export const createInitialArticleState = ({ articles }: ArticleType) => {
                 imageObject: { ...articles?.blurbs[1], alt: '' }
             },
             {
-                className: 'column is-4 is-offset-2',
+                className: 'column is-5 is-offset-1',
                 imageObject: { ...articles?.blurbs[2], alt: '' }
             },
             {
@@ -181,10 +190,6 @@ export const createInitialArticleState = ({ articles }: ArticleType) => {
             {
                 className: 'column is-5 is-offset-2',
                 imageObject: { ...articles?.blurbs[9], alt: '' }
-            },
-            {
-                className: 'column is-5 is-offset-7',
-                imageObject: { ...articles?.blurbs[10], alt: '' }
             }
         ];
     }
@@ -198,6 +203,9 @@ export type ArticleElement = {
         childImageSharp?: { fluid?: any };
         image?: string | { childImageSharp?: { fluid?: any } | null } | null;
         style?: object;
+        title?: string;
+        subtitle?: string;
+        path?: string;
     };
 };
 

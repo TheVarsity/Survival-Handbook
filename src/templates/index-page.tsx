@@ -1,26 +1,29 @@
 /* eslint-disable @typescript-eslint/restrict-plus-operands */
+
+// Modules
 import { graphql } from 'gatsby';
+import { isMobile } from 'react-device-detect';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import { IndexPageTemplateQuery } from 'types/graphql-types';
-import ArticleBubbles from '../components/home/articleBubbles';
 import Layout from '../components/Layout';
-import Navbar from '../components/Navbar';
-// import PreviewCompatibleImage from '../components/PreviewCompatibleImage';
 
-import Chevron from '../components/home/chevron';
-import Doodles from '../components/home/doodles';
+// Components
+import { HTMLContent } from '../components/Content';
+
+//import ArticleHead from '../components/ArticleHead';
 import TextBubble from '../components/home/TextBubble';
+import VideoContainer from '../components/home/VideoContainer';
 
-//@ts-ignore
-import mp4 from '../img/handbook-cover-2020.mp4';
-//@ts-ignore
-import webm from '../img/handbook-cover-2020.webm';
+import Doodles from '../components/home/doodles';
+import Navbar from '../components/Navbar';
 
-import scrollTo from 'gatsby-plugin-smoothscroll';
+import ArticleBubbles from '../components/home/articleBubbles';
 
-import PreviewCompatibleImage from '../components/PreviewCompatibleImage';
+// Hooks
+
+import useScrollSpy from '../components/home/useScrollSpy';
 
 type IndexPageTemplateProps = RecursiveNonNullable<
     IndexPageTemplateQuery
@@ -33,130 +36,52 @@ export const IndexPageTemplate = ({
     editorNote,
     advice,
     articles,
-    doodles
+    doodles,
+    covidGuidelines,
+    video
 }: IndexPageTemplateProps) => {
-    // React.useEffect(() => {
-    //     console.log('Doodles', doodles);
-    // }, []);
+    const [floatingNav, setFloatingNav] = useState(true);
+
+    const parallaxRef = useRef<HTMLDivElement | null>(null);
+
+    const bodyRef = useRef<HTMLElement | null>(null);
+
+    const currentSection = useScrollSpy({
+        sectionElementRefs: [parallaxRef, bodyRef]
+    });
+
+    useEffect(() => {
+        if (currentSection === 0) {
+            setFloatingNav(true);
+        } else {
+            setFloatingNav(false);
+        }
+    }, [currentSection]);
 
     return (
         <>
             <div>
-                <div className="parallax-container full-width-image margin-top-0" id="home">
-                    <div className="video-wrapper">
-                        <div className="overlay" />
-
-                        <video
-                            autoPlay
-                            muted
-                            loop
-                            poster={`${
-                                cover.childImageSharp ? cover.childImageSharp.fluid.src : cover
-                            }`}
-                            className="video-cover"
-                        >
-                            <source src={webm} type="video/webm" />
-                            <source src={mp4} type="video/mp4" />
-                        </video>
-                        <div className="video-overlay chevron-down is-size-5-mobile is-size-5-tablet is-size-4-widescreen">
-                            <a onClick={() => scrollTo('#editor-note')} className="icon">
-                                <Chevron />
-                            </a>
-                        </div>
-                    </div>
-                    {/* @ts-ignore Styled JSX */}
-                    <style jsx>
-                        {`
-                            .video-wrapper {
-                                position: relative;
-                                background-color: black;
-                                height: 100%;
-                                width: 100%;
-                                overflow: hidden;
-                            }
-                            .video-overlay {
-                                z-index: 1;
-                                position: relative;
-                                padding-top: 85vh;
-                            }
-
-                            .video-cover {
-                                object-fit: cover;
-                                position: absolute;
-                                width: 100%;
-                                left: 0;
-                                top: 0;
-                                height: 100%;
-                                z-index: 0;
-                            }
-                            .icon {
-                                width: 7rem !important;
-                                height: 7rem !important;
-                            }
-                            .parallax-container {
-                                display: flex;
-                                flex-direction: column;
-                                flex-flow: column nowrap;
-                            }
-                            .chevron-down {
-                                display: flex;
-                                justify-content: center;
-                                margin-top: auto;
-                                 {
-                                    /* padding-top: 10%; */
-                                }
-                            }
-                            .strike-large::before {
-                                content: '';
-                                border-bottom: 1rem dashed rgba(255, 68, 0, 0.8);
-                                width: 100%;
-                                position: absolute;
-                                right: 0;
-                                top: 50%;
-                            }
-                            .strike-large::after {
-                                content: '';
-                                border-bottom: 1.5rem dashed black;
-                                width: 100%;
-                                position: absolute;
-                                right: 0.8%;
-                                top: 48%;
-                            }
-
-                            .strike-large {
-                                position: relative;
-                                display: inline-block;
-                            }
-                            .strike-small {
-                                position: relative;
-                                display: inline-block;
-                            }
-                            .strike-small::before {
-                                content: '';
-                                border-bottom: 0.4rem dashed rgba(255, 68, 0, 0.8);
-                                width: 100%;
-                                position: absolute;
-                                right: 0;
-                                top: 50%;
-                            }
-                            .strike-small::after {
-                                content: '';
-                                border-bottom: 0.3rem dashed black;
-                                width: 100%;
-                                position: absolute;
-                                right: 0.8%;
-                                top: 50%;
-                            }
-                        `}
-                    </style>
+                <div ref={parallaxRef}>
+                    <VideoContainer
+                        mp4={video.mp4}
+                        webm={video.webm}
+                        chevron={true}
+                        cover={mainImage}
+                        image={cover}
+                    />
                 </div>
-                <Navbar isHomePage={true} />
+                <Navbar isHomePage={floatingNav} />
                 <section
                     className="section section--gradient main"
                     id="editor-note"
+                    ref={bodyRef}
                     style={{
                         backgroundImage: `url(${
-                            image.childImageSharp ? image.childImageSharp.fluid.src : image
+                            image.childImageSharp
+                                ? image.childImageSharp.fluid.srcWebp
+                                    ? image.childImageSharp.fluid.srcWebp
+                                    : image.childImageSharp.fluid.src
+                                : image
                         })`,
                         backgroundPosition: `top left`,
                         backgroundAttachment: `fixed`,
@@ -168,14 +93,14 @@ export const IndexPageTemplate = ({
                             <div className="columns">
                                 <div className="column is-10 is-offset-1">
                                     <div className="content">
-                                        <div className="editor-note">
-                                            <div className="tile">
-                                                <h1 className="title">{editorNote.title}</h1>
-                                            </div>
-                                            <div className="tile">
-                                                <h3 className="subtitle">
-                                                    {editorNote.description}
-                                                </h3>
+                                        <div className="card editor-note">
+                                            <header className="card-header">
+                                                <h1 className="card-header-title">
+                                                    {`Editor’s Note`}
+                                                </h1>
+                                            </header>
+                                            <div className="card-content tile">
+                                                <HTMLContent content={editorNote} />
                                             </div>
                                             {/* @ts-ignore Styled JSX*/}
                                             <style jsx>
@@ -189,11 +114,53 @@ export const IndexPageTemplate = ({
                                                 `}
                                             </style>
                                         </div>
-                                        <div className="column is-6 is-offset-3">
-                                            <PreviewCompatibleImage imageInfo={mainImage} />
+                                        <div className="divider-wrapper">
+                                            <style jsx>
+                                                {`
+                                                    .divider-wrapper {
+                                                        border-top: 1rem dotted black;
+                                                        margin: 5vh auto;
+                                                    }
+                                                `}
+                                            </style>
                                         </div>
-                                        <TextBubble left={advice.left} right={advice.right} />
-                                        <TextBubble left={advice.left} right={advice.right} />
+                                        <div className="covid-guidelines-wrapper">
+                                            <div
+                                                className="card mobile-covid-guidelines"
+                                                style={{ margin: '10vh auto' }}
+                                            >
+                                                <header className="card-header">
+                                                    <h1 className="card-header-title">
+                                                        {covidGuidelines.title}
+                                                    </h1>
+                                                </header>
+                                                <div className="card-content">
+                                                    <strong>
+                                                        By {covidGuidelines.description}
+                                                    </strong>
+                                                    <p>{covidGuidelines.text.para}</p>
+                                                    <ul>
+                                                        {covidGuidelines.text.list.map(
+                                                            (element, index) => {
+                                                                return (
+                                                                    <li key={index}>{element}</li>
+                                                                );
+                                                            }
+                                                        )}
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <TextBubble
+                                            left={advice.left}
+                                            right={advice.right}
+                                            text={advice.text.slice(0, 2)}
+                                        />
+                                        <TextBubble
+                                            left={advice.left}
+                                            right={advice.right}
+                                            text={advice.text.slice(2, 4)}
+                                        />
                                         <div className="body-wrapper">
                                             <div className="doodle-wrapper">
                                                 <Doodles doodles={doodles} />
@@ -256,10 +223,12 @@ const IndexPage = ({ data }: { data: RecursiveNonNullable<IndexPageTemplateQuery
                 title={post?.frontmatter?.title}
                 heading={post?.frontmatter?.heading}
                 subheading={post?.frontmatter?.subheading}
-                editorNote={post?.frontmatter?.editorNote}
+                editorNote={post?.html}
                 advice={post?.frontmatter?.advice}
                 articles={post?.frontmatter?.articles}
                 doodles={post?.frontmatter?.doodles}
+                covidGuidelines={post?.frontmatter?.covidGuidelines}
+                video={post?.frontmatter?.video}
             />
         </Layout>
     );
@@ -270,68 +239,80 @@ export default IndexPage;
 export const pageQuery = graphql`
     query IndexPageTemplate {
         markdownRemark(frontmatter: { templateKey: { eq: "index-page" } }) {
+            html
             frontmatter {
                 title
                 image {
                     childImageSharp {
                         fluid(maxWidth: 2048, quality: 100) {
-                            ...GatsbyImageSharpFluid
+                            ...GatsbyImageSharpFluid_withWebp
                         }
                     }
                 }
                 cover {
                     childImageSharp {
                         fluid(maxWidth: 2048, quality: 100) {
-                            ...GatsbyImageSharpFluid
+                            ...GatsbyImageSharpFluid_withWebp
                         }
                     }
                 }
                 mainImage {
                     childImageSharp {
                         fluid(maxWidth: 2048, quality: 100) {
-                            ...GatsbyImageSharpFluid
+                            ...GatsbyImageSharpFluid_withWebp
                         }
                     }
                 }
+                video {
+                    webm
+                    mp4
+                }
                 heading
                 subheading
-                editorNote {
-                    title
-                    description
-                }
                 advice {
                     left {
                         childImageSharp {
                             fluid(maxWidth: 375, quality: 100) {
-                                ...GatsbyImageSharpFluid
+                                ...GatsbyImageSharpFluid_withWebp
                             }
                         }
                     }
                     right {
                         childImageSharp {
                             fluid(maxWidth: 375, quality: 100) {
-                                ...GatsbyImageSharpFluid
+                                ...GatsbyImageSharpFluid_withWebp
                             }
                         }
                     }
+                    text
                 }
-
+                covidGuidelines {
+                    title
+                    description
+                    text {
+                        para
+                        list
+                    }
+                }
                 articles {
                     blurbs {
                         image {
                             childImageSharp {
                                 fluid(maxWidth: 375, quality: 100) {
-                                    ...GatsbyImageSharpFluid
+                                    ...GatsbyImageSharpFluid_withWebp
                                 }
                             }
                         }
+                        title
+                        subtitle
+                        path
                     }
                 }
                 doodles {
                     image {
                         childImageSharp {
                             fluid(maxWidth: 375, quality: 100) {
-                                ...GatsbyImageSharpFluid
+                                ...GatsbyImageSharpFluid_withWebp
                             }
                         }
                     }

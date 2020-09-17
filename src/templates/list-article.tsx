@@ -1,6 +1,5 @@
 import { BlogPostByIdQuery } from 'types/graphql-types';
-import { Link, graphql } from 'gatsby';
-import { kebabCase } from 'lodash';
+import { graphql } from 'gatsby';
 import ArticleHead from '../components/ArticleHead';
 import Content, { HTMLContent } from '../components/Content';
 import Helmet from 'react-helmet';
@@ -8,7 +7,9 @@ import Layout from '../components/Layout';
 import Navbar from '../components/Navbar';
 // import PreviewCompatibleImage from '../components/PreviewCompatibleImage';
 // import PropTypes from 'prop-types';
-import React, { useReducer, useState } from 'react';
+import useScrollSpy from '../components/home/useScrollSpy';
+
+import React, { useEffect, useReducer, useRef, useState } from 'react';
 
 import Fade from 'react-reveal/Fade';
 
@@ -62,8 +63,6 @@ const fadePropReducer = (state: any, action: any) => {
 export const ListArticlePostTemplate: React.FC<ListArticlePostTemplateProps> = ({
     content,
     contentComponent,
-    description,
-    tags,
     title,
     helmet,
     featured_image,
@@ -80,20 +79,40 @@ export const ListArticlePostTemplate: React.FC<ListArticlePostTemplateProps> = (
         cascade: true
     });
 
+    const [floatingNav, setFloatingNav] = useState(true);
+
+    const parallaxRef = useRef<HTMLDivElement | null>(null);
+
+    const bodyRef = useRef<HTMLElement | null>(null);
+
+    const currentSection = useScrollSpy({
+        sectionElementRefs: [parallaxRef, bodyRef]
+    });
+
+    useEffect(() => {
+        if (currentSection === 0) {
+            setFloatingNav(true);
+        } else {
+            setFloatingNav(false);
+        }
+    }, [currentSection]);
+
     return (
         <div>
-            <ArticleHead title={title} author={author} featuredImage={featured_image} />
-            <Navbar isHomePage={true} />
+            <div ref={parallaxRef}>
+                <ArticleHead title={title} author={author} featuredImage={featured_image} />
+            </div>
+            <Navbar isHomePage={floatingNav} />
 
-            <section className="section">
+            <section className="section" ref={bodyRef}>
                 {helmet || ''}
                 <div className="container content">
                     <div className="columns">
-                        <div className="column is-10 is-offset-1">
+                        <div className="column is-8 is-offset-2">
                             {list && stateList && list.length ? (
                                 <div className="todo-wrapper">
                                     <h3 className="has-text-centered">
-                                        {list.name ? list.name : 'Listicle'}
+                                        {list.name ? list.name : ''}
                                     </h3>
                                     {stateList.length ? null : (
                                         <div className="finished">
@@ -132,24 +151,6 @@ export const ListArticlePostTemplate: React.FC<ListArticlePostTemplateProps> = (
                                                                             {item.title}
                                                                         </p>
                                                                     </div>
-                                                                    <button
-                                                                        data-id={index}
-                                                                        onClick={() => {
-                                                                            setStateList(
-                                                                                stateList.filter(
-                                                                                    (item, i) =>
-                                                                                        i !== index
-                                                                                )
-                                                                            );
-                                                                        }}
-                                                                        type="button"
-                                                                        className="close"
-                                                                        aria-label="Close"
-                                                                    >
-                                                                        <span aria-hidden="true">
-                                                                            &times;
-                                                                        </span>
-                                                                    </button>
                                                                 </div>
                                                             </header>
                                                             <div className="card-content">
@@ -198,34 +199,14 @@ export const ListArticlePostTemplate: React.FC<ListArticlePostTemplateProps> = (
                                                 background-color: transparent;
                                                 border: 0;
                                                 align-self: center;
-                                                 {
-                                                    /* align-items: center;
-                                                align-self: flex-end;
-                                                -webkit-appearance: none; */
-                                                }
                                             }
                                         `}
                                     </style>
                                 </div>
                             ) : null}
-                            <PostContent content={content} />
-                            {tags && tags.length ? (
-                                <div style={{ marginTop: `4rem` }}>
-                                    <h4>Tags</h4>
-                                    <ul className="taglist">
-                                        {tags.map(
-                                            tag =>
-                                                tag && (
-                                                    <li key={`tag${tag}`}>
-                                                        <Link to={`/tags/${kebabCase(tag)}/`}>
-                                                            {tag}
-                                                        </Link>
-                                                    </li>
-                                                )
-                                        )}
-                                    </ul>
-                                </div>
-                            ) : null}
+                            <div className="unordered-list-wrapper">
+                                <PostContent content={content} />
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -244,7 +225,6 @@ const ListArticlePost: React.FC<{
             <ListArticlePostTemplate
                 content={post?.html}
                 contentComponent={HTMLContent}
-                description={post?.frontmatter?.description}
                 featured_image={post?.frontmatter?.featuredimage}
                 author={post?.frontmatter?.author}
                 helmet={
@@ -253,7 +233,6 @@ const ListArticlePost: React.FC<{
                         <meta name="description" content={`${post?.frontmatter?.description}`} />
                     </Helmet>
                 }
-                tags={post?.frontmatter?.tags}
                 list={post?.frontmatter?.list}
                 title={post?.frontmatter?.title}
             />
@@ -270,11 +249,10 @@ export const pageQuery = graphql`
             html
             frontmatter {
                 title
-                description
                 featuredimage {
                     childImageSharp {
                         fluid(maxWidth: 2048, quality: 100) {
-                            ...GatsbyImageSharpFluid
+                            ...GatsbyImageSharpFluid_withWebp
                         }
                     }
                 }
@@ -286,7 +264,6 @@ export const pageQuery = graphql`
                     title
                     text
                 }
-                tags
             }
         }
     }
