@@ -134,7 +134,7 @@ const ArticlePost: React.FC<{
                         <meta property="og:title" content={`${post?.frontmatter?.title}`} />
                         <meta
                             property="og:description"
-                            content={`${post?.frontmatter?.description}`}
+                            content={`By ${post?.frontmatter?.author?.name}`}
                         />
                         <meta
                             property="og:image"
