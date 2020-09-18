@@ -117,7 +117,7 @@ const ArticlePost: React.FC<{
     data: BlogPostByIdQuery;
 }> = ({ data }) => {
     const { markdownRemark: post } = data;
-
+    const rootUrl = 'www.handbook.thevarsity.com';
     return (
         <Layout isIndexPage={true}>
             <ArticlePostTemplate
@@ -131,6 +131,20 @@ const ArticlePost: React.FC<{
                     <Helmet titleTemplate="%s | Article">
                         <title>{`${post?.frontmatter?.title}`}</title>
                         <meta name="description" content={`${post?.frontmatter?.description}`} />
+                        <meta property="og:title" content={`${post?.frontmatter?.title}`} />
+                        <meta
+                            property="og:description"
+                            content={`By ${post?.frontmatter?.author?.name}`}
+                        />
+                        <meta
+                            property="og:image"
+                            content={`${post?.frontmatter?.featuredimage?.childImageSharp?.fluid?.src}`}
+                        />
+                        <meta property="og:url" content={`${rootUrl}${post?.fields?.slug}`} />
+                        <meta name="twitter:card" content="summary" />
+                        <meta property="og:type" content="article" />
+                        <meta property="og:locale" content="en_US" />
+                        <link rel="canonical" href={`${rootUrl}${post?.fields?.slug}`} />
                     </Helmet>
                 }
                 title={post?.frontmatter?.title}
@@ -146,6 +160,9 @@ export const pageQuery = graphql`
         markdownRemark(id: { eq: $id }) {
             id
             html
+            fields {
+                slug
+            }
             frontmatter {
                 title
                 featuredVideo {
