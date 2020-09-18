@@ -17,68 +17,6 @@ export const getScrollLineHeight = () => {
 };
 
 export const adjustLine = (
-<<<<<<< HEAD
-    from?: {
-        offsetTop: number;
-        offsetHeight: number;
-        offsetLeft: number;
-        offsetWidth: number;
-    },
-    to?: {
-        offsetTop: number;
-        offsetHeight: number;
-        offsetLeft: number;
-        offsetWidth: number;
-    },
-    line?: { style: { [x: string]: string; top: string; left: string; height: string } }
-) => {
-    if (from && to && line) {
-        let fT = from.offsetTop + from.offsetHeight / 2;
-
-        let tT = to.offsetTop + to.offsetHeight / 2;
-
-        let fL = from.offsetLeft + from.offsetWidth / 2;
-
-        let tL = to.offsetLeft + to.offsetWidth / 2;
-
-        let CA = Math.abs(tT - fT);
-        let CO = Math.abs(tL - fL);
-        let H = Math.sqrt(CA * CA + CO * CO);
-        let ANG = (180 / Math.PI) * Math.acos(CA / H);
-        let top, left;
-        if (tT > fT) {
-            top = (tT - fT) / 2 + fT;
-        } else {
-            top = (fT - tT) / 2 + tT;
-        }
-        if (tL > fL) {
-            left = (tL - fL) / 2 + fL;
-        } else {
-            left = (fL - tL) / 2 + tL;
-        }
-
-        if (
-            (fT < tT && fL < tL) ||
-            (tT < fT && tL < fL) ||
-            (fT > tT && fL > tL) ||
-            (tT > fT && tL > fL)
-        ) {
-            ANG *= -1;
-        }
-        top -= H / 2;
-
-        line.style.top = `${top}px`;
-        line.style.left = `${left}px`;
-
-        line.style['-webkit-transform'] = `rotate(${ANG}deg)`;
-        line.style['-moz-transform'] = `rotate(${ANG}deg)`;
-        line.style['-ms-transform'] = `rotate(${ANG}deg)`;
-        line.style['-o-transform'] = `rotate(${ANG}deg)`;
-        line.style['-transform'] = `rotate(${ANG}deg)`;
-        line.style.height = `${0}px`;
-
-        return H;
-=======
     from?: HTMLDivElement,
     to?: HTMLDivElement,
     line?: { style: { [x: string]: string; top: string; left: string; height: string } }
@@ -125,7 +63,6 @@ export const adjustLine = (
         line.style.height = `${1}px`;
 
         return height;
->>>>>>> e1a44b09a14023d512216899abd7139c627c7cd8
     }
     return 0;
 };
