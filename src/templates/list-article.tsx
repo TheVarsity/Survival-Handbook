@@ -219,7 +219,7 @@ const ListArticlePost: React.FC<{
     data: BlogPostByIdQuery;
 }> = ({ data }) => {
     const { markdownRemark: post } = data;
-
+    const rootUrl = 'www.handbook.thevarsity.com';
     return (
         <Layout isIndexPage={true}>
             <ListArticlePostTemplate
@@ -231,6 +231,32 @@ const ListArticlePost: React.FC<{
                     <Helmet titleTemplate="%s | ListArticle">
                         <title>{`${post?.frontmatter?.title}`}</title>
                         <meta name="description" content={`${post?.frontmatter?.description}`} />
+                        <meta property="og:title" content={`${post?.frontmatter?.title}`} />
+                        <meta
+                            property="og:description"
+                            content={`By ${post?.frontmatter?.author?.name}`}
+                        />
+                        <meta
+                            property="og:image"
+                            content={`${post?.frontmatter?.featuredimage?.childImageSharp?.fluid?.src}`}
+                        />
+                        <meta
+                            name="twitter:image"
+                            content={`${post?.frontmatter?.featuredimage?.childImageSharp?.fluid?.src}`}
+                        />
+                        <meta
+                            property="og:image:width"
+                            content={`${post?.frontmatter?.featuredimage?.childImageSharp?.fluid?.width}`}
+                        />
+                        <meta
+                            property="og:image:height"
+                            content={`${post?.frontmatter?.featuredimage?.childImageSharp?.fluid?.height}`}
+                        />
+                        <meta property="og:url" content={`${rootUrl}${post?.fields?.slug}`} />
+                        <meta name="twitter:card" content="summary_large_image" />
+                        <meta property="og:type" content="article" />
+                        <meta property="og:locale" content="en_US" />
+                        <link rel="canonical" href={`${rootUrl}${post?.fields?.slug}`} />
                     </Helmet>
                 }
                 list={post?.frontmatter?.list}
@@ -247,6 +273,9 @@ export const pageQuery = graphql`
         markdownRemark(id: { eq: $id }, frontmatter: { templateKey: { eq: "list-article" } }) {
             id
             html
+            fields {
+                slug
+            }
             frontmatter {
                 title
                 featuredimage {
