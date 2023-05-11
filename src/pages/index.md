@@ -6,8 +6,8 @@ title: DECLASSIFIED
 image: /img/background.jpg
 subheading: The Varsity's UofT Survival Guide
 video:
-  mp4: /video/coverBg.mp4
-  webm: /video/coverBg.webm
+  mp4: https://cdn-s3.thevarsity.ca/survival-handbook/video/coverBg.mp4
+  webm: https://cdn-s3.thevarsity.ca/survival-handbook/video/coverBg.webm
 covidGuidelines:
   title: Staying safe with your friends
   description: Candice Lee Zhang

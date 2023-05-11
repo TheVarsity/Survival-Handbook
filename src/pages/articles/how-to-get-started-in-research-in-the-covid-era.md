@@ -3,10 +3,10 @@ templateKey: article
 title: How to get started in research in the COVID era
 date: 2020-08-27T10:33:47.411Z
 featuredVideo:
-  webm: /video/covidResearch-desktop.webm
-  mp4:  /video/covidResearch-desktop.mp4
-  mobileWebm : /video/covidResearch-mobile.webm
-  mobileMp4 : /video/covidResearch-mobile.mp4
+  webm: https://cdn-s3.thevarsity.ca/survival-handbook/video/covidResearch-desktop.webm
+  mp4:  https://cdn-s3.thevarsity.ca/survival-handbook/video/covidResearch-desktop.mp4
+  mobileWebm : https://cdn-s3.thevarsity.ca/survival-handbook/video/covidResearch-mobile.webm
+  mobileMp4 : https://cdn-s3.thevarsity.ca/survival-handbook/video/covidResearch-mobile.mp4
 featuredimage: /img/covidResearchCover.jpg
 featuredpost: false
 author:

@@ -4,8 +4,8 @@ title: Travelling tips during COVID-19
 date: 2020-08-27T10:45:09.181Z
 featuredpost: false
 featuredVideo:
-  webm: /video/covidTravelVideo.webm
-  mp4:  /video/covidTravelVideo.mp4
+  webm: https://cdn-s3.thevarsity.ca/survival-handbook/video/covidTravelVideo.webm
+  mp4:  https://cdn-s3.thevarsity.ca/survival-handbook/video/covidTravelVideo.mp4
 featuredimage: /img/covidTravelCover.jpg
 author:
   name: |

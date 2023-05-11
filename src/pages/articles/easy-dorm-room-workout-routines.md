@@ -5,10 +5,10 @@ date: 2020-08-31T16:02:01.664Z
 featuredpost: false
 featuredimage: /img/fitnessCover.png
 featuredVideo:
-  webm: /video/workouts/gluteBridges.webm
-  mp4:  /video/gluteBridges.mp4
-  mobileWebm : /video/situps-mobile.webm
-  mobileMp4 : /video/situps-mobile.mp4
+  webm: https://cdn-s3.thevarsity.ca/survival-handbook/video/workouts/gluteBridges.webm
+  mp4:  https://cdn-s3.thevarsity.ca/survival-handbook/video/gluteBridges.mp4
+  mobileWebm : https://cdn-s3.thevarsity.ca/survival-handbook/video/situps-mobile.webm
+  mobileMp4 : https://cdn-s3.thevarsity.ca/survival-handbook/video/situps-mobile.mp4
 author:
   name: Ana Pereira
   url: /
